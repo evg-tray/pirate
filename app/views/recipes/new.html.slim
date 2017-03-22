@@ -1,0 +1,39 @@
+- @recipe.errors.any?
+  - @recipe.errors.full_messages.each do |message|
+    p = message
+= form_for(@recipe) do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :amount
+    .input-group
+      = f.number_field :amount, min: 1, class: 'form-control'
+      .input-group-addon мл
+  .form-group
+    = f.label :pg
+    .input-group
+      = f.number_field :pg, min: 0, max: 100, class: 'form-control'
+      .input-group-addon %
+  .form-group
+    = f.label :vg
+    .input-group
+      = f.number_field :vg, min: 0, max: 100, class: 'form-control'
+      .input-group-addon %
+  .form-group
+    = f.label :strength
+    .input-group
+      = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
+      .input-group-addon мг/мл
+  .form-group
+    = f.label :nicotine_base
+    .input-group
+      = f.number_field :nicotine_base, min: 0, class: 'form-control'
+      .input-group-addon мг/мл
+  p Ароматизаторы:
+  = f.fields_for :flavors_recipes do |flavor_recipe|
+    = render 'flavors_recipe_fields', f: flavor_recipe
+  .links
+    = link_to_add_association 'add a flavor', f, :flavors_recipes
+  br
+  = f.submit 'Создать рецепт'

@@ -1,0 +1,7 @@
+.nested-fields
+  .form-inline
+    .input-group
+      = f.collection_select :flavor_id, Flavor.all, :id, :name, {}, class: 'form-control'
+      = f.number_field :amount, class: 'form-control'
+      .input-group-addon %
+  = link_to_remove_association 'delete', f
