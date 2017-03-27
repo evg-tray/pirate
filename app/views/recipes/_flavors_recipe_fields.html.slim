@@ -1,7 +1,11 @@
 .nested-fields
-  .form-inline
-    .input-group
-      = f.collection_select :flavor_id, Flavor.all, :id, :name, {}, class: 'form-control'
-      = f.number_field :amount, class: 'form-control'
-      .input-group-addon %
-  = link_to_remove_association 'delete', f
+  .form-group
+    .flavors-input
+      .col-xs-8
+        = f.collection_select :flavor_id, Flavor.all, :id, :name, {}, class: 'form-control select'
+      .col-xs-4
+        .input-group
+          = f.number_field :amount, min: 1, class: 'form-control number'
+          .input-group-addon %
+          .input-group-btn= link_to_remove_association f, class: 'btn btn-danger' do
+            .glyphicon.glyphicon-remove

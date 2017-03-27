@@ -25,5 +25,6 @@ RSpec.describe Recipe, type: :model do
     it { should have_many(:flavors_recipes).inverse_of(:recipe) }
     it { should have_many(:flavors).through(:flavors_recipes) }
     it { should accept_nested_attributes_for(:flavors_recipes).allow_destroy(true) }
+    it { should belong_to(:author).class_name('User') }
   end
 end

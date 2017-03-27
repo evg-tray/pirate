@@ -7,6 +7,8 @@ class CreateRecipes < ActiveRecord::Migration[5.0]
       t.integer :pg, null: false
       t.integer :vg, null: false
       t.integer :nicotine_base, null: false
+      t.boolean :published, default: false, null: false
+      t.boolean :pirate_diy, default: false, null: false
 
       t.timestamps
     end

@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :flavors_recipes, inverse_of: :recipe
   has_many :flavors, through: :flavors_recipes
+  belongs_to :author, class_name: 'User'
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }
@@ -15,6 +16,11 @@ class Recipe < ApplicationRecord
                                                       less_than_or_equal_to: 100 }
   validate :liquid_integrity
 
+  before_update :lock_set_public_to_private
+
+  scope :published, -> { where(published: true, pirate_diy: false) }
+  scope :pirate_diy, -> { where(pirate_diy: true) }
+
   def liquid_integrity
     return unless validate_liquid_integrity?
 
@@ -24,8 +30,8 @@ class Recipe < ApplicationRecord
     flavors_in_ml = amount / 100.0 * flavors_recipes.map(&:amount).sum
     if pg_in_ml - nicotine_in_ml - flavors_in_ml < 0
       message = "PG выходит больше, чем указано в основе.
-        Указано PG #{pg}%, это - #{pg_in_ml} мл.
-        Расчитано #{nicotine_in_ml + flavors_in_ml} мл.
+        Указано PG #{pg}%, это - #{pg_in_ml.round(2)} мл.
+        Расчитано #{(nicotine_in_ml + flavors_in_ml).round(2)} мл.
         Необходимо увеличить PG в основе, либо уменьшить крепость или количество ароматизаторов."
       errors.add(:pg, message)
     end
@@ -39,5 +45,9 @@ class Recipe < ApplicationRecord
 
   def validate_liquid_integrity?
     !(amount.nil? || pg.nil? || vg.nil? || nicotine_base.nil?)
+  end
+
+  def lock_set_public_to_private
+    self.published = true if self.changed.include?('published')
   end
 end

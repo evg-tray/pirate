@@ -1,0 +1,6 @@
+.form-group
+  = label_tag :drops, 'Капли:', class: 'control-label col-xs-3'
+  .col-xs-9
+    .input-group
+      = number_field_tag :drops, 30, min: 1, class: 'form-control'
+      .input-group-addon кап/мл

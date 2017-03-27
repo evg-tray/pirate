@@ -1,0 +1,6 @@
+p Ароматизаторы:
+= f.fields_for :flavors_recipes do |flavor_recipe|
+  = render 'flavors_recipe_fields', f: flavor_recipe
+.links
+  = link_to_add_association 'Добавить ароматизатор', f, :flavors_recipes, class: 'btn btn-warning'
+br
