@@ -7,11 +7,13 @@ class FlavorsController < ApplicationController
   end
 
   def new
+    authorize Flavor
     @flavor = Flavor.new
     respond_with(@flavor)
   end
 
   def create
+    authorize Flavor
     @flavor = Flavor.create(flavor_params)
     respond_with(@flavor)
   end

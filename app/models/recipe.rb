@@ -16,8 +16,6 @@ class Recipe < ApplicationRecord
                                                       less_than_or_equal_to: 100 }
   validate :liquid_integrity
 
-  before_update :lock_set_public_to_private
-
   scope :published, -> { where(published: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
 
@@ -45,9 +43,5 @@ class Recipe < ApplicationRecord
 
   def validate_liquid_integrity?
     !(amount.nil? || pg.nil? || vg.nil? || nicotine_base.nil?)
-  end
-
-  def lock_set_public_to_private
-    self.published = true if self.changed.include?('published')
   end
 end

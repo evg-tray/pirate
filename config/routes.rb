@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :flavors
   resources :recipes
-  root to: 'recipes#pirate_diy'
+  root to: 'recipes#index_pirate_diy'
 end
