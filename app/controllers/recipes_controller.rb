@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :load_recipe, only: [:show, :edit, :update]
 
   def index
-    @recipes = Recipe.published
+    @recipes = Recipe.public_recipes
     respond_with(@recipes)
   end
 

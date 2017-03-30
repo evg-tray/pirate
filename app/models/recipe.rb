@@ -16,22 +16,23 @@ class Recipe < ApplicationRecord
                                                       less_than_or_equal_to: 100 }
   validate :liquid_integrity
 
-  scope :published, -> { where(published: true, pirate_diy: false) }
+  scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
 
   def liquid_integrity
     return unless validate_liquid_integrity?
 
-    errors.add(:pg, "Сумма PG и VG должна быть равна 100") unless pg + vg == 100
+    errors.add(:base, :sum_pg_vg) unless pg + vg == 100
+
     pg_in_ml = amount / 100.0 * pg
     nicotine_in_ml = amount / 100.0 * (nicotine_base / 100.0 * strength)
     flavors_in_ml = amount / 100.0 * flavors_recipes.map(&:amount).sum
     if pg_in_ml - nicotine_in_ml - flavors_in_ml < 0
-      message = "PG выходит больше, чем указано в основе.
-        Указано PG #{pg}%, это - #{pg_in_ml.round(2)} мл.
-        Расчитано #{(nicotine_in_ml + flavors_in_ml).round(2)} мл.
-        Необходимо увеличить PG в основе, либо уменьшить крепость или количество ароматизаторов."
-      errors.add(:pg, message)
+      errors.add(:base, :wrong_amount,
+                 pg_percent: pg,
+                 pg_in_ml: pg_in_ml.round(2),
+                 total_pg_in_ml: (nicotine_in_ml + flavors_in_ml).round(2)
+      )
     end
   end
 
@@ -42,6 +43,6 @@ class Recipe < ApplicationRecord
   private
 
   def validate_liquid_integrity?
-    !(amount.nil? || pg.nil? || vg.nil? || nicotine_base.nil?)
+    [amount, pg, vg, nicotine_base].all?(&:present?)
   end
 end

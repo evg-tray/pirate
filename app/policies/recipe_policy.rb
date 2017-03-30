@@ -12,13 +12,13 @@ class RecipePolicy < ApplicationPolicy
       :pg,
       :vg,
       :nicotine_base,
-      :published,
+      :public,
       flavors_recipes_attributes: [:id, :_destroy, :flavor_id, :amount]
   ]
 
   def permitted_attributes
     params = BASE_PARAMS.map(&:clone)
-    params.delete(:published) if record.published
+    params.delete(:public) if record.public
     if user.is_admin? || user.is_moderator?
       params << :pirate_diy
     end

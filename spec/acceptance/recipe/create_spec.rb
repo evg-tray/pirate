@@ -30,7 +30,7 @@ feature 'Create recipes', %q{
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
-    check 'recipe_published'
+    check 'recipe_public'
     click_on 'Сохранить рецепт'
 
     visit recipes_path
@@ -75,7 +75,7 @@ feature 'Create recipes', %q{
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
-    check 'recipe_published'
+    check 'recipe_public'
 
     click_on 'Добавить ароматизатор'
     click_on 'Добавить ароматизатор'
