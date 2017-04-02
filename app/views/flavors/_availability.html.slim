@@ -1,0 +1,6 @@
+- if user_flavor.available
+  |Есть&nbsp
+  = link_to 'Закончился', '#', class: 'btn btn-warning upd-av'
+- else
+  |Нет&nbsp
+  = link_to 'Появился', '#', class: 'btn btn-success upd-av'
