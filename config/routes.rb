@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   match 'update_availability', to: 'flavors#update_availability', via: :post
   resources :recipes
   root to: 'recipes#index_pirate_diy'
+
+  resource :search, only: [:show]
 end
