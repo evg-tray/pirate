@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   def new
     authorize Recipe.new
-    @recipe = Recipe.new(Recipe.load_values)
+    @recipe = Recipe.new(Recipe.initial_values)
     respond_with(@recipe)
   end
 
