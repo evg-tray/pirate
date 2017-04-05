@@ -17,11 +17,11 @@ feature 'Create recipes', %q{
 
     visit new_recipe_path
 
-    expect(find_field('recipe_amount').value).to eq Recipe.initial_values[:amount].to_s
-    expect(find_field('recipe_pg').value).to eq Recipe.initial_values[:pg].to_s
-    expect(find_field('recipe_vg').value).to eq Recipe.initial_values[:vg].to_s
-    expect(find_field('recipe_strength').value).to eq Recipe.initial_values[:strength].to_s
-    expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values[:nicotine_base].to_s
+    expect(find_field('recipe_amount').value).to eq Recipe.initial_values(user)[:amount].to_s
+    expect(find_field('recipe_pg').value).to eq Recipe.initial_values(user)[:pg].to_s
+    expect(find_field('recipe_vg').value).to eq Recipe.initial_values(user)[:vg].to_s
+    expect(find_field('recipe_strength').value).to eq Recipe.initial_values(user)[:strength].to_s
+    expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values(user)[:nicotine_base].to_s
   end
 
   scenario 'User create recipe' do

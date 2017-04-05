@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 
   def new
     authorize Recipe.new
-    @recipe = Recipe.new(Recipe.initial_values)
+    @recipe = Recipe.new(Recipe.initial_values(current_user).except(:drops))
     respond_with(@recipe)
   end
 
@@ -25,6 +25,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @calc_values = Recipe.initial_values(current_user)
     respond_with(@recipe)
   end
 

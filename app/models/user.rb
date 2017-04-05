@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include Storext.model
+  include Validable
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -12,6 +15,16 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: {case_sensitive: false},
             format: {with: /^[a-zA-Z0-9_\.]*$/, multiline: true}
+  validates :drops, numericality: { only_integer: true, greater_than: 0 }
+
+  store_attributes :settings do
+    drops Integer, default: 30
+    pg Integer, default: 30
+    vg Integer, default: 70
+    amount Integer, default: 30
+    strength Float, default: 0.0
+    nicotine_base Integer, default: 100
+  end
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

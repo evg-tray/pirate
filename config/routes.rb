@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   root to: 'recipes#index_pirate_diy'
 
   resource :search, only: [:show]
+
+  match 'settings', to: 'profiles#settings', via: :get
+  match 'update_settings', to: 'profiles#update_settings', via: :patch
 end
