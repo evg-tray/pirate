@@ -1,0 +1,6 @@
+.form-group
+  = f.label :amount, 'Количество:', class: 'control-label col-xs-3'
+  .col-xs-9
+    .input-group
+      = f.number_field :amount, min: 1, class: 'form-control'
+      .input-group-addon мл

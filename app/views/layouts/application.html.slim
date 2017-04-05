@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title
+      | Pirate
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+  body
+    nav.navbar.navbar-default.navbar-static-top
+      .container
+        = link_to 'Пиратский самозамес', root_path, class: 'navbar-brand'
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav
+            li= link_to 'Рецепты пользователей', recipes_path
+          ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              li
+                = link_to 'Выйти', destroy_user_session_path, method: :delete
+            - else
+              li= link_to 'Войти', new_user_session_path
+    .container
+      .row
+        .col-xs-12
+          = bootstrap_flash
+    .container
+      = yield
