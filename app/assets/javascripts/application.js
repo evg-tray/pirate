@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.raty
 //= require twitter/bootstrap
 //= require turbolinks
 //= require cocoon

@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   match 'settings', to: 'profiles#settings', via: :get
   match 'update_settings', to: 'profiles#update_settings', via: :patch
+
+  match 'vote_recipe', to: 'votes#vote_recipe', via: :post
 end

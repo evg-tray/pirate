@@ -9,5 +9,7 @@ FactoryGirl.define do
     public false
     pirate_diy false
     association :author, factory: :user
+    average_rating 0.0
+    count_rating 0
   end
 end

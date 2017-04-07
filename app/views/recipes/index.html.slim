@@ -1,4 +1,5 @@
 - @recipes.each do |recipe|
   = link_to recipe.name, recipe_path(recipe)
+  .rating= total_score_rating(recipe)
   br
 = link_to 'Создать', new_recipe_path

@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :recipes, foreign_key: :author_id
   has_many :flavors, class_name: 'UserFlavor'
+  has_many :votes
 
   attr_accessor :login
 

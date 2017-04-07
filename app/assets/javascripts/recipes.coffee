@@ -8,6 +8,7 @@ change_vg = ->
   $('#recipe_pg')[0].value = 100 - parseFloat($('#recipe_vg')[0].value)
 
 recipe_result_header = ->
+  return false unless $('body').data('make_table')
   $('#recipe_result_header').html($('#recipe_name')[0].value)
 
 get_row_table = (main, percent = null, ml = null, drops = null, tr_class = null) ->
@@ -18,6 +19,7 @@ get_row_table = (main, percent = null, ml = null, drops = null, tr_class = null)
       <td class=\"text-right\">#{if drops then round2(drops) else ''}</td></tr>"
 
 recipe_result_table = ->
+  return false unless $('body').data('make_table')
   amount = parseFloat($('#recipe_amount')[0].value)
   pg = parseFloat($('#recipe_pg')[0].value)
   vg = parseFloat($('#recipe_vg')[0].value)
