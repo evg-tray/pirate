@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   match 'update_settings', to: 'profiles#update_settings', via: :patch
 
   match 'vote_recipe', to: 'votes#vote_recipe', via: :post
+
+  resources :comments, only: [:create]
 end

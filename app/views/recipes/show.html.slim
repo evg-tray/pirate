@@ -35,4 +35,5 @@
           = select_tag :flavor, "<option selected='selected'>#{rf.flavor.name}</option>".html_safe, class: 'select'
           = hidden_field_tag :flavor_amount, rf.amount, class: 'number'
 
-
+.row
+  = render 'comments'
