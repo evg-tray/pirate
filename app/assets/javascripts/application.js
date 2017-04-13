@@ -16,4 +16,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require cocoon
+//= require select2
+//= require select2/i18n/ru
 //= require_tree .

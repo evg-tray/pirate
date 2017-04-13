@@ -17,4 +17,10 @@ Rails.application.routes.draw do
   match 'vote_recipe', to: 'votes#vote_recipe', via: :post
 
   resources :comments, only: [:create]
+
+  resource :admin, only: [:show]
+  match 'set-moderator', to: 'admins#set_moderator', via: :post
+  match 'unset-moderator', to: 'admins#unset_moderator', via: :post
+
+  get 'select', to: 'selects#select'
 end
