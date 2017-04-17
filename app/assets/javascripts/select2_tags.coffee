@@ -23,3 +23,4 @@ select2 = ->
     language: 'ru'
 
 $(document).on('turbolinks:load', select2)
+$(document).on("cocoon:after-insert", select2)

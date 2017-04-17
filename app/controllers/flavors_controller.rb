@@ -31,7 +31,7 @@ class FlavorsController < ApplicationController
   end
 
   def add_to_my_flavors
-    @user_flavor = current_user.flavors.create(flavor_id: params[:flavor][:id])
+    @user_flavor = current_user.flavors.create(flavor_id: params[:flavor_id])
     respond_with(@flavor)
   end
 

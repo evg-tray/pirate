@@ -25,39 +25,9 @@ feature 'Add flavors to user`s list', %q{
     sign_in(user)
     visit my_flavors_path
 
-    select = find('#flavor_id')
-    select.set(flavors[2].id)
+    select2(flavors[2].name, 'flavor_id')
 
     click_on 'Добавить'
-    within '#my_flavor_list' do
-      expect(page).to have_content flavors[2].name
-    end
-  end
-
-  scenario 'User adds a flavor to his set from modal list and click button', js: true do
-    sign_in(user)
-    visit my_flavors_path
-
-    click_on '. . .'
-
-    sleep 1
-
-    find("#select_flavor-#{flavors[2].id}").click
-
-    click_on 'Выбрать'
-    within '#my_flavor_list' do
-      expect(page).to have_content flavors[2].name
-    end
-  end
-
-  scenario 'User adds a flavor to his set from modal list with double click', js: true do
-    sign_in(user)
-    visit my_flavors_path
-
-    click_on '. . .'
-
-    find("#select_flavor-#{flavors[2].id}").double_click
-
     within '#my_flavor_list' do
       expect(page).to have_content flavors[2].name
     end

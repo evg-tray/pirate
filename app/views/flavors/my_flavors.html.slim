@@ -1,10 +1,12 @@
-= form_tag add_to_my_flavors_path, class: 'form-inline', remote: true do |f|
-  .form-group
-    .input-group
-      = collection_select :flavor, :id, Flavor.all, :id, :name, {}, class: 'form-control'
-      .input-group-btn
-        = submit_tag 'Добавить', class: 'btn btn-default'
-    = link_to '. . .', '#', class: 'btn btn-default', data: {toggle: "modal", target: "#add_to_my_flavors_modal"}
+.row
+  .col-xs-12.col-md-6
+    = form_tag add_to_my_flavors_path, remote: true do |f|
+      .form-group
+        .input-group
+          = select_tag :flavor_id, '', class: 'select2-tag form-control',
+                  data: {adapter: 'flavor', placeholder: 'Выберите ароматизатор'}
+          .input-group-btn
+            = submit_tag 'Добавить', class: 'btn btn-default'
 
 
 #my_flavor_list
@@ -15,5 +17,3 @@
       th
     - @flavors.each do |flavor|
       = render 'flavor', user_flavor: flavor
-
-= render 'select_list', modal_id: 'add_to_my_flavors_modal'

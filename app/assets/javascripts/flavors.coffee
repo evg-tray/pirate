@@ -1,22 +1,3 @@
-add_to_my_flavors = ->
-  item_id = $('.selectable-row.bg-warning').attr('id').split('-').pop()
-  if item_id
-    $.ajax({
-      type: "POST",
-      url: "/add-to-my-flavors",
-      data: { flavor: { id: item_id} },
-      dataType: 'script'
-    })
-  $('#add_to_my_flavors_modal').modal('hide')
-
-$(document).on('click', '#add_to_my_flavors_modal #selectbutton', add_to_my_flavors)
-$(document).on('dblclick', '#add_to_my_flavors_modal .selectable-row', add_to_my_flavors)
-
-select_row = ->
-  $(this).addClass('bg-warning').siblings().removeClass('bg-warning')
-
-$(document).on('click', '#add_to_my_flavors_modal .selectable-row', select_row)
-
 update_availability = (event) ->
   event.preventDefault()
   record_id = $(this).parent().attr('id').split('-').pop()
@@ -40,4 +21,5 @@ delete_from_my_flavors = (event) ->
       data: { id: record_id },
       dataType: 'script'
     })
+
 $(document).on('click', '.delete-myflavor', delete_from_my_flavors)
