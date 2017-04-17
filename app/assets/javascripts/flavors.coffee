@@ -3,7 +3,7 @@ add_to_my_flavors = ->
   if item_id
     $.ajax({
       type: "POST",
-      url: "/add_to_my_flavors",
+      url: "/add-to-my-flavors",
       data: { flavor: { id: item_id} },
       dataType: 'script'
     })
@@ -23,8 +23,8 @@ update_availability = (event) ->
   if record_id
     $.ajax({
       type: "POST",
-      url: "/update_availability",
-      data: { id: record_id },
+      url: "/availability",
+      data: { id: record_id, _method: 'patch' },
       dataType: 'script'
     })
 
@@ -36,7 +36,7 @@ delete_from_my_flavors = (event) ->
   if record_id
     $.ajax({
       type: "POST",
-      url: "/delete_from_my_flavors",
+      url: "/delete-from-my-flavors",
       data: { id: record_id },
       dataType: 'script'
     })

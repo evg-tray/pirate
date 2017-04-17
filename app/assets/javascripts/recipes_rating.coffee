@@ -9,7 +9,7 @@ user_rating = ->
     click: (score) ->
       $.ajax({
         type: "POST",
-        url: '/vote_recipe',
+        url: '/vote-recipe',
         data: { score: score, recipe_id: $(this).attr('id') }
       })
 
