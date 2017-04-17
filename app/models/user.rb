@@ -19,6 +19,8 @@ class User < ApplicationRecord
             format: {with: /^[a-zA-Z0-9_\.]*$/, multiline: true}
   validates :drops, numericality: { only_integer: true, greater_than: 0 }
 
+  scope :pirate_diy_subscribers, -> { where(subscribed: true) }
+
   store_attributes :settings do
     drops Integer, default: 30
     pg Integer, default: 30

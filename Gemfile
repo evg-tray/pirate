@@ -45,6 +45,9 @@ gem 'rolify'
 gem 'mysql2'
 gem 'thinking-sphinx'
 gem 'storext'
+gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'redis-namespace'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'

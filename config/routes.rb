@@ -1,5 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
+
+  authenticate :user, ->(user) { user.is_admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :flavors
   match 'my_flavors', to: 'flavors#my_flavors', via: :get
@@ -13,6 +20,8 @@ Rails.application.routes.draw do
 
   match 'settings', to: 'profiles#settings', via: :get
   match 'update_settings', to: 'profiles#update_settings', via: :patch
+  match 'subscription', to: 'profiles#update_subscription', via: :patch
+  get 'unsubscribe', to: 'profiles#unsubscribe'
 
   match 'vote_recipe', to: 'votes#vote_recipe', via: :post
 
