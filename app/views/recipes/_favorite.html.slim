@@ -1,0 +1,7 @@
+- if policy(@recipe).add_favorites?
+  - favorite = current_user.favorites.find_by_id(@recipe.id)
+  - if favorite
+    = link_to 'Удалить из избранного', '#', class: 'btn btn-default del-fav', id: @recipe.id
+  - else
+    = link_to 'Добавить в избранное', '#', class: 'btn btn-default add-fav', id: @recipe.id
+

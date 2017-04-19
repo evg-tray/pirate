@@ -1,6 +1,8 @@
 .row
   .rating
     = user_score_rating(current_user, @recipe)
+  .favorite
+    = render 'favorite'
 
   = render 'recipe_table'
   form.form-horizontal

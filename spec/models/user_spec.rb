@@ -8,5 +8,7 @@ RSpec.describe User, type: :model do
     it{ should have_many(:flavors).class_name('UserFlavor') }
     it{ should have_many(:votes) }
     it{ should have_many(:comments).with_foreign_key(:author_id) }
+    it{ should have_many(:favorite_recipes) }
+    it{ should have_many(:favorites).through(:favorite_recipes).source(:recipe) }
   end
 end

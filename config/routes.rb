@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   match 'delete-from-my-flavors', to: 'flavors#delete_from_my_flavors', via: :post
   match 'availability', to: 'flavors#update_availability', via: :patch
   resources :recipes
+  get 'favorites', to: 'recipes#favorites'
+  match 'add-favorite', to: 'recipes#add_favorites', via: :post
+  match 'delete-favorite', to: 'recipes#delete_favorites', via: :post
   root to: 'recipes#index_pirate_diy'
 
   resource :search, only: [:show]

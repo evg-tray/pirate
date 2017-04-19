@@ -1,0 +1,7 @@
+<% if @favorite.destroyed? %>
+  <% if @from_list %>
+    $('#rec-<%= @favorite.recipe_id %>').remove()
+  <% else %>
+    $('.favorite').html('<%= j render 'favorite' %>')
+  <% end %>
+<% end %>

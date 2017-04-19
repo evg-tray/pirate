@@ -39,4 +39,8 @@ class RecipePolicy < ApplicationPolicy
   def update?
     user.is_admin? || user == record.author
   end
+
+  def add_favorites?
+    (user && record.public) || user == record.author
+  end
 end

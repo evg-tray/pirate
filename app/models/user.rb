@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :flavors, class_name: 'UserFlavor'
   has_many :votes
   has_many :comments, foreign_key: :author_id
+  has_many :favorite_recipes
+  has_many :favorites, through: :favorite_recipes, source: :recipe
 
   attr_accessor :login
 
