@@ -1,0 +1,36 @@
+= form_for current_user, url: update_settings_path, html: { class: 'form-horizontal' }, remote: true do |f|
+  .form-group
+    = f.label :amount, 'Количество:', class: 'control-label col-xs-3'
+    .col-xs-9
+      .input-group
+        = f.number_field :amount, min: 1, class: 'form-control'
+        .input-group-addon мл
+  .form-group
+    = f.label :pg, 'PG:', class: 'control-label col-xs-2'
+    .col-xs-4
+      .input-group
+        = f.number_field :pg, min: 0, max: 100, class: 'form-control'
+        .input-group-addon %
+    = f.label :vg, 'VG:', class: 'control-label col-xs-2'
+    .col-xs-4
+      .input-group
+        = f.number_field :vg, min: 0, max: 100, class: 'form-control'
+        .input-group-addon %
+  .form-group
+    = label_tag :drops, 'Капли:', class: 'control-label col-xs-3'
+    .col-xs-9
+      .input-group
+        = number_field_tag :drops, 30, min: 1, class: 'form-control'
+        .input-group-addon кап/мл
+  .form-group
+    = f.label :strength, 'Крепость:', class: 'control-label col-xs-2'
+    .col-xs-4
+      .input-group
+        = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
+        .input-group-addon мг/мл
+    = f.label :nicotine_base, 'База:', class: 'control-label col-xs-2'
+    .col-xs-4
+      .input-group
+        = f.number_field :nicotine_base, min: 0, class: 'form-control'
+        .input-group-addon мг/мл
+  = f.submit 'Сохранить', class: 'btn btn-success'

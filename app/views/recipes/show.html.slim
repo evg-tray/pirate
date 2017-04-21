@@ -4,24 +4,24 @@
     .form-group
       = label_tag :amount, 'Количество:', class: 'control-label col-xs-3'
       .input-group
-        = number_field_tag :amount, @recipe.amount, min: 1, class: 'form-control', id: 'recipe_amount'
+        = number_field_tag :amount, @calc_values[:amount], min: 1, class: 'form-control', id: 'recipe_amount'
         .input-group-addon мл
         .input-group-btn
           a.btn.btn-info Сохранить
     .form-group
       = label_tag :strength, 'Крепость:', class: 'control-label col-xs-3'
       .input-group
-        = number_field_tag :strength, @recipe.strength, min: 0, step: 0.5, class: 'form-control', id: 'recipe_strength'
+        = number_field_tag :strength, @calc_values[:strength], min: 0, step: 0.5, class: 'form-control', id: 'recipe_strength'
         .input-group-addon мг/мл
     .form-group
       = label_tag :nicotine_base, 'База:', class: 'control-label col-xs-3'
       .input-group
-        = number_field_tag :nicotine_base, @recipe.nicotine_base, min: 0, class: 'form-control', id: 'recipe_nicotine_base'
+        = number_field_tag :nicotine_base, @calc_values[:nicotine_base], min: 0, class: 'form-control', id: 'recipe_nicotine_base'
         .input-group-addon мг/мл
     .form-group
       = label_tag :drops, 'Капли:', class: 'control-label col-xs-3'
       .input-group
-        = number_field_tag :drops, 30, min: 0, class: 'form-control'
+        = number_field_tag :drops, @calc_values[:drops], min: 0, class: 'form-control'
         .input-group-addon кап/мл
     = hidden_field_tag :recipe_pg, @recipe.pg
     = hidden_field_tag :recipe_vg, @recipe.vg

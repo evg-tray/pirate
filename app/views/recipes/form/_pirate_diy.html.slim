@@ -1,0 +1,6 @@
+- if policy(@recipe).permits_attribute?(:pirate_diy)
+  .form-group
+    label.checkbox
+      = f.check_box :pirate_diy
+      |Пиратский самозамес
+

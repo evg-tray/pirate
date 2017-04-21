@@ -1,0 +1,6 @@
+- if policy(@recipe).permits_attribute?(:public)
+  .form-group
+    label.checkbox
+      = f.check_box :public
+      |Публичный
+

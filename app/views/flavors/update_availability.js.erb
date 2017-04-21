@@ -1,0 +1,5 @@
+<% unless @user_flavor.errors.present? %>
+  $('#availability-' + <%= @user_flavor.id %>).html(
+      '<%= j render 'availability', user_flavor: @user_flavor %>'
+  )
+<% end %>

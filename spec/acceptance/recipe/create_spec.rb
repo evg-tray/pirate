@@ -7,6 +7,8 @@ feature 'Create recipes', %q{
 } do
 
   given!(:user) { create(:user) }
+  given!(:user_admin) { create(:user_admin) }
+  given!(:user_moderator) { create(:user_moderator) }
   given!(:recipe) { create(:recipe) }
   given!(:flavors) { create_list(:flavor, 2) }
 
@@ -15,11 +17,11 @@ feature 'Create recipes', %q{
 
     visit new_recipe_path
 
-    expect(find_field('recipe_amount').value).to eq Recipe.load_values[:amount].to_s
-    expect(find_field('recipe_pg').value).to eq Recipe.load_values[:pg].to_s
-    expect(find_field('recipe_vg').value).to eq Recipe.load_values[:vg].to_s
-    expect(find_field('recipe_strength').value).to eq Recipe.load_values[:strength].to_s
-    expect(find_field('recipe_nicotine_base').value).to eq Recipe.load_values[:nicotine_base].to_s
+    expect(find_field('recipe_amount').value).to eq Recipe.initial_values(user)[:amount].to_s
+    expect(find_field('recipe_pg').value).to eq Recipe.initial_values(user)[:pg].to_s
+    expect(find_field('recipe_vg').value).to eq Recipe.initial_values(user)[:vg].to_s
+    expect(find_field('recipe_strength').value).to eq Recipe.initial_values(user)[:strength].to_s
+    expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values(user)[:nicotine_base].to_s
   end
 
   scenario 'User create recipe' do
@@ -28,15 +30,34 @@ feature 'Create recipes', %q{
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
-    check 'recipe_published'
+    check 'recipe_public'
     click_on 'Сохранить рецепт'
 
     visit recipes_path
     expect(page).to have_content recipe.name
   end
 
-  scenario 'User create pirate diy recipe' do
+  scenario 'User does not see pirate diy checkbox' do
     sign_in(user)
+
+    visit new_recipe_path
+    expect(page).not_to have_selector('#recipe_pirate_diy')
+  end
+
+  scenario 'Admin create pirate diy recipe' do
+    sign_in(user_admin)
+
+    visit new_recipe_path
+    fill_in 'recipe_name', with: recipe.name
+    check 'recipe_pirate_diy'
+    click_on 'Сохранить рецепт'
+
+    visit root_path
+    expect(page).to have_content recipe.name
+  end
+
+  scenario 'Moderator create pirate diy recipe' do
+    sign_in(user_admin)
 
     visit new_recipe_path
 
@@ -54,7 +75,7 @@ feature 'Create recipes', %q{
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
-    check 'recipe_published'
+    check 'recipe_public'
 
     click_on 'Добавить ароматизатор'
     click_on 'Добавить ароматизатор'

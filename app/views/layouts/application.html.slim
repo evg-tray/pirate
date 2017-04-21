@@ -13,6 +13,8 @@ html
         .navbar-collapse.collapse.navbar-responsive-collapse
           ul.nav.navbar-nav
             li= link_to 'Рецепты пользователей', recipes_path
+          ul.nav.navbar-nav
+            li= link_to 'Поиск', search_path
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               li
