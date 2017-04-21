@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   root to: 'recipes#index_pirate_diy'
 
   resource :search, only: [:show]
+  get 'by-flavors', to: 'searches#by_flavors'
+  match 'fill-my-flavors', to: 'searches#fill_my_flavors', via: :post
 
   match 'settings', to: 'profiles#settings', via: :get
   match 'update-settings', to: 'profiles#update_settings', via: :patch

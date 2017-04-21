@@ -40,4 +40,8 @@ class User < ApplicationRecord
       where(conditions.to_hash).first
     end
   end
+
+  def available_flavors
+    Flavor.where(id: self.flavors.select(:flavor_id).where(available: true))
+  end
 end
