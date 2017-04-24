@@ -37,4 +37,6 @@ Rails.application.routes.draw do
   match 'unset-moderator', to: 'admins#unset_moderator', via: :post
 
   get 'select', to: 'selects#select'
+
+  resources :manufacturers
 end

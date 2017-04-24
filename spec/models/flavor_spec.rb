@@ -10,5 +10,6 @@ RSpec.describe Flavor, type: :model do
   describe 'associations' do
     it { should have_many(:flavors_recipes).inverse_of(:flavor) }
     it { should have_many(:recipes).through(:flavors_recipes) }
+    it { should belong_to(:manufacturer) }
   end
 end

@@ -1,4 +1,4 @@
-class FlavorPolicy < ApplicationPolicy
+class ManufacturerPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope

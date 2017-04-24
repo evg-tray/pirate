@@ -9,7 +9,8 @@ feature 'Create flavors', %q{
   given(:user) { create(:user) }
   given(:user_admin) { create(:user_admin) }
   given(:user_moderator) { create(:user_moderator) }
-  given(:flavor) { create(:flavor) }
+  given(:flavor) { build(:flavor) }
+  given!(:manufacturer) { create(:manufacturer) }
 
   scenario 'User tries create flavor' do
     sign_in(user)
@@ -20,24 +21,26 @@ feature 'Create flavors', %q{
     expect(current_path).to eq root_path
   end
 
-  scenario 'Admin creates flavor' do
+  scenario 'Admin creates flavor', js: true do
     sign_in(user_admin)
 
     visit new_flavor_path
 
     fill_in 'Name', with: flavor.name
+    select2(manufacturer.name, 'flavor_manufacturer_id')
     click_on 'Создать'
 
     visit flavors_path
     expect(page).to have_content flavor.name
   end
 
-  scenario 'Moderator creates flavor' do
+  scenario 'Moderator creates flavor', js: true do
     sign_in(user_admin)
 
     visit new_flavor_path
 
     fill_in 'Name', with: flavor.name
+    select2(manufacturer.name, 'flavor_manufacturer_id')
     click_on 'Создать'
 
     visit flavors_path

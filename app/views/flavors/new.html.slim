@@ -1,4 +1,7 @@
 = form_for(@flavor) do |f|
   = f.label :name
   = f.text_field :name
-  = f.submit 'Создать'
+  - options = options_for_select([[@flavor.manufacturer&.name, @flavor.manufacturer&.id]])
+  = f.select :manufacturer_id, options, {}, {class: 'select2-tag form-control',
+          data: {adapter: 'manufacturer', placeholder: 'Выберите производителя', minimum_input_length: 1}}
+  = f.submit 'Создать', class: 'btn btn-success'
