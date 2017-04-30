@@ -11,6 +11,8 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }
 
+  update_index('flavors#flavor') { flavors }
+
   DEFAULTS = {amount: 30, pg: 30, vg: 70, strength: 0, nicotine_base: 100, drops: 30}
 
   validates :name, presence: true, length: { minimum: 10, maximum: 200 }

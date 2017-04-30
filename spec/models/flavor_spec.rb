@@ -12,4 +12,17 @@ RSpec.describe Flavor, type: :model do
     it { should have_many(:recipes).through(:flavors_recipes) }
     it { should belong_to(:manufacturer) }
   end
+
+  describe 'indexes' do
+    let(:flavor) { create(:flavor) }
+    let(:update_flavor) { Proc.new { flavor.update_attributes(name: 'new flavor name') } }
+
+    it 'update flavors index' do
+      expect { update_flavor.call }.to update_index('flavors#flavor').and_reindex(flavor)
+    end
+
+    it 'update manufacturer index' do
+      expect { update_flavor.call }.to update_index('manufacturers#manufacturer').and_reindex(flavor.manufacturer)
+    end
+  end
 end

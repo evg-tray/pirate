@@ -13,4 +13,14 @@ RSpec.describe Recipe, type: :model do
     it { should have_many(:votes) }
     it { should have_many(:comments) }
   end
+
+  describe 'indexes' do
+    let!(:flavor) { create(:flavor) }
+    let(:recipe) { create(:recipe, flavors: [flavor]) }
+    let(:update_recipe) { Proc.new { recipe.update_attributes(name: 'new manufacturer name') } }
+
+    it 'update flavors index' do
+      expect { update_recipe.call }.to update_index('flavors#flavor').and_reindex(recipe.flavors)
+    end
+  end
 end

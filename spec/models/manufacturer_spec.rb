@@ -12,4 +12,18 @@ RSpec.describe Manufacturer, type: :model do
   describe 'associations' do
     it { should have_many(:flavors) }
   end
+
+  describe 'indexes' do
+    let(:manufacturer) { create(:manufacturer) }
+    let!(:flavor) { create(:flavor, manufacturer: manufacturer) }
+    let(:update_manufacturer) { Proc.new { manufacturer.update_attributes(name: 'new manufacturer name') } }
+
+    it 'update manufacturer index' do
+      expect { update_manufacturer.call }.to update_index('manufacturers#manufacturer').and_reindex(manufacturer)
+    end
+
+    it 'update flavors index' do
+      expect { update_manufacturer.call }.to update_index('flavors#flavor').and_reindex(manufacturer.flavors)
+    end
+  end
 end

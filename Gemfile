@@ -48,6 +48,8 @@ gem 'storext'
 gem 'sidekiq'
 gem 'sidekiq-status'
 gem 'redis-namespace'
+gem 'chewy'
+gem 'elasticsearch'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'
@@ -76,6 +78,7 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'elasticsearch-extensions'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

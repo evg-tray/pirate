@@ -1,16 +1,24 @@
 class FlavorSelectAdapter
 
   def self.select(query, page)
-    @term = query
-    if @term
-      @list = Flavor.where('name LIKE :term', term: "%#{@term}%")
-    else
-      @list = Flavor.all
+    if query
+      @results = FlavorsIndex.query(query_string: {
+          fields: [:name, :manufacturer_name, :manufacturer_short_name],
+          query: query,
+          default_operator: 'and'
+      }).limit(20).offset(20 * (page - 1))
     end
-    total_count = Flavor.all.count
+    total_count = @results.total_count
     {
-        items: @list.map do |flavor|
-          { text: flavor.name, id: flavor.id }
+        items: @results.map do |res|
+          {
+              text: res.name,
+              id: res.id,
+              msn: res.manufacturer_short_name,
+              mn: res.manufacturer_name,
+              count: res.recipes_count,
+              type: 'f'
+          }
         end,
         total_count: total_count
     }
