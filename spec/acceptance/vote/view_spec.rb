@@ -6,13 +6,13 @@ feature 'View ratings', %q{
   I want to be able view rating of recipes
 } do
 
-  given!(:public_recipe_with_rating1) { create(:recipe, public: true, average_rating: 4.2, count_rating: 2) }
-  given!(:public_recipe_with_rating2) { create(:recipe, public: true, average_rating: 3.5, count_rating: 3) }
-  given!(:public_recipe_without_rating) { create(:recipe, public: true, average_rating: 0.0, count_rating: 0) }
+  given!(:public_recipe_with_rating1) { create(:public_recipe, average_rating: 4.2, count_rating: 2) }
+  given!(:public_recipe_with_rating2) { create(:public_recipe, average_rating: 3.5, count_rating: 3) }
+  given!(:public_recipe_without_rating) { create(:public_recipe, average_rating: 0.0, count_rating: 0) }
 
-  given!(:pirate_diy_recipe_with_rating1) { create(:recipe, pirate_diy: true, average_rating: 5.0, count_rating: 3) }
-  given!(:pirate_diy_recipe_with_rating2) { create(:recipe, pirate_diy: true, average_rating: 2.3, count_rating: 5) }
-  given!(:pirate_diy_recipe_without_rating) { create(:recipe, pirate_diy: true, average_rating: 0.0, count_rating: 0) }
+  given!(:pirate_diy_recipe_with_rating1) { create(:pirate_diy_recipe, average_rating: 5.0, count_rating: 3) }
+  given!(:pirate_diy_recipe_with_rating2) { create(:pirate_diy_recipe, average_rating: 2.3, count_rating: 5) }
+  given!(:pirate_diy_recipe_without_rating) { create(:pirate_diy_recipe, average_rating: 0.0, count_rating: 0) }
 
   scenario 'Any user view ratings in list public recipes', js: true do
     visit recipes_path

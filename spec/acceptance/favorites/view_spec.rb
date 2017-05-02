@@ -7,7 +7,7 @@ feature 'View favorites recipes', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:recipes_favorites) { create_list(:recipe, 2, public: true) }
+  given!(:recipes_favorites) { create_list(:public_recipe, 2) }
   given!(:favorite_recipe1) { create(:favorite_recipe, user: user, recipe: recipes_favorites[0]) }
   given!(:favorite_recipe2) { create(:favorite_recipe, user: user, recipe: recipes_favorites[1]) }
 

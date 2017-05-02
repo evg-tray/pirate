@@ -18,7 +18,7 @@ class Recipe < ApplicationRecord
   validates :name, presence: true, length: { minimum: 10, maximum: 200 }
   validate :liquid_integrity
 
-  after_commit :notify_subsribers, on: :create
+  after_commit :notify_subsribers, on: :create, if: :pirate_diy
 
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
@@ -40,6 +40,6 @@ class Recipe < ApplicationRecord
   private
 
   def notify_subsribers
-    PirateDiyJob.perform_later(self) if pirate_diy
+    PirateDiyJob.perform_later(self)
   end
 end

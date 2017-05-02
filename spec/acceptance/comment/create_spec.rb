@@ -7,7 +7,7 @@ feature 'Create comments', %q{
 } do
 
   given(:user) { create(:user) }
-  given(:recipe) { create(:recipe, public: true) }
+  given(:recipe) { create(:public_recipe) }
   given(:comment) { create(:comment) }
 
   scenario 'User creates comment', js: true do

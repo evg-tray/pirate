@@ -1,4 +1,4 @@
-= form_tag by_flavors_path, enforce_utf8: false, method: :get
+= form_tag by_flavors_search_path, enforce_utf8: false, method: :get
   .form-group
     label.checkbox
       = check_box_tag :without_single_flavor, '1', params[:without_single_flavor]
@@ -8,7 +8,7 @@
             data: {adapter: 'flavor', placeholder: 'Выберите ароматизаторы'} }
     = submit_tag 'Search', class: 'btn btn-info', name: nil
     - if current_user
-      = link_to 'Заполнить моими ароматизаторами', fill_my_flavors_path, method: :post, remote: true,
+      = link_to 'Заполнить моими ароматизаторами', fill_my_flavors_search_path, method: :post, remote: true,
               class: 'btn btn-default'
 
 .results

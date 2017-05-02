@@ -50,6 +50,7 @@ gem 'sidekiq-status'
 gem 'redis-namespace'
 gem 'chewy'
 gem 'elasticsearch'
+gem 'interactor'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'

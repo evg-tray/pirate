@@ -6,8 +6,8 @@ feature 'View comments', %q{
   I want to be able view comments
 } do
 
-  given!(:recipe_without_comments) { create(:recipe, public: true) }
-  given!(:recipe_with_comments) { create(:recipe, public: true) }
+  given!(:recipe_without_comments) { create(:public_recipe) }
+  given!(:recipe_with_comments) { create(:public_recipe) }
   given!(:comments) { create_list(:comment, 2, recipe: recipe_with_comments) }
 
   scenario 'Any user view recipe with comments' do

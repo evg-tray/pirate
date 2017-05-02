@@ -7,8 +7,8 @@ feature 'Add recipe to favorites', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:recipe) { create(:recipe, public: true) }
-  given!(:recipe_favorite) { create(:recipe, public: true) }
+  given!(:recipe) { create(:public_recipe) }
+  given!(:recipe_favorite) { create(:public_recipe) }
   given!(:favorite_recipe) { create(:favorite_recipe, user: user, recipe: recipe_favorite) }
 
   scenario 'User add recipe to favorites', js: true do

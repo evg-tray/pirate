@@ -11,5 +11,16 @@ FactoryGirl.define do
     association :author, factory: :user
     average_rating 0.0
     count_rating 0
+
+    trait :public do
+      public true
+    end
+
+    trait :pirate_diy do
+      pirate_diy true
+    end
+
+    factory :public_recipe, traits: [:public]
+    factory :pirate_diy_recipe, traits: [:pirate_diy]
   end
 end

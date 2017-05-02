@@ -1,0 +1,16 @@
+nav.navbar.navbar-default.navbar-static-top
+  .container
+    = link_to 'Пиратский самозамес', root_path, class: 'navbar-brand'
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      ul.nav.navbar-nav
+        li= link_to 'Рецепты пользователей', recipes_path
+      ul.nav.navbar-nav
+        li= link_to 'Поиск', search_path
+      ul.nav.navbar-nav
+        li= link_to 'Поиск по ароматизаторам', by_flavors_search_path
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li
+            = link_to 'Выйти', destroy_user_session_path, method: :delete
+        - else
+          li= link_to 'Войти', new_user_session_path
