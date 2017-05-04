@@ -11,11 +11,10 @@ feature 'Search', %q{
   given!(:private_recipes) { create_list(:recipe, 2) }
 
   before do
-    index
     visit search_path
   end
 
-  scenario 'search in all recipes', sphinx: true do
+  scenario 'search in all recipes' do
     fill_in 'Query', with: public_recipes[0].name
     choose 'scope_all'
     within '.form-group' do
@@ -30,7 +29,7 @@ feature 'Search', %q{
     expect(page).to have_link pirate_diy_recipes[0].name
   end
 
-  scenario 'search recipe in public recipes', sphinx: true do
+  scenario 'search recipe in public recipes' do
     fill_in 'Query', with: public_recipes[0].name
     choose 'scope_public'
     within '.form-group' do
@@ -39,7 +38,7 @@ feature 'Search', %q{
     expect(page).to have_link public_recipes[0].name
   end
 
-  scenario 'search recipe in pirate diy recipes', sphinx: true do
+  scenario 'search recipe in pirate diy recipes' do
     fill_in 'Query', with: pirate_diy_recipes[0].name
     choose 'scope_pirate_diy'
     within '.form-group' do
@@ -48,7 +47,7 @@ feature 'Search', %q{
     expect(page).to have_link pirate_diy_recipes[0].name
   end
 
-  scenario 'search private recipe', sphinx: true do
+  scenario 'search private recipe' do
     fill_in 'Query', with: private_recipes[0].name
     choose 'scope_all'
     within '.form-group' do

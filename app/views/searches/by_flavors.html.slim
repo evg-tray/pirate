@@ -12,6 +12,6 @@
               class: 'btn btn-default'
 
 .results
-  - @results&.each do |res|
-    = link_to res.name, recipe_path(res)
-    br
+  - if @results
+    = render 'recipes/table/table', recipes: @results
+    = paginate @results

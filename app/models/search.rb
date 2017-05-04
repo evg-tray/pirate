@@ -5,33 +5,34 @@ class Search
     TYPES
   end
 
-  def self.results(query, scope, page)
+  def self.by_name(query, scope)
+    results = RecipesIndex.query(query_string: {
+        fields: [:name],
+        query: query,
+        default_operator: 'and'
+    })
     if scope == 'public'
-      return Recipe.search(ThinkingSphinx::Query.escape(query), with: { pirate_diy: false }, page: page, per_page: 5)
+      results = results.query(term: {pirate_diy: false})
     elsif scope == 'pirate_diy'
-      return Recipe.search(ThinkingSphinx::Query.escape(query), with: { pirate_diy: true }, page: page, per_page: 5)
+      results = results.query(term: {pirate_diy: true})
     end
-    Recipe.search(ThinkingSphinx::Query.escape(query), page: page, per_page: 5)
+    results
   end
 
   def self.by_flavors(flavor_ids, without_single_flavor)
     selects = flavor_ids.map{ |i| "SELECT #{i} as Flavor" }.compact.join(' UNION ALL ')
+    selects = "SELECT 0 as Flavor" unless selects.present?
 
-    if selects.present?
-      query = "SELECT * FROM recipes WHERE recipes.id IN
-        (SELECT fr.recipe_id
-        FROM flavors_recipes fr
-        LEFT JOIN ( #{selects} ) search
-        ON fr.flavor_id = search.Flavor
-        GROUP BY fr.recipe_id
-        HAVING count(case when search.Flavor is null then 1 end) = 0"
-      query << ' AND count(*) > 1' if without_single_flavor
-      query << ') AND (recipes.public OR recipes.pirate_diy)'
-
-      Recipe.find_by_sql(query)
-    else
-      nil
-    end
+    join_query = "INNER JOIN
+      (SELECT fr.recipe_id
+      FROM flavors_recipes fr
+      INNER JOIN
+      (#{selects}) search
+      ON fr.flavor_id = search.Flavor
+      GROUP BY fr.recipe_id"
+    join_query << ' HAVING count(*) > 1' if without_single_flavor
+    join_query << ') fr ON recipes.id = fr.recipe_id'
+    Recipe.joins(join_query).where('recipes.public OR recipes.pirate_diy').includes(:author)
   end
 
   def self.escape_flavor_ids(flavor_ids)

@@ -1,0 +1,9 @@
+table.table.table-striped
+  thead
+    th Наименование
+    th Автор
+    th Дата
+    th.text-right Рейтинг
+  tbody
+    - recipes.each do |rec|
+      = render 'recipes/table/item', recipe: rec

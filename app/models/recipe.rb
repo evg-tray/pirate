@@ -12,6 +12,7 @@ class Recipe < ApplicationRecord
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }
 
   update_index('flavors#flavor') { flavors }
+  update_index 'recipes#recipe', :self
 
   DEFAULTS = {amount: 30, pg: 30, vg: 70, strength: 0, nicotine_base: 100, drops: 30}
 

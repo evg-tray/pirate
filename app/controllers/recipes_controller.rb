@@ -4,12 +4,12 @@ class RecipesController < ApplicationController
 
   respond_to :js, only: [:add_favorites, :delete_favorites]
   def index
-    @recipes = Recipe.public_recipes
+    @recipes = Recipe.public_recipes.includes(:author).page(params[:page])
     respond_with(@recipes)
   end
 
   def index_pirate_diy
-    @recipes = Recipe.pirate_diy
+    @recipes = Recipe.pirate_diy.includes(:author).page(params[:page])
     respond_with(@recipes)
   end
 
