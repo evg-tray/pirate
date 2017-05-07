@@ -1,15 +1,17 @@
 .comments
-  p Комментарии
+  p
+    = t('.title')
   .messages
     - if @recipe.comments.present?
       - @recipe.comments.each do |comment|
         = render 'comment', comment: comment
     - else
-      .no-comments Нет комментариев
+      .no-comments
+        = t('.no_comments')
   - if policy(@comment = @recipe.comments.build).create?
     = form_for @comment, remote: true do |f|
       .form-group
         = f.label :text
         = f.text_area :text, class: 'form-control'
         = hidden_field_tag :recipe_id, @recipe.id
-        = f.submit 'Оставить комментарий', class: 'btn btn-success'
+        = f.submit t('.create_comment'), class: 'btn btn-success'

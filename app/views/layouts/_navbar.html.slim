@@ -11,6 +11,6 @@ nav.navbar.navbar-default.navbar-static-top
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li
-            = link_to 'Выйти', destroy_user_session_path, method: :delete
+            = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
         - else
-          li= link_to 'Войти', new_user_session_path
+          li= link_to t('devise.sessions.new.sign_in'), new_user_session_path

@@ -9,14 +9,14 @@ feature 'Create manufacturers', %q{
   given(:user) { create(:user) }
   given(:user_admin) { create(:user_admin) }
   given(:user_moderator) { create(:user_moderator) }
-  given(:manufacturer) { create(:manufacturer) }
+  given(:manufacturer) { build(:manufacturer) }
 
   scenario 'User tries create manufacturer' do
     sign_in(user)
 
     visit new_manufacturer_path
 
-    expect(page).to have_content 'Нет доступа.'
+    expect(page).to have_content t('authorization.errors.forbidden')
     expect(current_path).to eq root_path
   end
 
@@ -25,8 +25,9 @@ feature 'Create manufacturers', %q{
 
     visit new_manufacturer_path
 
-    fill_in 'Name', with: manufacturer.name
-    click_on 'Создать'
+    fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
+    fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
+    click_on t('manufacturers.new.create_manufacturer')
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name
@@ -37,8 +38,9 @@ feature 'Create manufacturers', %q{
 
     visit new_manufacturer_path
 
-    fill_in 'Name', with: manufacturer.name
-    click_on 'Создать'
+    fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
+    fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
+    click_on t('manufacturers.new.create_manufacturer')
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name
@@ -47,7 +49,7 @@ feature 'Create manufacturers', %q{
   scenario 'Non-authenticated user tries create manufacturer' do
     visit new_manufacturer_path
 
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    expect(page).to have_content t('devise.failure.unauthenticated')
     expect(current_path).to eq new_user_session_path
   end
 end

@@ -17,7 +17,7 @@ feature 'Create flavors', %q{
 
     visit new_flavor_path
 
-    expect(page).to have_content 'Нет доступа.'
+    expect(page).to have_content t('authorization.errors.forbidden')
     expect(current_path).to eq root_path
   end
 
@@ -26,9 +26,9 @@ feature 'Create flavors', %q{
 
     visit new_flavor_path
 
-    fill_in 'Name', with: flavor.name
+    fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
     select2(manufacturer.name, 'flavor_manufacturer_id')
-    click_on 'Создать'
+    click_on t('flavors.new.create_flavor')
 
     visit flavors_path
     expect(page).to have_content flavor.name
@@ -39,9 +39,9 @@ feature 'Create flavors', %q{
 
     visit new_flavor_path
 
-    fill_in 'Name', with: flavor.name
+    fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
     select2(manufacturer.name, 'flavor_manufacturer_id')
-    click_on 'Создать'
+    click_on t('flavors.new.create_flavor')
 
     visit flavors_path
     expect(page).to have_content flavor.name
@@ -50,7 +50,7 @@ feature 'Create flavors', %q{
   scenario 'Non-authenticated user tries create flavor' do
     visit new_flavor_path
 
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    expect(page).to have_content t('devise.failure.unauthenticated')
     expect(current_path).to eq new_user_session_path
   end
 end

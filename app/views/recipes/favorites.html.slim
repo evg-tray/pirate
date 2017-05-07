@@ -2,5 +2,5 @@
   div id="rec-#{recipe.id}"
     = link_to recipe.name, recipe_path(recipe)
     .rating= total_score_rating(recipe)
-    = link_to 'Удалить', '#', class: 'btn btn-default del-fav', data: { from_list: true }, id: recipe.id
+    = link_to t('.remove_from_favorites'), '#', class: 'btn btn-default del-fav', data: { from_list: true }, id: recipe.id
     br

@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    attributes:
+      manufacturer:
+        name: "Наименование"
+        short_name: "Аббревиатура"
+  manufacturers:
+    index:
+      create_manufacturer: "Создать"
+    new:
+      create_manufacturer: "Создать"
+    show:
+      all_manufacturers: "Все производители"

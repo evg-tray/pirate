@@ -1,0 +1,55 @@
+ru:
+  activerecord:
+    errors:
+      format: "%{message}"
+      models:
+        recipe:
+          attributes:
+            base:
+              sum_pg_vg: "Сумма PG и VG должна быть равна 100"
+              wrong_amount: "PG выходит больше, чем указано в основе.
+              Указано PG %{pg_percent}%, это - %{pg_in_ml} мл.
+              Расчитано %{total_pg_in_ml} мл.
+              Необходимо увеличить PG в основе, либо уменьшить крепость или количество ароматизаторов."
+    attributes:
+      recipe:
+        name: "Наименование"
+        amount: "Количество"
+        strength: "Крепость"
+        nicotine_base: "База"
+        pg: "PG"
+        vg: "VG"
+        author: "Автор"
+        created_at: "Дата создания"
+        public: "Публичный"
+        pirate_diy: "Пиратский самозамес"
+  recipes:
+    create_recipe: "Создать"
+    comments:
+      title: "Комментарии"
+      no_comments: "Нет комментариев"
+      create_comment: "Оставить комментарий"
+    favorites:
+      remove_from_favorites: "Удалить"
+    favorite:
+      add_to_favorites: "Добавить в избранное"
+      remove_from_favorites: "Удалить из избранного"
+    recipe_table:
+      ingredient: "Ингредиент"
+    form:
+      save_recipe: "Сохранить рецепт"
+      base:
+        title: "Основа"
+      flavors:
+        title: "Ароматизаторы"
+        add_flavor: "Добавить ароматизатор"
+      name:
+        name_placeholder: "Укажите наименование рецепта"
+      nicotine:
+        title: "Никотин"
+    flavors_recipe_fields:
+      select_flavor_placeholder: "Выберите ароматизатор"
+    table:
+      table:
+        rating: "Рейтинг"
+

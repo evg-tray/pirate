@@ -1,12 +1,15 @@
-p Основа:
+p
+  = t('.title')
 .form-group
-  = f.label :pg, 'PG:', class: 'control-label col-xs-2'
+  = f.label :pg, class: 'control-label col-xs-2'
   .col-xs-4
     .input-group
       = f.number_field :pg, min: 0, max: 100, class: 'form-control'
-      .input-group-addon %
-  = f.label :vg, 'VG:', class: 'control-label col-xs-2'
+      .input-group-addon
+        = t('common.percent')
+  = f.label :vg, class: 'control-label col-xs-2'
   .col-xs-4
     .input-group
       = f.number_field :vg, min: 0, max: 100, class: 'form-control'
-      .input-group-addon %
+      .input-group-addon
+        = t('common.percent')

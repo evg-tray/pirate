@@ -4,13 +4,14 @@
       .form-group
         .input-group
           = select_tag :user_id, '', class: 'select2-tag form-control',
-                  data: { adapter: 'user', placeholder: 'Выберите пользователя' }
+                  data: { adapter: 'user', placeholder: t('.select_user_placeholder') }
           .input-group-btn
-            = submit_tag 'Сделать модератором', class: 'btn btn-success'
+            = submit_tag t('.set_moderator'), class: 'btn btn-success'
 .row
   .col-xs-12.col-md-6
     .moderators
-      h4 Модераторы:
+      h4
+        = t('.moderators')
       table.table.table-striped
         - @moderators.each do |moderator|
           = render 'user', user: moderator

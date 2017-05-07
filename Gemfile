@@ -50,6 +50,9 @@ gem 'chewy'
 gem 'elasticsearch'
 gem 'interactor'
 gem 'kaminari'
+gem 'kaminari-i18n'
+gem 'devise-i18n'
+gem 'rs_russian'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'

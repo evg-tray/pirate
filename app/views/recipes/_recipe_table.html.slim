@@ -2,8 +2,12 @@
   h4#recipe_result_header
 table.table.table-striped#recipe_result
   thead
-    th Ингредиент
-    th.text-right %
-    th.text-right мл
-    th.text-right кап
+    th
+      = t('.ingredient')
+    th.text-right
+      = t('common.percent')
+    th.text-right
+      = t('common.ml')
+    th.text-right
+      = t('common.drop')
   tbody

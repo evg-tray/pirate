@@ -3,6 +3,7 @@ RSpec.configure do |config|
 
   config.include AcceptanceHelper, type: :feature
   config.include Select2Helpers, type: :feature
+  config.include I18nMacros, type: :feature
 
   config.use_transactional_fixtures = false
 

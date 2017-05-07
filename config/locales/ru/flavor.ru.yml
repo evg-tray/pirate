@@ -1,0 +1,25 @@
+ru:
+  flavors:
+    availability:
+      ended: "Закончился"
+      appeared: "Появился"
+      available: "Есть"
+      not_available: "Нет"
+    flavor:
+      delete_my_flavor: "Удалить"
+    my_flavors:
+      select_flavor_placeholder: "Выберите ароматизатор"
+      add: "Добавить"
+      flavor: "Ароматизатор"
+      availability: "Наличие"
+    index:
+      create_flavor: "Создать"
+    new:
+      select_manufacturer_placeholder: "Выберите производителя"
+      create_flavor: "Создать"
+    show:
+      all_flavors: "Все ароматизаторы"
+  activerecord:
+    attributes:
+      flavor:
+        name: "Наименование"

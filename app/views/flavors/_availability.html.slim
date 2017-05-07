@@ -1,6 +1,8 @@
 - if user_flavor.available
-  |Есть&nbsp
-  = link_to 'Закончился', '#', class: 'btn btn-warning upd-av'
+  = t('.available')
+  |&nbsp
+  = link_to t('.ended'), '#', class: 'btn btn-warning upd-av'
 - else
-  |Нет&nbsp
-  = link_to 'Появился', '#', class: 'btn btn-success upd-av'
+  = t('.not_available')
+  |&nbsp
+  = link_to t('.appeared'), '#', class: 'btn btn-success upd-av'

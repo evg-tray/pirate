@@ -15,7 +15,7 @@ feature 'Add moderators', %q{
 
     select2(user.username, 'user_id')
 
-    click_on 'Сделать модератором'
+    click_on t('admins.show.set_moderator')
 
     within '.moderators' do
       expect(page).to have_content user.username

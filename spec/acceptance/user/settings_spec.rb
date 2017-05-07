@@ -13,8 +13,8 @@ feature 'Save settings', %q{
 
     visit settings_path
 
-    fill_in 'Количество', with: 50
-    click_on 'Сохранить'
+    fill_in t('activerecord.attributes.user.amount'), with: 50
+    click_on t('profiles.settings.save')
 
     visit new_recipe_path
     expect(find_field('recipe_amount').value).to eq '50'

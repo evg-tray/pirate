@@ -1,3 +1,4 @@
-h2 Новый рецепт в пиратском самозамесе:
+h2
+  = t('.new_pirate_diy_recipe')
 p= link_to @recipe.name, recipe_url(@recipe)
-p= link_to 'Отписаться от рассылки', unsubscribe_url(key: @user.unsubscribe_key)
+p= link_to t('.unsubscribe'), unsubscribe_url(key: @user.unsubscribe_key)

@@ -2,4 +2,4 @@
   = "#{manufacturer.name} - #{manufacturer.short_name}"
   br
 - if policy(Manufacturer).new?
-  = link_to 'Создать', new_manufacturer_path
+  = link_to t('.create_manufacturer'), new_manufacturer_path
