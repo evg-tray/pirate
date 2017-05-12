@@ -17,12 +17,12 @@ feature 'View comments', %q{
     expect(page).to have_content comments[0].author.username
     expect(page).to have_content comments[1].text
     expect(page).to have_content comments[1].author.username
-    expect(page).not_to have_content 'Нет комментариев'
+    expect(page).not_to have_content t('recipes.comments.no_comments')
   end
 
   scenario 'Any user view recipe with comments' do
     visit recipe_path(recipe_without_comments)
 
-    expect(page).to have_content 'Нет комментариев'
+    expect(page).to have_content t('recipes.comments.no_comments')
   end
 end

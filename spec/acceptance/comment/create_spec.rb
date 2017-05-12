@@ -15,11 +15,11 @@ feature 'Create comments', %q{
 
     visit recipe_path(recipe)
 
-    fill_in 'Text', with: comment.text
-    click_on 'Оставить комментарий'
+    fill_in t('activerecord.attributes.comment.text'), with: comment.text
+    click_on t('recipes.comments.create_comment')
 
     expect(page).to have_content comment.text
-    expect(page).not_to have_content 'Нет комментариев'
+    expect(page).not_to have_content t('recipes.comments.no_comments')
   end
 
   scenario 'Non-authenticated user tries create comment' do

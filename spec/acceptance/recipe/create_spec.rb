@@ -31,7 +31,7 @@ feature 'Create recipes', %q{
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_public'
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     visit recipes_path
     expect(page).to have_content recipe.name
@@ -50,7 +50,7 @@ feature 'Create recipes', %q{
     visit new_recipe_path
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_pirate_diy'
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     visit root_path
     expect(page).to have_content recipe.name
@@ -63,7 +63,7 @@ feature 'Create recipes', %q{
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_pirate_diy'
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     visit root_path
     expect(page).to have_content recipe.name
@@ -77,8 +77,8 @@ feature 'Create recipes', %q{
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_public'
 
-    click_on 'Добавить ароматизатор'
-    click_on 'Добавить ароматизатор'
+    click_on t('recipes.form.flavors.add_flavor')
+    click_on t('recipes.form.flavors.add_flavor')
 
     selects = all('.select2-tag')
     numbers = all('.flavors-input .number')
@@ -87,7 +87,7 @@ feature 'Create recipes', %q{
     select2(flavors[1].name, selects[1][:id])
     numbers[1].set(2)
 
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     expect(page).to have_content recipe.name
     expect(page).to have_content flavors[0].name
