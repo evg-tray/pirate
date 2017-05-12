@@ -1,0 +1,17 @@
+= form_tag by_flavors_path, enforce_utf8: false, method: :get
+  .form-group
+    label.checkbox
+      = check_box_tag :without_single_flavor, '1', params[:without_single_flavor]
+      |Скрыть рецепты с одним ароматизатором
+    - options = @flavors.present? ? options_from_collection_for_select(@flavors, 'id', 'name', @flavors.ids) : ''
+    = select_tag 'flavor_ids[]', options, { class: 'select2-tag form-control', multiple: 'multiple',
+            data: {adapter: 'flavor', placeholder: 'Выберите ароматизаторы'} }
+    = submit_tag 'Search', class: 'btn btn-info', name: nil
+    - if current_user
+      = link_to 'Заполнить моими ароматизаторами', fill_my_flavors_path, method: :post, remote: true,
+              class: 'btn btn-default'
+
+.results
+  - @results&.each do |res|
+    = link_to res.name, recipe_path(res)
+    br

@@ -2,7 +2,13 @@
   .form-group
     .flavors-input
       .col-xs-8
-        = f.collection_select :flavor_id, Flavor.all, :id, :name, {}, class: 'form-control select'
+        - if f.object.flavor_id
+          - flavor_name = Flavor.where(id: f.object.flavor_id).pluck(:name)[0]
+          - options = options_for_select([[flavor_name, f.object.flavor_id]])
+        - else
+          - options = ''
+        = f.select :flavor_id, options, {}, { class: 'select2-tag form-control',
+                data: {adapter: 'flavor', placeholder: 'Выберите ароматизатор'} }
       .col-xs-4
         .input-group
           = f.number_field :amount, min: 1, class: 'form-control number'

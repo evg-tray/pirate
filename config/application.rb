@@ -25,5 +25,8 @@ module Pirate
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
     config.autoload_paths += %W(#{root}/validations)
+    config.autoload_paths += %W(#{root}/select_adapters)
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

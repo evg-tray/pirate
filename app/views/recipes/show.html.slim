@@ -1,4 +1,9 @@
 .row
+  .rating
+    = user_score_rating(current_user, @recipe)
+  .favorite
+    = render 'favorite'
+
   = render 'recipe_table'
   form.form-horizontal
     .form-group
@@ -32,4 +37,5 @@
           = select_tag :flavor, "<option selected='selected'>#{rf.flavor.name}</option>".html_safe, class: 'select'
           = hidden_field_tag :flavor_amount, rf.amount, class: 'number'
 
-
+.row
+  = render 'comments'

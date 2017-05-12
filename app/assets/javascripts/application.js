@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.raty
 //= require twitter/bootstrap
 //= require turbolinks
 //= require cocoon
+//= require select2
+//= require select2/i18n/ru
 //= require_tree .

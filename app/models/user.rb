@@ -10,12 +10,18 @@ class User < ApplicationRecord
 
   has_many :recipes, foreign_key: :author_id
   has_many :flavors, class_name: 'UserFlavor'
+  has_many :votes
+  has_many :comments, foreign_key: :author_id
+  has_many :favorite_recipes
+  has_many :favorites, through: :favorite_recipes, source: :recipe
 
   attr_accessor :login
 
   validates :username, presence: true, uniqueness: {case_sensitive: false},
             format: {with: /^[a-zA-Z0-9_\.]*$/, multiline: true}
   validates :drops, numericality: { only_integer: true, greater_than: 0 }
+
+  scope :pirate_diy_subscribers, -> { where(subscribed: true) }
 
   store_attributes :settings do
     drops Integer, default: 30
@@ -33,5 +39,9 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_hash).first
     end
+  end
+
+  def available_flavors
+    Flavor.where(id: self.flavors.select(:flavor_id).where(available: true))
   end
 end

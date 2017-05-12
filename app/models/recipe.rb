@@ -5,6 +5,8 @@ class Recipe < ApplicationRecord
   has_many :flavors_recipes, inverse_of: :recipe
   has_many :flavors, through: :flavors_recipes
   belongs_to :author, class_name: 'User'
+  has_many :votes
+  has_many :comments
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }
@@ -13,6 +15,8 @@ class Recipe < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 10, maximum: 200 }
   validate :liquid_integrity
+
+  after_commit :notify_subsribers, on: :create
 
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
@@ -29,5 +33,11 @@ class Recipe < ApplicationRecord
       }
     end
     DEFAULTS
+  end
+
+  private
+
+  def notify_subsribers
+    PirateDiyJob.perform_later(self) if pirate_diy
   end
 end

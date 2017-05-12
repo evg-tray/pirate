@@ -1,0 +1,6 @@
+<% if @flavors.present? %>
+  <% @flavors.each do |flavor| %>
+    var newOption = new Option('<%= flavor.name %>', '<%= flavor.id %>', true, true);
+    $(".select2-tag").append(newOption).trigger('change');
+  <% end %>
+<% end %>

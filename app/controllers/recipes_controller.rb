@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :index_pirate_diy, :show]
-  before_action :load_recipe, only: [:show, :edit, :update]
+  before_action :load_recipe, only: [:show, :edit, :update, :add_favorites, :delete_favorites]
 
+  respond_to :js, only: [:add_favorites, :delete_favorites]
   def index
     @recipes = Recipe.public_recipes
     respond_with(@recipes)
@@ -38,6 +39,22 @@ class RecipesController < ApplicationController
     authorize @recipe
     @recipe.update_attributes(permitted_attributes(@recipe))
     respond_with(@recipe)
+  end
+
+  def favorites
+    @recipes = current_user.favorites
+    respond_with(@recipes)
+  end
+
+  def add_favorites
+    authorize @recipe
+    @favorite = current_user.favorite_recipes.create(recipe: @recipe)
+  end
+
+  def delete_favorites
+    @from_list = params[:from_list] == 'true'
+    @favorite = current_user.favorite_recipes.find_by_recipe_id(@recipe.id)
+    @favorite.destroy if @favorite
   end
 
   private

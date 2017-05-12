@@ -45,6 +45,13 @@ gem 'rolify'
 gem 'mysql2'
 gem 'thinking-sphinx'
 gem 'storext'
+gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'redis-namespace'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-select2', '~> 4.0.0'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

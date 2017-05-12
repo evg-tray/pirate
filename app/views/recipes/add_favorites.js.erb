@@ -1,0 +1,3 @@
+<% unless @favorite.errors.any? %>
+  $('.favorite').html('<%= j render 'favorite' %>')
+<% end %>

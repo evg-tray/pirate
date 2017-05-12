@@ -80,11 +80,11 @@ feature 'Create recipes', %q{
     click_on 'Добавить ароматизатор'
     click_on 'Добавить ароматизатор'
 
-    selects = all('.flavors-input .select')
+    selects = all('.select2-tag')
     numbers = all('.flavors-input .number')
-    selects[0].set(flavors[0].id)
+    select2(flavors[0].name, selects[0][:id])
     numbers[0].set(5)
-    selects[1].set(flavors[1].id)
+    select2(flavors[1].name, selects[1][:id])
     numbers[1].set(2)
 
     click_on 'Сохранить рецепт'

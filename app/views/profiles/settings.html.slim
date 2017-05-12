@@ -1,3 +1,15 @@
+- disabled = ! policy(:profile).update_subscription?
+= form_for current_user, url: subscription_path, html: { class: 'form-inline' }, remote: true do |f|
+  fieldset disabled=('disabled' if disabled)
+    .checkbox
+      label
+        = f.check_box :subscribed
+        | Оповещать о новых рецептах пиратского самозамеса
+    = f.submit 'Сохранить', class: 'btn btn-success'
+  - if disabled
+    .help-block
+      |Для подписки на оповещения необходимо подтвердить e-mail
+br
 = form_for current_user, url: update_settings_path, html: { class: 'form-horizontal' }, remote: true do |f|
   .form-group
     = f.label :amount, 'Количество:', class: 'control-label col-xs-3'
