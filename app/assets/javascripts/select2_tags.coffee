@@ -36,5 +36,8 @@ select2 = ->
     theme: 'bootstrap'
     language: 'ru'
 
+$(document).on("turbolinks:before-cache", ->
+  $('.select2-tag').select2('destroy'))
+
 $(document).on('turbolinks:load', select2)
 $(document).on("cocoon:after-insert", select2)

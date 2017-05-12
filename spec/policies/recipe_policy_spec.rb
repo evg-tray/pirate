@@ -10,8 +10,12 @@ RSpec.describe RecipePolicy do
   subject { described_class }
 
   permissions :create? do
-    it 'grants access all users' do
+    it 'grants access all registered users' do
       expect(subject).to permit(user, recipe)
+    end
+
+    it 'denies access non-registered users' do
+      expect(subject).not_to permit(nil, recipe)
     end
   end
 
