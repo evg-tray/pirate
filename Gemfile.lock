@@ -43,6 +43,8 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     ansi (1.5.0)
     arel (7.1.4)
+    autoprefixer-rails (7.1.1)
+      execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -145,13 +147,16 @@ GEM
       addressable (~> 2.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
-    less-rails (2.8.0)
+    less-rails (2.7.1)
       actionpack (>= 4.0)
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    less-rails-semantic_ui (2.2.10.0)
+      less-rails (>= 2.6.0, < 2.8.0)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    libv8 (3.16.14.19)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -212,6 +217,7 @@ GEM
     redis (3.3.3)
     redis-namespace (1.5.3)
       redis (~> 3.0, >= 3.0.4)
+    ref (2.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rolify (5.1.0)
@@ -276,17 +282,15 @@ GEM
       rails (>= 4.0, < 6.0)
       virtus
     temple (0.7.7)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.6)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
-    twitter-bootstrap-rails (4.0.0)
-      actionpack (~> 5.0, >= 5.0.1)
-      execjs (~> 2.7)
-      less-rails (~> 2.8, >= 2.8.0)
-      railties (~> 5.0, >= 5.0.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.1.7)
@@ -314,6 +318,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   byebug
   capybara-webkit
   chewy
@@ -332,6 +337,7 @@ DEPENDENCIES
   kaminari
   kaminari-i18n
   launchy
+  less-rails-semantic_ui (~> 2.2.10)
   letter_opener
   listen (~> 3.0.5)
   pg (~> 0.18)
@@ -352,8 +358,8 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   storext
+  therubyracer
   turbolinks (~> 5)
-  twitter-bootstrap-rails
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
