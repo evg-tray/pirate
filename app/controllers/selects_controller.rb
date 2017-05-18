@@ -12,7 +12,7 @@ class SelectsController < ApplicationController
       render json: {error: "Несуществующий адаптер."}.to_json, status: 500
       return
     end
-    page = params[:page]&.to_i || 0
+    page = params[:page].to_i || 0
     page = 1 if page == 0
     render json: adapter.select(params[:term], page).to_json
   end
