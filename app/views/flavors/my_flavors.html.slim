@@ -4,16 +4,18 @@
       .form-group
         .input-group
           = select_tag :flavor_id, '', class: 'select2-tag form-control',
-                  data: {adapter: 'flavor', placeholder: 'Выберите ароматизатор'}
+                  data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')}
           .input-group-btn
-            = submit_tag 'Добавить', class: 'btn btn-default'
+            = submit_tag t('.add'), class: 'btn btn-default'
 
 
 #my_flavor_list
   table.table.table-striped
     thead
-      th Ароматизатор
-      th Наличие
+      th
+        = t('.flavor')
+      th
+        = t('.availability')
       th
     - @flavors.each do |flavor|
       = render 'flavor', user_flavor: flavor

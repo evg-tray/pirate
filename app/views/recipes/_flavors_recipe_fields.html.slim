@@ -8,10 +8,11 @@
         - else
           - options = ''
         = f.select :flavor_id, options, {}, { class: 'select2-tag form-control',
-                data: {adapter: 'flavor', placeholder: 'Выберите ароматизатор'} }
+                data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')} }
       .col-xs-4
         .input-group
           = f.number_field :amount, min: 1, class: 'form-control number'
-          .input-group-addon %
+          .input-group-addon
+            = t('common.percent')
           .input-group-btn= link_to_remove_association f, class: 'btn btn-danger' do
             .glyphicon.glyphicon-remove

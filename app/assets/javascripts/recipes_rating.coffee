@@ -13,6 +13,9 @@ user_rating = ->
         data: { score: score, recipe_id: $(this).attr('id') }
       })
 
+$(document).on("turbolinks:before-cache", ->
+  $('.user-rating').raty('destroy'))
+
 $(document).on('turbolinks:load', user_rating)
 
 total_rating = ->
@@ -21,5 +24,8 @@ total_rating = ->
     readOnly: true
     score: ->
       $(this).attr('data-score')
+
+$(document).on("turbolinks:before-cache", ->
+  $('.total-rating').raty('destroy'))
 
 $(document).on('turbolinks:load', total_rating)

@@ -27,7 +27,7 @@ feature 'Add flavors to user`s list', %q{
 
     select2(flavors[2].name, 'flavor_id')
 
-    click_on 'Добавить'
+    click_on t('flavors.my_flavors.add')
     within '#my_flavor_list' do
       expect(page).to have_content flavors[2].name
     end
@@ -38,12 +38,12 @@ feature 'Add flavors to user`s list', %q{
     visit my_flavors_path
 
     within "#my_flavor_list #my_flavor-#{user_flavors1.id}" do
-      click_on 'Закончился'
-      expect(page).to have_content 'Нет'
-      expect(page).to have_content 'Появился'
-      click_on 'Появился'
-      expect(page).to have_content 'Есть'
-      expect(page).to have_content 'Закончился'
+      click_on t('flavors.availability.ended')
+      expect(page).to have_content t('flavors.availability.not_available')
+      expect(page).to have_content t('flavors.availability.appeared')
+      click_on t('flavors.availability.appeared')
+      expect(page).to have_content t('flavors.availability.available')
+      expect(page).to have_content t('flavors.availability.ended')
     end
   end
 
@@ -52,7 +52,7 @@ feature 'Add flavors to user`s list', %q{
     visit my_flavors_path
 
     within "#my_flavor_list #my_flavor-#{user_flavors1.id}" do
-      click_on 'Удалить'
+      click_on t('flavors.flavor.delete_my_flavor')
     end
     within "#my_flavor_list" do
       expect(page).not_to have_content user_flavors1.flavor.name

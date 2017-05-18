@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :favorite_recipes
   has_many :favorites, through: :favorite_recipes, source: :recipe
 
+  update_index 'users#user', :self
+
   attr_accessor :login
 
   validates :username, presence: true, uniqueness: {case_sensitive: false},

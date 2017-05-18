@@ -7,7 +7,7 @@ feature 'View favorites recipes', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:recipes_favorites) { create_list(:recipe, 2, public: true) }
+  given!(:recipes_favorites) { create_list(:public_recipe, 2) }
   given!(:favorite_recipe1) { create(:favorite_recipe, user: user, recipe: recipes_favorites[0]) }
   given!(:favorite_recipe2) { create(:favorite_recipe, user: user, recipe: recipes_favorites[1]) }
 
@@ -19,7 +19,7 @@ feature 'View favorites recipes', %q{
     expect(page).to have_content recipes_favorites[0].name
     expect(page).to have_content recipes_favorites[1].name
     within "#rec-#{recipes_favorites[0].id}" do
-      click_on 'Удалить'
+      click_on t('recipes.favorites.remove_from_favorites')
     end
     expect(page).not_to have_content recipes_favorites[0].name
   end

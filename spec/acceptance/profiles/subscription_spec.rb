@@ -15,7 +15,7 @@ feature 'Subscriptions to pirate diy recipes', %q{
     visit settings_path
 
     within 'fieldset' do
-      expect(page).to have_button('Сохранить', disabled: true)
+      expect(page).to have_button(t('profiles.settings.save_subsribe'), disabled: true)
     end
   end
 
@@ -26,7 +26,7 @@ feature 'Subscriptions to pirate diy recipes', %q{
 
     within 'fieldset' do
       check 'user_subscribed'
-      click_on 'Сохранить'
+      click_on t('profiles.settings.save_subsribe')
     end
   end
 end

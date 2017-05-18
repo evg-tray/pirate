@@ -1,0 +1,8 @@
+ru:
+  admins:
+    user:
+      remove_moderator: "Убрать"
+    show:
+      set_moderator: "Сделать модератором"
+      select_user_placeholder: "Выберите пользователя"
+      moderators: "Модераторы:"

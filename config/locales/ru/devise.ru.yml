@@ -1,0 +1,4 @@
+ru:
+  devise:
+    sessions:
+      sign_out: "Выйти"

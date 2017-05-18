@@ -17,7 +17,7 @@ feature 'Edit recipes', %q{
 
     updated_name = "new recipe name"
     fill_in 'recipe_name', with: updated_name
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     expect(page).to have_content updated_name
   end
@@ -28,7 +28,7 @@ feature 'Edit recipes', %q{
 
     updated_name = "new recipe name"
     fill_in 'recipe_name', with: updated_name
-    click_on 'Сохранить рецепт'
+    click_on t('recipes.form.save_recipe')
 
     expect(page).to have_content updated_name
   end
@@ -37,7 +37,7 @@ feature 'Edit recipes', %q{
     sign_in(another_user)
     visit edit_recipe_path(recipe)
 
-    expect(page).to have_content 'Нет доступа.'
+    expect(page).to have_content t('authorization.errors.forbidden')
     expect(current_path).to eq root_path
   end
 end

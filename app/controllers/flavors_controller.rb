@@ -50,6 +50,6 @@ class FlavorsController < ApplicationController
   private
 
   def flavor_params
-    params.require(:flavor).permit(:name)
+    params.require(:flavor).permit(:name, :manufacturer_id)
   end
 end

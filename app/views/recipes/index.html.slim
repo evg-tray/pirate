@@ -1,5 +1,4 @@
-- @recipes.each do |recipe|
-  = link_to recipe.name, recipe_path(recipe)
-  .rating= total_score_rating(recipe)
-  br
-= link_to 'Создать', new_recipe_path
+- if policy(Recipe).new?
+  = link_to t('recipes.create_recipe'), new_recipe_path, class: 'btn btn-primary'
+= render 'recipes/table/table', recipes: @recipes
+= paginate @recipes

@@ -4,45 +4,45 @@
     .checkbox
       label
         = f.check_box :subscribed
-        | Оповещать о новых рецептах пиратского самозамеса
-    = f.submit 'Сохранить', class: 'btn btn-success'
+        = t('.subscribed')
+    = f.submit t('.save_subsribe'), class: 'btn btn-success'
   - if disabled
     .help-block
-      |Для подписки на оповещения необходимо подтвердить e-mail
+      = t('.for_subscribe_need_confirm_email')
 br
 = form_for current_user, url: update_settings_path, html: { class: 'form-horizontal' }, remote: true do |f|
   .form-group
-    = f.label :amount, 'Количество:', class: 'control-label col-xs-3'
+    = f.label :amount, class: 'control-label col-xs-3'
     .col-xs-9
       .input-group
         = f.number_field :amount, min: 1, class: 'form-control'
         .input-group-addon мл
   .form-group
-    = f.label :pg, 'PG:', class: 'control-label col-xs-2'
+    = f.label :pg, class: 'control-label col-xs-2'
     .col-xs-4
       .input-group
         = f.number_field :pg, min: 0, max: 100, class: 'form-control'
         .input-group-addon %
-    = f.label :vg, 'VG:', class: 'control-label col-xs-2'
+    = f.label :vg, class: 'control-label col-xs-2'
     .col-xs-4
       .input-group
         = f.number_field :vg, min: 0, max: 100, class: 'form-control'
         .input-group-addon %
   .form-group
-    = label_tag :drops, 'Капли:', class: 'control-label col-xs-3'
+    = f.label :drops, class: 'control-label col-xs-3'
     .col-xs-9
       .input-group
         = number_field_tag :drops, 30, min: 1, class: 'form-control'
         .input-group-addon кап/мл
   .form-group
-    = f.label :strength, 'Крепость:', class: 'control-label col-xs-2'
+    = f.label :strength, class: 'control-label col-xs-2'
     .col-xs-4
       .input-group
         = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
         .input-group-addon мг/мл
-    = f.label :nicotine_base, 'База:', class: 'control-label col-xs-2'
+    = f.label :nicotine_base, class: 'control-label col-xs-2'
     .col-xs-4
       .input-group
         = f.number_field :nicotine_base, min: 0, class: 'form-control'
         .input-group-addon мг/мл
-  = f.submit 'Сохранить', class: 'btn btn-success'
+  = f.submit t('.save'), class: 'btn btn-success'

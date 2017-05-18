@@ -6,9 +6,9 @@ feature 'View recipes', %q{
   I want to be able view recipes
 } do
 
-  given!(:public_recipes) { create_list(:recipe, 2, public: true) }
+  given!(:public_recipes) { create_list(:public_recipe, 2) }
   given!(:private_recipes) { create_list(:recipe, 2) }
-  given!(:pirate_diy_recipes) { create_list(:recipe, 2, pirate_diy: true) }
+  given!(:pirate_diy_recipes) { create_list(:pirate_diy_recipe, 2) }
 
   scenario 'Any user view user`s public recipes' do
     visit recipes_path

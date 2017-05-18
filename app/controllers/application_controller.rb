@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:alert] = "Нет доступа."
+    flash[:alert] = t('authorization.errors.forbidden')
     redirect_to(request.referrer || root_path)
   end
 end

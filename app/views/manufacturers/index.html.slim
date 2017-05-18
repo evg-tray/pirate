@@ -1,0 +1,6 @@
+- if policy(Manufacturer).new?
+  = link_to t('.create_manufacturer'), new_manufacturer_path, class: 'btn btn-primary'
+  br
+- @manufacturers.each do |manufacturer|
+  = "#{manufacturer.name} - #{manufacturer.short_name}"
+  br

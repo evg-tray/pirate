@@ -1,0 +1,4 @@
+ru:
+  authorization:
+    errors:
+      forbidden: "Нет доступа."

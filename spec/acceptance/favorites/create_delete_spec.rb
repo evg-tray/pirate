@@ -7,8 +7,8 @@ feature 'Add recipe to favorites', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:recipe) { create(:recipe, public: true) }
-  given!(:recipe_favorite) { create(:recipe, public: true) }
+  given!(:recipe) { create(:public_recipe) }
+  given!(:recipe_favorite) { create(:public_recipe) }
   given!(:favorite_recipe) { create(:favorite_recipe, user: user, recipe: recipe_favorite) }
 
   scenario 'User add recipe to favorites', js: true do
@@ -16,9 +16,9 @@ feature 'Add recipe to favorites', %q{
 
     visit recipe_path(recipe)
 
-    click_on 'Добавить в избранное'
+    click_on t('recipes.favorite.add_to_favorites')
 
-    expect(page).to have_content 'Удалить из избранного'
+    expect(page).to have_content t('recipes.favorite.remove_from_favorites')
     visit favorites_path
     expect(page).to have_content recipe.name
   end
@@ -26,7 +26,7 @@ feature 'Add recipe to favorites', %q{
   scenario 'Non-authenticated user tries add recipe to favorites' do
     visit recipe_path(recipe)
 
-    expect(page).not_to have_content 'Добавить в избранное'
+    expect(page).not_to have_content t('recipes.favorite.add_to_favorites')
   end
 
   scenario 'User delete recipe from favorite', js: true do
@@ -34,8 +34,8 @@ feature 'Add recipe to favorites', %q{
 
     visit recipe_path(recipe_favorite)
 
-    click_on 'Удалить из избранного'
-    expect(page).to have_content 'Добавить в избранное'
+    click_on t('recipes.favorite.remove_from_favorites')
+    expect(page).to have_content t('recipes.favorite.add_to_favorites')
 
     visit favorites_path
     expect(page).not_to have_content recipe_favorite.name

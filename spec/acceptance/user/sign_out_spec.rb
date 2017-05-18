@@ -11,8 +11,8 @@ feature 'User log out', %q{
   scenario 'Authenticated user log out' do
     sign_in(user)
 
-    click_on 'Выйти'
-    expect(page).to have_content 'Signed out successfully.'
+    click_on t('devise.sessions.sign_out')
+    expect(page).to have_content t('devise.sessions.signed_out')
   end
 
 end

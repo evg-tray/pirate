@@ -1,0 +1,9 @@
+tr
+  td
+    = link_to recipe.name, recipe_path(recipe)
+  td
+    = recipe.author.username
+  td
+    = recipe.created_at
+  td.text-right
+    = render 'recipes/rating/total_score', recipe: recipe

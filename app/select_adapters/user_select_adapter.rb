@@ -1,16 +1,20 @@
 class UserSelectAdapter
 
   def self.select(query, page)
-    @term = query
-    if @term
-      @list = User.where('username LIKE :term', term: "%#{@term}%")
-    else
-      @list = User.all
+    if query
+      @results = UsersIndex.query(query_string: {
+          fields: [:username],
+          query: query,
+          default_operator: 'and'
+      }).limit(20).offset(20 * (page - 1))
     end
-    total_count = User.all.count
+    total_count = @results.total_count
     {
-        items: @list.map do |u|
-          { text: u.username, id: u.id }
+        items: @results.map do |res|
+          {
+              text: res.username,
+              id: res.id,
+          }
         end,
         total_count: total_count
     }

@@ -1,19 +1,20 @@
-h1 Search:
-= form_tag search_path, method: :get, class: 'form-inline'
-.form-group
-  = label_tag :query
-  = text_field_tag :query, params[:query], class: 'form-control'
-  = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
-  = label_tag :scope_all, 'По всем рецептам'
+h1
+  = t('.search_title')
+= form_tag search_path, enforce_utf8: false, method: :get, class: 'form-inline'
+  .form-group
+    = label_tag :query
+    = text_field_tag :query, params[:query], class: 'form-control'
+    = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
+    = label_tag :scope_all, t('.by_all_recipes')
 
-  = radio_button_tag :scope, 'public', params[:scope].eql?('public')
-  = label_tag :scope_public, 'Только пользовательские'
+    = radio_button_tag :scope, 'public', params[:scope].eql?('public')
+    = label_tag :scope_public, t('.only_users_recipes')
 
-  = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
-  = label_tag :scope_pirate_diy, 'Только пиратский самозамес'
+    = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
+    = label_tag :scope_pirate_diy, t('.only_pirate_diy_recipes')
 
-  = submit_tag 'Search', class: 'btn btn-info'
+    = submit_tag t('.search'), class: 'btn btn-info', name: nil
 .results
-  - @results&.each do |res|
-    = link_to res.name, recipe_path(res)
-    br
+  - if @results
+    = render 'recipes/table/table', recipes: @results
+    = paginate @results

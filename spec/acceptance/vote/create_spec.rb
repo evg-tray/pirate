@@ -7,7 +7,7 @@ feature 'Create votes', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:recipe) { create(:recipe, public: true) }
+  given!(:recipe) { create(:public_recipe) }
 
   scenario 'User votes for recipe', js: true do
     sign_in(user)

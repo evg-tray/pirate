@@ -1,0 +1,5 @@
+ru:
+  pirate_diy_mailer:
+    notify:
+      new_pirate_diy_recipe: "Новый рецепт в пиратском самозамесе:"
+      unsubscribe: "Отписаться от рассылки"

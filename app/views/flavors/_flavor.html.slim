@@ -4,4 +4,4 @@ tr id="my_flavor-#{user_flavor.id}"
   td id="availability-#{user_flavor.id}"
     = render 'availability', user_flavor: user_flavor
   td
-    = link_to 'Удалить', '#', class: 'btn btn-danger delete-myflavor', id: "delete-#{user_flavor.id}"
+    = link_to t('.delete_my_flavor'), '#', class: 'btn btn-danger delete-myflavor', id: "delete-#{user_flavor.id}"
