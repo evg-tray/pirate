@@ -1,4 +1,6 @@
+h2.ui.dividing.header
+  = t('.title')
 - if policy(Recipe).new?
-  = link_to t('recipes.create_recipe'), new_recipe_path, class: 'btn btn-primary'
+  = link_to t('recipes.create_recipe'), new_recipe_path, class: 'ui primary button'
 = render 'recipes/table/table', recipes: @recipes
 = paginate @recipes

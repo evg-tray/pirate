@@ -1,21 +1,24 @@
-.row
-  .col-xs-12.col-md-6
-    = form_tag add_to_my_flavors_path, remote: true do |f|
-      .form-group
-        .input-group
-          = select_tag :flavor_id, '', class: 'select2-tag form-control',
-                  data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')}
-          .input-group-btn
-            = submit_tag t('.add'), class: 'btn btn-default'
+h2.ui.dividing.header
+  = t('.title')
+.ui.segment
+  = form_tag add_to_my_flavors_path, class: 'ui form', remote: true do |f|
+    .field
+      = select_tag :flavor_id, '', class: 'select2-tag',
+                data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')}
+    .field
+      = submit_tag t('.add'), class: 'ui primary button'
 
 
 #my_flavor_list
-  table.table.table-striped
+  table.ui.striped.table
     thead
       th
-        = t('.flavor')
+        = t('activerecord.attributes.flavor.name')
+      th
+        = t('activerecord.attributes.flavor.manufacturer')
       th
         = t('.availability')
       th
     - @flavors.each do |flavor|
       = render 'flavor', user_flavor: flavor
+  = paginate @flavors

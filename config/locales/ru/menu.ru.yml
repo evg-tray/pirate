@@ -1,0 +1,14 @@
+ru:
+  menu:
+    pirate_diy_recipes: "Пиратский самозамес"
+    user_recipes: "Рецепты пользователей"
+    search_menu: "Поиск"
+    search_by_name: "Поиск по наименованию"
+    search_by_flavors: "Поиск по ароматизаторам"
+    manufacturers: "Производители ароматизаторов"
+    flavors: "Ароматизаторы"
+    settings: "Настройки"
+    change_password_email: "Изменить пароль / e-mail"
+    my_flavors: "Мои ароматизаторы"
+    close_sidebar: "Закрыть"
+    favorite_recipes: "Избранные рецепты"

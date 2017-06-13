@@ -1,0 +1,11 @@
+table.ui.striped.table
+  thead
+    th
+      = t('activerecord.attributes.flavor.name')
+    th
+      = t('activerecord.attributes.flavor.manufacturer')
+    th.right.aligned
+      = t('flavors.index.recipes_count')
+  tbody
+    - flavors.each do |flavor|
+      = render 'flavors/table/item', flavor: flavor

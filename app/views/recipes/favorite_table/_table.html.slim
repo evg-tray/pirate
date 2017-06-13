@@ -1,0 +1,14 @@
+table.ui.striped.table
+  thead
+    th
+      = t('activerecord.attributes.recipe.name')
+    th
+      = t('activerecord.attributes.recipe.author')
+    th
+      = t('activerecord.attributes.recipe.created_at')
+    th.right.aligned
+      = t('recipes.table.table.rating')
+    th.right.aligned
+  tbody
+    - recipes.each do |rec|
+      = render 'recipes/favorite_table/item', recipe: rec

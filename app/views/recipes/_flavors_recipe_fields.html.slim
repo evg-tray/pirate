@@ -1,18 +1,19 @@
 .nested-fields
-  .form-group
-    .flavors-input
-      .col-xs-8
-        - if f.object.flavor_id
-          - flavor_name = Flavor.where(id: f.object.flavor_id).pluck(:name)[0]
-          - options = options_for_select([[flavor_name, f.object.flavor_id]])
-        - else
-          - options = ''
-        = f.select :flavor_id, options, {}, { class: 'select2-tag form-control',
-                data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')} }
-      .col-xs-4
-        .input-group
-          = f.number_field :amount, min: 1, class: 'form-control number'
-          .input-group-addon
+  .flavors-input
+    .field
+      - if f.object.flavor_id
+        - flavor_name = Flavor.where(id: f.object.flavor_id).pluck(:name)[0]
+        - options = options_for_select([[flavor_name, f.object.flavor_id]])
+      - else
+        - options = ''
+      = f.select :flavor_id, options, {}, { class: 'select2-tag with-hidden',
+              data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')} }
+      = f.hidden_field :flavor_id, class: 'flavor-text'
+    .inline.fields
+      .field
+        .ui.right.labeled.input
+          = f.number_field :amount, min: 1, class: 'number'
+          .ui.basic.label
             = t('common.percent')
-          .input-group-btn= link_to_remove_association f, class: 'btn btn-danger' do
-            .glyphicon.glyphicon-remove
+        = link_to_remove_association f do
+          i.red.remove.icon

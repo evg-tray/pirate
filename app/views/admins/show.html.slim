@@ -1,18 +1,15 @@
-.row
-  .col-xs-12.col-md-6
-    = form_tag set_moderator_path, remote: true do |f|
-      .form-group
-        .input-group
-          = select_tag :user_id, '', class: 'select2-tag form-control',
+.ui.segment
+  = form_tag set_moderator_path, remote: true, class: 'ui form' do |f|
+    .field
+      = select_tag :user_id, '', class: 'select2-tag',
                   data: { adapter: 'user', placeholder: t('.select_user_placeholder') }
-          .input-group-btn
-            = submit_tag t('.set_moderator'), class: 'btn btn-success'
-.row
-  .col-xs-12.col-md-6
-    .moderators
-      h4
-        = t('.moderators')
-      table.table.table-striped
-        - @moderators.each do |moderator|
-          = render 'user', user: moderator
+    .field
+      = submit_tag t('.set_moderator'), class: 'ui primary button'
+.ui.segment
+  .moderators
+    h3.ui.dividing.header
+      = t('.moderators')
+    table.ui.striped.table
+      - @moderators.each do |moderator|
+        = render 'user', user: moderator
 

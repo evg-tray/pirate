@@ -1,0 +1,8 @@
+ru:
+  views:
+    pagination:
+      first: "<i class=\"left chevron icon\"></i><i class=\"left chevron icon\"></i>"
+      last: "<i class=\"right chevron icon\"></i><i class=\"right chevron icon\"></i>"
+      next: "<i class=\"right chevron icon\"></i>"
+      previous: "<i class=\"left chevron icon\"></i>"
+      truncate: "&hellip;"

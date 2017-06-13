@@ -4,7 +4,7 @@ class FlavorsController < ApplicationController
   respond_to :js, only: [:add_to_my_flavors, :update_availability, :delete_from_my_flavors]
 
   def index
-    @flavors = Flavor.all
+    @flavors = Flavor.all.includes(:manufacturer).page(params[:page])
     respond_with(@flavors)
   end
 
@@ -26,7 +26,7 @@ class FlavorsController < ApplicationController
   end
 
   def my_flavors
-    @flavors = current_user.flavors
+    @flavors = current_user.flavors.includes(flavor: [:manufacturer]).page(params[:page])
     respond_with(@flavors)
   end
 

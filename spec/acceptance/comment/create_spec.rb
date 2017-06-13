@@ -15,7 +15,7 @@ feature 'Create comments', %q{
 
     visit recipe_path(recipe)
 
-    fill_in t('activerecord.attributes.comment.text'), with: comment.text
+    find('#comment_text').set(comment.text)
     click_on t('recipes.comments.create_comment')
 
     expect(page).to have_content comment.text

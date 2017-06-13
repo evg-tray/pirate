@@ -1,19 +1,23 @@
-h1
-  = t('.search_title')
-= form_tag search_path, enforce_utf8: false, method: :get, class: 'form-inline'
-  .form-group
-    = label_tag :query
-    = text_field_tag :query, params[:query], class: 'form-control'
-    = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
-    = label_tag :scope_all, t('.by_all_recipes')
-
-    = radio_button_tag :scope, 'public', params[:scope].eql?('public')
-    = label_tag :scope_public, t('.only_users_recipes')
-
-    = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
-    = label_tag :scope_pirate_diy, t('.only_pirate_diy_recipes')
-
-    = submit_tag t('.search'), class: 'btn btn-info', name: nil
+h2.ui.dividing.header
+  = t('.title')
+.ui.segment
+  = form_tag search_path, enforce_utf8: false, method: :get, class: 'ui form'
+    .field
+      = text_field_tag :query, params[:query], placeholder: t('.query_placeholder')
+    .inline.fields
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
+          = label_tag :scope_all, t('.by_all_recipes')
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :scope, 'public', params[:scope].eql?('public')
+          = label_tag :scope_public, t('.only_users_recipes')
+      .field
+        .ui.radio.checkbox
+          = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
+          = label_tag :scope_pirate_diy, t('.only_pirate_diy_recipes')
+      = submit_tag t('.search'), class: 'ui primary button', name: nil
 .results
   - if @results
     = render 'recipes/table/table', recipes: @results

@@ -24,20 +24,27 @@ ru:
         public: "Публичный"
         pirate_diy: "Пиратский самозамес"
   recipes:
+    index:
+      title: "Рецепты пользователей"
+    index_pirate_diy:
+      title: "Пиратский самозамес"
     create_recipe: "Создать"
     comments:
       title: "Комментарии"
       no_comments: "Нет комментариев"
       create_comment: "Оставить комментарий"
+      text_placeholder: "Введите текст комментария"
     favorites:
       remove_from_favorites: "Удалить"
+      title: "Избранные рецепты"
     favorite:
       add_to_favorites: "Добавить в избранное"
       remove_from_favorites: "Удалить из избранного"
     recipe_table:
       ingredient: "Ингредиент"
-    form:
+    fields:
       save_recipe: "Сохранить рецепт"
+    form:
       base:
         title: "Основа"
       flavors:

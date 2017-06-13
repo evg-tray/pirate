@@ -1,48 +1,67 @@
+h2.ui.dividing.header
+  = t('.subscriptions')
 - disabled = ! policy(:profile).update_subscription?
-= form_for current_user, url: subscription_path, html: { class: 'form-inline' }, remote: true do |f|
-  fieldset disabled=('disabled' if disabled)
-    .checkbox
-      label
+.ui.segment#subscriptions
+  = form_for current_user, url: subscription_path, html: { class: 'ui form' }, remote: true do |f|
+    .inline.field
+      .ui.checkbox class="#{'disabled' if disabled}"
         = f.check_box :subscribed
-        = t('.subscribed')
-    = f.submit t('.save_subsribe'), class: 'btn btn-success'
-  - if disabled
-    .help-block
-      = t('.for_subscribe_need_confirm_email')
-br
-= form_for current_user, url: update_settings_path, html: { class: 'form-horizontal' }, remote: true do |f|
-  .form-group
-    = f.label :amount, class: 'control-label col-xs-3'
-    .col-xs-9
-      .input-group
-        = f.number_field :amount, min: 1, class: 'form-control'
-        .input-group-addon мл
-  .form-group
-    = f.label :pg, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :pg, min: 0, max: 100, class: 'form-control'
-        .input-group-addon %
-    = f.label :vg, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :vg, min: 0, max: 100, class: 'form-control'
-        .input-group-addon %
-  .form-group
-    = f.label :drops, class: 'control-label col-xs-3'
-    .col-xs-9
-      .input-group
-        = number_field_tag :drops, 30, min: 1, class: 'form-control'
-        .input-group-addon кап/мл
-  .form-group
-    = f.label :strength, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
-        .input-group-addon мг/мл
-    = f.label :nicotine_base, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :nicotine_base, min: 0, class: 'form-control'
-        .input-group-addon мг/мл
-  = f.submit t('.save'), class: 'btn btn-success'
+        label
+          = t('.subscribed')
+      = f.submit t('.save_subsribe'), class: "ui primary button #{'disabled' if disabled}"
+    - if disabled
+      .sub-header
+        = t('.for_subscribe_need_confirm_email')
+h2.ui.dividing.header
+  = t('.default_recipe_values')
+.ui.segment#settings
+  = form_for current_user, url: update_settings_path, html: { class: 'ui form' }, remote: true do |f|
+    .inline.fields
+      .field.two.wide
+        = f.label :amount
+      .field.three.wide
+        .ui.right.labeled.input
+          = f.number_field :amount, min: 1
+          .ui.basic.label
+            = t('common.ml')
+    .inline.fields
+      .field.two.wide
+        = f.label :pg
+      .field.three.wide
+        .ui.right.labeled.input
+          = f.number_field :pg, min: 0, max: 100
+          .ui.basic.label
+            = t('common.percent')
+    .inline.fields
+      .field.two.wide
+        = f.label :vg
+      .field.three.wide
+        .ui.right.labeled.input
+          = f.number_field :vg, min: 0, max: 100
+          .ui.basic.label
+            = t('common.percent')
+    .inline.fields
+      .field.two.wide
+        = f.label :drops
+      .field.three.wide
+        .ui.right.labeled.input
+          = number_field_tag :drops, 30, min: 1
+          .ui.basic.label
+            = t('common.drop_ml')
+    .inline.fields
+      .field.two.wide
+        = f.label :strength
+      .field.three.wide
+        .ui.right.labeled.input
+          = f.number_field :strength, min: 0, step: 0.5
+          .ui.basic.label
+            = t('common.mg_ml')
+    .inline.fields
+      .field.two.wide
+        = f.label :nicotine_base
+      .field.three.wide
+        .ui.right.labeled.input
+          = f.number_field :nicotine_base, min: 0
+          .ui.basic.label
+            = t('common.mg_ml')
+    = f.submit t('.save'), class: 'ui primary button'

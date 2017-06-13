@@ -1,4 +1,4 @@
-table.table.table-striped
+table.ui.striped.table
   thead
     th
       = t('activerecord.attributes.recipe.name')
@@ -6,7 +6,7 @@ table.table.table-striped
       = t('activerecord.attributes.recipe.author')
     th
       = t('activerecord.attributes.recipe.created_at')
-    th.text-right
+    th.right.aligned
       = t('.rating')
   tbody
     - recipes.each do |rec|

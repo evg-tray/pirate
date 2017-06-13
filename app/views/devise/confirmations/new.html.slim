@@ -1,11 +1,20 @@
-h2
-  = t('.resend_confirmation_instructions')
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit t('.resend_confirmation_instructions')
-= render "devise/shared/links"
+.ui.center.aligned.grid
+  .left.aligned.column#login-form
+    h2.ui.dividing.header
+      = t('.resend_confirmation_instructions')
+    .ui.segment
+      = form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+              html: { method: :post, class: 'ui form' }) do |f|
+        = devise_error_messages!
+        .field
+          .ui.left.icon.input
+            i.mail.icon
+            = f.email_field :email, autofocus: true,
+                    value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                    placeholder: t('devise.email_placeholder')
+        .actions
+          button.ui.fluid.blue.labeled.submit.icon.button
+            i.send.icon
+            = t('.resend_confirmation_instructions')
+    .ui.segment
+      = render "devise/shared/links"

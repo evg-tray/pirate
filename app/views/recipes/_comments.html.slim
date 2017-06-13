@@ -1,17 +1,21 @@
-.comments
-  p
-    = t('.title')
-  .messages
+.ui.segment
+  .ui.comments
+    h3.ui.dividing.header
+      = t('.title')
+
     - if @recipe.comments.present?
       - @recipe.comments.each do |comment|
         = render 'comment', comment: comment
     - else
-      .no-comments
-        = t('.no_comments')
+      .comment#no-comments
+        .content
+          .text
+            = t('.no_comments')
   - if policy(@comment = @recipe.comments.build).create?
-    = form_for @comment, remote: true do |f|
-      .form-group
-        = f.label :text
-        = f.text_area :text, class: 'form-control'
-        = hidden_field_tag :recipe_id, @recipe.id
-        = f.submit t('.create_comment'), class: 'btn btn-success'
+    = form_for @comment, html: {class: 'ui form'}, remote: true do |f|
+      .field
+        = f.text_area :text, rows: '2', placeholder: t('.text_placeholder')
+      = hidden_field_tag :recipe_id, @recipe.id
+      button.ui.blue.labeled.submit.icon.button
+        i.comment.icon
+        = t('.create_comment')

@@ -1,5 +1,8 @@
-p
-  = comment.author.username
-  = comment.created_at
-p
-  = comment.text
+.comment
+  .content
+    = link_to comment.author.username, '#', class: 'author'
+    .metadata
+      span.date
+        = comment.created_at
+    .text
+      = comment.text

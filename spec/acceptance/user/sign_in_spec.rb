@@ -17,8 +17,8 @@ feature 'User sign in', %q{
 
   scenario 'Registered user try to sign in with username as login' do
     visit new_user_session_path
-    fill_in t('.activerecord.attributes.user.login'), with: user.username
-    fill_in t('.activerecord.attributes.user.password'), with: user.password
+    find('#user_login').set(user.username)
+    find('#user_password').set(user.password)
     within '.actions' do
       click_on t('devise.sessions.new.sign_in')
     end
@@ -29,8 +29,8 @@ feature 'User sign in', %q{
 
   scenario 'Non-registered user try to sign in' do
     visit new_user_session_path
-    fill_in t('.activerecord.attributes.user.login'), with: 'wrong_email@test.com'
-    fill_in t('.activerecord.attributes.user.password'), with: '12345678'
+    find('#user_login').set('wrong_email@test.com')
+    find('#user_password').set('12345678')
     within '.actions' do
       click_on t('devise.sessions.new.sign_in')
     end

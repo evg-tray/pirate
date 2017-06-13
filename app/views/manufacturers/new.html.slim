@@ -1,8 +1,9 @@
-= form_for(@manufacturer) do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control'
-  .form-group
-    = f.label :short_name
-    = f.text_field :short_name, class: 'form-control'
-  = f.submit t('.create_manufacturer'), class: 'btn btn-success'
+h2.ui.dividing.header
+  = t('.title')
+.ui.segment
+  = form_for @manufacturer, html: { class: 'ui form' } do |f|
+    .field
+      = f.text_field :name, placeholder: t('activerecord.attributes.manufacturer.name')
+    .field
+      = f.text_field :short_name, placeholder: t('activerecord.attributes.manufacturer.short_name')
+    = f.submit t('.create_manufacturer'), class: 'ui primary button'

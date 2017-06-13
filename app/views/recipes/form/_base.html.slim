@@ -1,15 +1,16 @@
-p
+h4.ui.dividing.header
   = t('.title')
-.form-group
-  = f.label :pg, class: 'control-label col-xs-2'
-  .col-xs-4
-    .input-group
-      = f.number_field :pg, min: 0, max: 100, class: 'form-control'
-      .input-group-addon
-        = t('common.percent')
-  = f.label :vg, class: 'control-label col-xs-2'
-  .col-xs-4
-    .input-group
-      = f.number_field :vg, min: 0, max: 100, class: 'form-control'
-      .input-group-addon
-        = t('common.percent')
+.inline.field
+  .ui.fluid.left.right.labeled.input
+    .ui.basic.label
+      = f.label :pg
+    = f.number_field :pg, min: 0, max: 100
+    .ui.basic.label
+      = t('common.percent')
+.inline.field
+  .ui.fluid.left.right.labeled.input
+    .ui.basic.label
+      = f.label :vg
+    = f.number_field :vg, min: 0, max: 100
+    .ui.basic.label
+      = t('common.percent')

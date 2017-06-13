@@ -1,0 +1,11 @@
+table.ui.striped.table
+  thead
+    th
+      = t('activerecord.attributes.manufacturer.name')
+    th
+      = t('activerecord.attributes.manufacturer.short_name')
+    th.right.aligned
+      = t('manufacturers.index.flavors_count')
+  tbody
+    - manufacturers.each do |manufacturer|
+      = render 'manufacturers/table/item', manufacturer: manufacturer

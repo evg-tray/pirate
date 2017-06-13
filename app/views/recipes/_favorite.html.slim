@@ -1,7 +1,7 @@
 - if policy(@recipe).add_favorites?
   - favorite = current_user.favorites.find_by_id(@recipe.id)
   - if favorite
-    = link_to t('.remove_from_favorites'), '#', class: 'btn btn-default del-fav', id: @recipe.id
+    = link_to t('.remove_from_favorites'), '#', class: 'ui basic button del-fav', id: @recipe.id
   - else
-    = link_to t('.add_to_favorites'), '#', class: 'btn btn-default add-fav', id: @recipe.id
+    = link_to t('.add_to_favorites'), '#', class: 'ui basic button add-fav', id: @recipe.id
 

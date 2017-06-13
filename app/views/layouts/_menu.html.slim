@@ -1,0 +1,32 @@
+.ui.main.menu.computer.only
+  .ui.container
+    = link_to t('menu.pirate_diy_recipes'), root_path, class: 'header item'
+    = link_to t('menu.user_recipes'), recipes_path, class: 'item'
+    .ui.dropdown.item
+      i.search.icon
+      = t('menu.search_menu')
+      i.dropdown.icon
+      .menu
+        = link_to t('menu.search_by_name'), search_path, class: 'item'
+        = link_to t('menu.search_by_flavors'), by_flavors_search_path, class: 'item'
+    = link_to t('menu.manufacturers'), manufacturers_path, class: 'item'
+    = link_to t('menu.flavors'), flavors_path, class: 'item'
+    - if user_signed_in?
+      .ui.dropdown.item.right
+        = current_user.username
+        i.dropdown.icon
+        .menu
+          = link_to t('menu.favorite_recipes'), favorites_path, class: 'item'
+          = link_to t('menu.my_flavors'), my_flavors_path, class: 'item'
+          = link_to t('menu.settings'), settings_path, class: 'item'
+          = link_to t('menu.change_password_email'), edit_user_registration_path, class: 'item'
+          .divider
+          = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'item'
+    - else
+      = link_to t('devise.sessions.new.sign_in'), new_user_session_path, class: 'item right'
+
+.ui.main.menu.mobile.tablet.only
+  .ui.container
+    a.item#open-sidebar
+      i.sidebar.icon
+    = link_to t('menu.pirate_diy_recipes'), root_path, class: 'header item'

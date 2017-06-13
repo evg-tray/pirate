@@ -1,2 +1,5 @@
-= "#{@manufacturer.name} - #{@manufacturer.short_name}"
-= link_to t('.all_manufacturers'), manufacturers_path
+h2.ui.dividing.header
+  = t('.title')
+h3.ui.header
+  = "#{@manufacturer.name} - #{@manufacturer.short_name}"
+= link_to t('.all_manufacturers'), manufacturers_path, class: 'ui primary button'

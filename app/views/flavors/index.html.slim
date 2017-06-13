@@ -1,6 +1,6 @@
+h2.ui.dividing.header
+  = t('.title')
 - if policy(Flavor).new?
-  = link_to t('.create_flavor'), new_flavor_path, class: 'btn btn-primary'
-  br
-- @flavors.each do |flavor|
-  = flavor.name
-  br
+  = link_to t('.create_flavor'), new_flavor_path, class: 'ui primary button'
+= render 'flavors/table/table', flavors: @flavors
+= paginate @flavors

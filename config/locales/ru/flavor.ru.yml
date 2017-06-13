@@ -12,14 +12,20 @@ ru:
       add: "Добавить"
       flavor: "Ароматизатор"
       availability: "Наличие"
+      title: "Мои ароматизаторы"
     index:
       create_flavor: "Создать"
+      title: "Ароматизаторы"
+      recipes_count: "Количество рецептов"
     new:
       select_manufacturer_placeholder: "Выберите производителя"
       create_flavor: "Создать"
+      title: "Создание ароматизатора"
     show:
       all_flavors: "Все ароматизаторы"
+      title: "Ароматизатор"
   activerecord:
     attributes:
       flavor:
         name: "Наименование"
+        manufacturer: "Производитель"

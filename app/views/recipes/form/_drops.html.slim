@@ -1,7 +1,7 @@
-.form-group
-  = label_tag :drops, t('common.drops'), class: 'control-label col-xs-3'
-  .col-xs-9
-    .input-group
-      = number_field_tag :drops, 30, min: 1, class: 'form-control'
-      .input-group-addon
-        = t('common.drop_ml')
+.inline.field
+  .ui.fluid.left.right.labeled.input
+    .ui.basic.label
+      = label_tag :drops, t('common.drops')
+    = number_field_tag :drops, 30, min: 1
+    .ui.basic.label
+      = t('common.drop_ml')

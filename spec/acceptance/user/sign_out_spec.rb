@@ -11,7 +11,10 @@ feature 'User log out', %q{
   scenario 'Authenticated user log out' do
     sign_in(user)
 
-    click_on t('devise.sessions.sign_out')
+    find(".ui.main.menu.computer:not(.placeholder) .dropdown:contains('#{user.username}')").click
+    within '.ui.main.menu.computer:not(.placeholder)' do
+      click_on t('devise.sessions.sign_out')
+    end
     expect(page).to have_content t('devise.sessions.signed_out')
   end
 

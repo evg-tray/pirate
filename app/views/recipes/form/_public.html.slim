@@ -1,6 +1,7 @@
 - if policy(@recipe).permits_attribute?(:public)
-  .form-group
-    label.checkbox
+  .inline.field
+    .ui.checkbox
       = f.check_box :public
-      = t('activerecord.attributes.recipe.public')
+      label
+        = t('activerecord.attributes.recipe.public')
 

@@ -1,2 +1,6 @@
-= @flavor.name
-= link_to t('.all_flavors'), flavors_path
+h2.ui.dividing.header
+  = t('.title')
+h3.ui.header
+  = "#{@flavor.name} - #{@flavor.manufacturer.name} (#{@flavor.manufacturer.short_name})"
+
+= link_to t('.all_flavors'), flavors_path, class: 'ui primary button'

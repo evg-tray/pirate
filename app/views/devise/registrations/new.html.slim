@@ -1,23 +1,30 @@
-h2
-  = t('.sign_up')
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :username
-    br
-    = f.text_field :username, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit t('.sign_up')
-= render "devise/shared/links"
+.ui.center.aligned.grid
+  .left.aligned.column#login-form
+    h2.ui.dividing.header
+      = t('.title')
+    .ui.segment
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'ui form'}) do |f|
+        = devise_error_messages!
+        .field
+          .ui.left.icon.input
+            i.user.icon
+            = f.text_field :username, autofocus: true, placeholder: t('devise.username_placeholder')
+        .field
+          .ui.left.icon.input
+            i.mail.icon
+            = f.email_field :email, placeholder: t('devise.email_placeholder')
+        .field
+          .ui.left.icon.input
+            i.lock.icon
+            = f.password_field :password, autocomplete: "off", placeholder: t('devise.password_placeholder')
+        .field
+          .ui.left.icon.input
+            i.lock.icon
+            = f.password_field :password_confirmation, autocomplete: "off",
+                    placeholder: t('devise.password_confirmation_placeholder')
+        .actions
+          button.ui.fluid.blue.labeled.submit.icon.button
+            i.add.user.icon
+            = t('.sign_up')
+    .ui.segment
+      = render "devise/shared/links"

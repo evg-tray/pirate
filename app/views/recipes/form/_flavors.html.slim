@@ -1,7 +1,7 @@
-p
+h4.ui.dividing.header
   = t('.title')
 = f.fields_for :flavors_recipes do |flavor_recipe|
   = render 'flavors_recipe_fields', f: flavor_recipe
 .links
-  = link_to_add_association t('.add_flavor'), f, :flavors_recipes, class: 'btn btn-warning'
+  = link_to_add_association t('.add_flavor'), f, :flavors_recipes, class: 'ui red button'
 br

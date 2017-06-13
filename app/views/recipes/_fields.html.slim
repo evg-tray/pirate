@@ -1,0 +1,10 @@
+= form_for @recipe, html: { class: 'ui form' } do |f|
+  = render 'recipes/form/name', f: f
+  = render 'recipes/form/amount', f: f
+  = render 'recipes/form/base', f: f
+  = render 'recipes/form/nicotine', f: f
+  = render 'recipes/form/flavors', f: f
+  = render 'recipes/form/drops'
+  = render 'recipes/form/public', f: f
+  = render 'recipes/form/pirate_diy', f: f
+  = f.submit t('.save_recipe'), class: 'ui primary button'

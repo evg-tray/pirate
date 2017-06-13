@@ -1,7 +1,7 @@
-.form-group
-  = f.label :amount, class: 'control-label col-xs-3'
-  .col-xs-9
-    .input-group
-      = f.number_field :amount, min: 1, class: 'form-control'
-      .input-group-addon
-        = t('common.ml')
+.inline.field
+  .ui.fluid.left.right.labeled.input
+    .ui.basic.label
+      = f.label :amount
+    = f.number_field :amount, min: 1
+    .ui.basic.label
+      = t('common.ml')

@@ -1,11 +1,8 @@
-= form_for @recipe, html: { class: 'form-horizontal' } do |f|
-  = render 'recipes/form/name', f: f
-  = render 'recipes/form/amount', f: f
-  = render 'recipes/form/base', f: f
-  = render 'recipes/form/nicotine', f: f
-  = render 'recipes/form/flavors', f: f
-  = render 'recipes/form/drops'
-  = render 'recipes/form/public', f: f
-  = render 'recipes/form/pirate_diy', f: f
-  = f.submit t('.save_recipe'), class: 'btn btn-success'
-
+= render 'errors'
+.two.column.stackable.ui.grid
+  .column
+    .ui.segment
+      = render 'fields'
+  .column
+    .ui.segment
+      = render 'recipe_table'
