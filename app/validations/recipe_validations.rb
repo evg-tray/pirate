@@ -4,7 +4,7 @@ module RecipeValidations
     return unless validate_liquid_integrity?
 
     pg_in_ml = amount / 100.0 * pg
-    nicotine_in_ml = amount / 100.0 * (nicotine_base / 100.0 * strength)
+    nicotine_in_ml = amount / 100.0 * (strength * 100 / nicotine_base)
     flavors_in_ml = amount / 100.0 * flavors_recipes.map(&:amount).sum
     if pg_in_ml - nicotine_in_ml - flavors_in_ml < 0
       errors.add(:base, :wrong_amount,

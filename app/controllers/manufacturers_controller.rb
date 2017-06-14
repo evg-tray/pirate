@@ -2,7 +2,7 @@ class ManufacturersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @manufacturers = Manufacturer.all
+    @manufacturers = Manufacturer.all.page(params[:page])
     respond_with(@manufacturers)
   end
 

@@ -2,3 +2,16 @@ ru:
   devise:
     sessions:
       sign_out: "Выйти"
+      new:
+        title: "Авторизация"
+    registrations:
+      new:
+        title: "Регистрация"
+      edit:
+        title: "Редактирование учетной записи"
+    login_placehodler: "Имя пользователя или e-mail"
+    username_placeholder: "Имя пользователя"
+    email_placeholder: "E-mail"
+    password_placeholder: "Пароль"
+    password_confirmation_placeholder: "Повторите пароль"
+    current_password_placeholder: "Текущий пароль"

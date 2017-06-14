@@ -5,9 +5,11 @@ ru:
       select_flavors_placeholder: "Выберите ароматизаторы"
       search: "Найти"
       fill_my_flavors: "Заполнить моими ароматизаторами"
+      title: "Поиск по ароматизаторам"
     show:
       by_all_recipes: "По всем рецептам"
       only_users_recipes: "Только пользовательские"
-      only_pirate_diy_recipes: ""
+      only_pirate_diy_recipes: "Только пиратский самозамес"
       search: "Найти"
-      search_title: "Поиск"
+      title: "Поиск по наименованию"
+      query_placeholder: "Введите текст поиска"

@@ -2,5 +2,5 @@ ru:
   activerecord:
     attributes:
       comment:
-        text: "Сообщение"
+        text: "Текст комментария"
         author: "Автор"

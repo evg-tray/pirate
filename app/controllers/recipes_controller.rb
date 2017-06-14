@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
   end
 
   def favorites
-    @recipes = current_user.favorites
+    @recipes = current_user.favorites.page(params[:page])
     respond_with(@recipes)
   end
 
