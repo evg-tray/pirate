@@ -6,11 +6,11 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-  body data-make_table="#{controller_name == 'recipes' && %w(new show edit).include?(action_name)}"
+  body data-make_table="#{controller_name == 'recipes' && %w(new show edit create).include?(action_name)}"
     = render 'layouts/navbar'
     .container
       .row
         .col-xs-12
-          = bootstrap_flash
+          /= bootstrap_flash
     .container
       = yield
