@@ -1,40 +1,35 @@
-nav.navbar.navbar-default.navbar-static-top
+nav.navbar.navbar-expand-lg.navbar-light.bg-faded
   .container
-    .navbar-header
-      button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
-        span class="icon-bar"
-        span class="icon-bar"
-        span class="icon-bar"
-      = link_to t('.pirate_diy_recipes'), root_path, class: 'navbar-brand'
-    .navbar-collapse.collapse.navbar-responsive-collapse#navbar-collapse
-      ul.nav.navbar-nav
-        li= link_to t('.user_recipes'), recipes_path
-      ul.nav.navbar-nav
-        li class="dropdown"
-          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-            span class="glyphicon glyphicon-search"
+    button.navbar-toggler.navbar-toggler-right type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      span.navbar-toggler-icon
+    = link_to t('.pirate_diy_recipes'), root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse#navbarCollapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          = link_to t('.user_recipes'), recipes_path, class: 'nav-link'
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle#navbarSearchDropdown href="#" data-toggle="dropdown" role="button"
+            i.fa.fa-search
             |&nbsp
             = t('.search_menu')
-            |&nbsp
-            span class="caret"
-          ul class="dropdown-menu"
-            li= link_to t('.search_by_name'), search_path
-            li= link_to t('.search_by_flavors'), by_flavors_search_path
-      ul.nav.navbar-nav
-        li= link_to t('.manufacturers'), manufacturers_path
-      ul.nav.navbar-nav
-        li= link_to t('.flavors'), flavors_path
-      ul.nav.navbar-nav.navbar-right
+          .dropdown-menu aria-labelledby="navbarSearchDropdown"
+            = link_to t('.search_by_name'), search_path, class: 'dropdown-item'
+            = link_to t('.search_by_flavors'), by_flavors_search_path, class: 'dropdown-item'
+        li.nav-item
+          = link_to t('.manufacturers'), manufacturers_path, class: 'nav-link'
+        li.nav-item
+          = link_to t('.flavors'), flavors_path, class: 'nav-link'
+      ul.navbar-nav
         - if user_signed_in?
-          li class="dropdown"
-            a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navbarUserDropdown href="#" data-toggle="dropdown" role="button"
               = current_user.username
-              |&nbsp
-              span class="caret"
-            ul class="dropdown-menu"
-              li= link_to t('.settings'), settings_path
-              li= link_to t('.change_password_email'), edit_user_registration_path
-              li role="separator" class="divider"
-              li= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+            .dropdown-menu aria-labelledby="navbarUserDropdown"
+              = link_to t('.settings'), settings_path, class: 'dropdown-item'
+              = link_to t('.change_password_email'), edit_user_registration_path, class: 'dropdown-item'
+              .dropdown-divider
+              = link_to t('devise.sessions.sign_out'), destroy_user_session_path,
+                      method: :delete, class: 'dropdown-item'
         - else
-          li= link_to t('devise.sessions.new.sign_in'), new_user_session_path
+          li.nav-item
+            = link_to t('devise.sessions.new.sign_in'), new_user_session_path, class: 'nav-link'
