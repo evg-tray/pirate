@@ -2,3 +2,11 @@
     float: left;
     margin-left: 15px;
 }
+
+.form-group.wo-mb {
+    margin-bottom: 0px;
+}
+
+.page-header.half-top-margin {
+    margin-top: 20px;
+}
