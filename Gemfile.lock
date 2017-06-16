@@ -117,6 +117,8 @@ GEM
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.8.1)
@@ -319,6 +321,7 @@ DEPENDENCIES
   elasticsearch-extensions
   factory_girl_rails
   faker
+  font-awesome-sass (~> 4.7.0)
   interactor
   jbuilder (~> 2.5)
   jquery-rails

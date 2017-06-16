@@ -9,4 +9,10 @@
 
 .page-header.half-top-margin {
     margin-top: 20px;
+    padding-bottom: 0px;
+}
+
+.center-login {
+    margin: 0 auto;
+    max-width: 450px;
 }

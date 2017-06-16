@@ -1,16 +1,24 @@
-h2
-  = t('.change_your_password')
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, t('.new_password')
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation, t('.confirm_new_password')
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit t('.change_my_password')
-= render "devise/shared/links"
+.center-login
+  .page-header.half-top-margin
+    h3
+      = t('.change_your_password')
+  .panel.panel-default
+    .panel-body
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password, autocomplete: "off", placeholder: t('.new_password'), class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password_confirmation, autocomplete: "off", placeholder: t('.confirm_new_password'),
+                  class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+        .actions
+          button.btn.btn-primary.btn-block
+            i.fa.fa-edit
+            |&nbsp
+            = t('.change_my_password')
+  .panel.panel-default
+    .panel-body
+      = render "devise/shared/links"

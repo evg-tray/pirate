@@ -53,6 +53,7 @@ gem 'kaminari-i18n'
 gem 'devise-i18n'
 gem 'rs_russian'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'font-awesome-sass', '~> 4.7.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'
