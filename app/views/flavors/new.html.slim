@@ -1,7 +1,13 @@
-= form_for(@flavor) do |f|
-  = f.label :name
-  = f.text_field :name
-  - options = options_for_select([[@flavor.manufacturer&.name, @flavor.manufacturer&.id]])
-  = f.select :manufacturer_id, options, {}, {class: 'select2-tag form-control',
-          data: {adapter: 'manufacturer', placeholder: t('.select_manufacturer_placeholder'), minimum_input_length: 1}}
-  = f.submit t('.create_flavor'), class: 'btn btn-success'
+.page-header.half-top-margin
+  h3
+    = t('.title')
+.panel.panel-default
+  .panel-body
+    = form_for(@flavor) do |f|
+      .form-group
+        = f.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.flavor.name')
+      - options = options_for_select([[@flavor.manufacturer&.name, @flavor.manufacturer&.id]])
+      .form-group
+        = f.select :manufacturer_id, options, {}, {class: 'select2-tag form-control',
+                data: {adapter: 'manufacturer', placeholder: t('.select_manufacturer_placeholder'), minimum_input_length: 1}}
+      = f.submit t('.create_flavor'), class: 'btn btn-primary'

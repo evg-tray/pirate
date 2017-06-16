@@ -1,0 +1,12 @@
+.panel.panel-default
+  table.table.table-striped
+    thead
+      th
+        = t('activerecord.attributes.flavor.name')
+      th
+        = t('activerecord.attributes.flavor.manufacturer')
+      th.text-right
+        = t('flavors.index.recipes_count')
+    tbody
+      - flavors.each do |flavor|
+        = render 'flavors/table/item', flavor: flavor

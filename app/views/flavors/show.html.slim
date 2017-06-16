@@ -1,2 +1,6 @@
-= @flavor.name
-= link_to t('.all_flavors'), flavors_path
+.page-header.half-top-margin
+  h3
+    = t('.title')
+h4
+  = "#{@flavor.name} - #{@flavor.manufacturer.name} (#{@flavor.manufacturer.short_name})"
+= link_to t('.all_flavors'), flavors_path, class: 'btn btn-primary'
