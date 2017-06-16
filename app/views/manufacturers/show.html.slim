@@ -1,2 +1,6 @@
-= "#{@manufacturer.name} - #{@manufacturer.short_name}"
-= link_to t('.all_manufacturers'), manufacturers_path
+.page-header.half-top-margin
+  h3
+    = t('.title')
+h4
+  = "#{@manufacturer.name} - #{@manufacturer.short_name}"
+= link_to t('.all_manufacturers'), manufacturers_path, class: 'btn btn-primary'
