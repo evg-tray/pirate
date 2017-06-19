@@ -18,3 +18,5 @@ ru:
       for_subscribe_need_confirm_email: "Для подписки на оповещения необходимо подтвердить e-mail"
       default_recipe_values: "Значения по умолчанию для рецептов"
       subscriptions: "Подписки"
+      nicotine_header: "Никотин"
+      base_header: "Основа"
