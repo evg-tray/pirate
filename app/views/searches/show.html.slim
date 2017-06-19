@@ -1,19 +1,23 @@
-h1
-  = t('.search_title')
-= form_tag search_path, enforce_utf8: false, method: :get, class: 'form-inline'
-  .form-group
-    = label_tag :query
-    = text_field_tag :query, params[:query], class: 'form-control'
-    = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
-    = label_tag :scope_all, t('.by_all_recipes')
-
-    = radio_button_tag :scope, 'public', params[:scope].eql?('public')
-    = label_tag :scope_public, t('.only_users_recipes')
-
-    = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
-    = label_tag :scope_pirate_diy, t('.only_pirate_diy_recipes')
-
-    = submit_tag t('.search'), class: 'btn btn-info', name: nil
+.page-header.half-top-margin
+  h3
+    = t('.title')
+.panel.panel-default
+  .panel-body
+    = form_tag search_path, enforce_utf8: false, method: :get
+      .form-group
+        = text_field_tag :query, params[:query], class: 'form-control', placeholder: t('.query_placeholder')
+      .form-group.wo-mb
+        .radio.radio-inline
+          = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
+          = label_tag :scope_all, t('.by_all_recipes')
+        .radio.radio-inline
+          = radio_button_tag :scope, 'public', params[:scope].eql?('public')
+          = label_tag :scope_public, t('.only_users_recipes')
+        .radio.radio-inline
+          = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
+          = label_tag :scope_pirate_diy, t('.only_pirate_diy_recipes')
+        |&nbsp
+        = submit_tag t('.search'), class: 'btn btn-primary', name: nil
 .results
   - if @results
     = render 'recipes/table/table', recipes: @results
