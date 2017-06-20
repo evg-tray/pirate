@@ -58,4 +58,7 @@ ru:
     table:
       table:
         rating: "Рейтинг"
-
+    new:
+      title: "Создание рецепта"
+    edit:
+      title: "Редактирование рецепта"

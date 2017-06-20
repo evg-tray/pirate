@@ -1,4 +1,5 @@
 <% unless @comment.errors.present? %>
   $('.comments .messages').append('<%= j render 'recipes/comment', comment: @comment %>')
   $('.no-comments').hide()
+  $('#comment_text').val('')
 <% end %>

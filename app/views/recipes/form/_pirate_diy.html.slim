@@ -1,5 +1,6 @@
 - if policy(@recipe).permits_attribute?(:pirate_diy)
   .form-group
-    label.checkbox
-      = f.check_box :pirate_diy
-      = t('activerecord.attributes.recipe.pirate_diy')
+    .col-sm-12
+      .checkbox
+        = f.check_box :pirate_diy
+        = f.label :pirate_diy, t('activerecord.attributes.recipe.pirate_diy')

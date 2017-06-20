@@ -3,10 +3,12 @@
     margin-left: 15px;
 }
 
-.form-group.wo-mb {
+.wo-mb {
     margin-bottom: 0px;
 }
-
+.wo-pb {
+    padding-bottom: 0px;
+}
 .page-header.half-top-margin {
     margin-top: 20px;
     padding-bottom: 0px;
@@ -15,4 +17,23 @@
 .center-login {
     margin: 0 auto;
     max-width: 450px;
+}
+.text-gray {
+    color: gray;
+}
+.col-md-6.wo-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+@media (min-width: 992px) {
+    .col-md-6.left-pad {
+        padding-left: 10px;
+    }
+    .col-md-6.right-pad {
+        padding-right: 10px;
+    }
+}
+
+.inline {
+    display: inline;
 }

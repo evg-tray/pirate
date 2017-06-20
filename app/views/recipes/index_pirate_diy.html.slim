@@ -1,4 +1,8 @@
+.page-header.half-top-margin
+  h3
+    = t('.title')
 - if policy(Recipe).new?
-  = link_to t('recipes.create_recipe'), new_recipe_path, class: 'btn btn-primary'
+  p
+    = link_to t('recipes.create_recipe'), new_recipe_path, class: 'btn btn-primary'
 = render 'recipes/table/table', recipes: @recipes
 = paginate @recipes

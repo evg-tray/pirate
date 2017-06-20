@@ -1,13 +1,14 @@
-.page-header
+.page-header.half-top-margin
   h4#recipe_result_header
-table.table.table-striped#recipe_result
-  thead
-    th
-      = t('.ingredient')
-    th.text-right
-      = t('common.percent')
-    th.text-right
-      = t('common.ml')
-    th.text-right
-      = t('common.drop')
-  tbody
+.panel.panel-default
+  table.table.table-striped.wo-mb#recipe_result
+    thead
+      th
+        = t('.ingredient')
+      th.text-right
+        = t('common.percent')
+      th.text-right
+        = t('common.ml')
+      th.text-right
+        = t('common.drop')
+    tbody
