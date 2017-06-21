@@ -35,6 +35,7 @@ select2 = ->
     allowClear: true
     theme: 'bootstrap'
     language: 'ru'
+    width: null
 
 $(document).on("turbolinks:before-cache", ->
   $('.select2-tag').select2('destroy'))
