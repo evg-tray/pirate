@@ -16,6 +16,7 @@
  */
 
 @import "bootstrap-sprockets";
+$grid-float-breakpoint: 992px;
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -25,3 +26,4 @@
 @import "left_icon_input";
 @import "styles";
 @import "sticky_footer";
+@import "fix_select2_width";

@@ -8,8 +8,20 @@ nav.navbar.navbar-default.navbar-static-top
       = link_to t('.pirate_diy_recipes'), root_path, class: 'navbar-brand'
     .navbar-collapse.collapse.navbar-responsive-collapse#navbar-collapse
       ul.nav.navbar-nav
-        li
-          = link_to t('.user_recipes'), recipes_path
+        li.dropdown
+          a.dropdown-toggle href="#" data-toggle="dropdown"
+            = t('.recipes_menu')
+            |&nbsp
+            span.caret
+          ul.dropdown-menu
+            - if policy(Recipe).new?
+              li
+                = link_to t('recipes.create_recipe'), new_recipe_path
+              li.divider
+            li
+              = link_to t('.pirate_diy_recipes'), root_path
+            li
+              = link_to t('.user_recipes'), recipes_path
         li.dropdown
           a.dropdown-toggle href="#" data-toggle="dropdown"
             span.glyphicon.glyphicon-search
@@ -22,10 +34,16 @@ nav.navbar.navbar-default.navbar-static-top
               = link_to t('.search_by_name'), search_path
             li
               = link_to t('.search_by_flavors'), by_flavors_search_path
-        li
-          = link_to t('.manufacturers'), manufacturers_path
-        li
-          = link_to t('.flavors'), flavors_path
+        li.dropdown
+          a.dropdown-toggle href="#" data-toggle="dropdown"
+            = t('.resource_menu')
+            |&nbsp
+            span.caret
+          ul.dropdown-menu
+            li
+              = link_to t('.manufacturers'), manufacturers_path
+            li
+              = link_to t('.flavors'), flavors_path
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li.dropdown
