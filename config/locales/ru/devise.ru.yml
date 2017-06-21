@@ -15,3 +15,5 @@ ru:
     password_placeholder: "Пароль"
     password_confirmation_placeholder: "Повторите пароль"
     current_password_placeholder: "Текущий пароль"
+    failure:
+      not_found_in_database: "Неверное имя пользователя/e-mail или пароль."

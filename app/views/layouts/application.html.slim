@@ -9,8 +9,7 @@ html
   body data-make_table="#{controller_name == 'recipes' && %w(new show edit create).include?(action_name)}"
     = render 'layouts/navbar'
     .container
-      .row
-        .col-xs-12
-          /= bootstrap_flash
+      = alerts
     .container
       = yield
+    = render 'layouts/footer'
