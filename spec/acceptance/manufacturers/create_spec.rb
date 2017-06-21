@@ -27,7 +27,9 @@ feature 'Create manufacturers', %q{
 
     fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
     fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
-    click_on t('manufacturers.new.create_manufacturer')
+    within '.panel-body' do
+      click_on t('manufacturers.new.create_manufacturer')
+    end
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name
@@ -40,7 +42,9 @@ feature 'Create manufacturers', %q{
 
     fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
     fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
-    click_on t('manufacturers.new.create_manufacturer')
+    within '.panel-body' do
+      click_on t('manufacturers.new.create_manufacturer')
+    end
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name

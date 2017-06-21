@@ -15,44 +15,44 @@ feature 'Search', %q{
   end
 
   scenario 'search in all recipes' do
-    fill_in 'Query', with: public_recipes[0].name
+    find('#query').set(public_recipes[0].name)
     choose 'scope_all'
-    within '.form-group' do
-      click_on t('searches.show.search')
-    end
+
+    click_on t('searches.show.search')
+
     expect(page).to have_link public_recipes[0].name
 
-    fill_in 'Query', with: pirate_diy_recipes[0].name
-    within '.form-group' do
-      click_on t('searches.show.search')
-    end
+    find('#query').set(pirate_diy_recipes[0].name)
+
+    click_on t('searches.show.search')
+
     expect(page).to have_link pirate_diy_recipes[0].name
   end
 
   scenario 'search recipe in public recipes' do
-    fill_in 'Query', with: public_recipes[0].name
+    find('#query').set(public_recipes[0].name)
     choose 'scope_public'
-    within '.form-group' do
-      click_on t('searches.show.search')
-    end
+
+    click_on t('searches.show.search')
+
     expect(page).to have_link public_recipes[0].name
   end
 
   scenario 'search recipe in pirate diy recipes' do
-    fill_in 'Query', with: pirate_diy_recipes[0].name
+    find('#query').set(pirate_diy_recipes[0].name)
     choose 'scope_pirate_diy'
-    within '.form-group' do
-      click_on t('searches.show.search')
-    end
+
+    click_on t('searches.show.search')
+
     expect(page).to have_link pirate_diy_recipes[0].name
   end
 
   scenario 'search private recipe' do
-    fill_in 'Query', with: private_recipes[0].name
+    find('#query').set(private_recipes[0].name)
     choose 'scope_all'
-    within '.form-group' do
-      click_on t('searches.show.search')
-    end
+
+    click_on t('searches.show.search')
+
     expect(page).not_to have_link private_recipes[0].name
   end
 end

@@ -32,7 +32,7 @@ feature 'Search recipes by flavors', %q{
   scenario 'search with flavor1 and flavor2', js: true do
     select2(flavor1.name, 'flavor_ids_')
     select2(flavor2.name, 'flavor_ids_')
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).to have_content recipe1.name
     expect(page).not_to have_content recipe2.name
@@ -45,7 +45,7 @@ feature 'Search recipes by flavors', %q{
     select2(flavor1.name, 'flavor_ids_')
     select2(flavor2.name, 'flavor_ids_')
     select2(flavor3.name, 'flavor_ids_')
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).to have_content recipe1.name
     expect(page).to have_content recipe2.name
@@ -57,7 +57,7 @@ feature 'Search recipes by flavors', %q{
   scenario 'search with flavor2 and flavor4', js: true do
     select2(flavor2.name, 'flavor_ids_')
     select2(flavor4.name, 'flavor_ids_')
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).not_to have_content recipe1.name
     expect(page).not_to have_content recipe2.name
@@ -70,7 +70,7 @@ feature 'Search recipes by flavors', %q{
     select2(flavor2.name, 'flavor_ids_')
     select2(flavor4.name, 'flavor_ids_')
     check 'without_single_flavor'
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).not_to have_content recipe1.name
     expect(page).not_to have_content recipe2.name
@@ -80,7 +80,7 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search without flavors', js: true do
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).not_to have_content recipe1.name
     expect(page).not_to have_content recipe2.name
@@ -91,7 +91,7 @@ feature 'Search recipes by flavors', %q{
 
   scenario 'search with flavor4', js: true do
     select2(flavor4.name, 'flavor_ids_')
-    click_on 'Search'
+    click_on t('searches.by_flavors.search')
 
     expect(page).not_to have_content recipe1.name
     expect(page).not_to have_content recipe2.name

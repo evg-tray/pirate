@@ -26,11 +26,12 @@ class Search
     join_query = "INNER JOIN
       (SELECT fr.recipe_id
       FROM flavors_recipes fr
-      INNER JOIN
+      LEFT JOIN
       (#{selects}) search
       ON fr.flavor_id = search.Flavor
-      GROUP BY fr.recipe_id"
-    join_query << ' HAVING count(*) > 1' if without_single_flavor
+      GROUP BY fr.recipe_id
+      HAVING count(case when search.Flavor is null then 1 end) = 0"
+    join_query << ' AND count(*) > 1' if without_single_flavor
     join_query << ') fr ON recipes.id = fr.recipe_id'
     Recipe.joins(join_query).where('recipes.public OR recipes.pirate_diy').includes(:author)
   end
