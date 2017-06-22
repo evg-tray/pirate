@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    authorize @recipe
     @calc_values = Recipe.initial_values(current_user)
     respond_with(@recipe)
   end
