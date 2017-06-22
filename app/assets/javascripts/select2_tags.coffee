@@ -1,11 +1,12 @@
 formatResult = (data) ->
   res = data.text
   if data.type == 'f'
-    res += " (<attr title='" + data.mn + "'>" + data.msn + "</attr>)"
-    res += " - <attr title='Количество рецептов'>" + data.count + "</attr>"
+    res = data.fn
+    res += " (<abbr title='" + data.mn + "'>" + data.msn + "</abbr>)"
+    res += " - <abbr title='Количество рецептов'>" + data.count + "</abbr>"
   else if data.type == 'm'
     res += " (" + data.msn + ")"
-    res += " - <attr title='Количество ароматизаторов'>" + data.count + "</attr>"
+    res += " - <abbr title='Количество ароматизаторов'>" + data.count + "</abbr>"
   res
 
 select2 = ->

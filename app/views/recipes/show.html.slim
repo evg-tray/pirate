@@ -53,7 +53,9 @@
         .hidden
           - @recipe.flavors_recipes.each do |rf|
             .flavors-input
-              = hidden_field_tag :flavor, rf.flavor.name, class: 'flavor-text'
+              = hidden_field_tag :flavor_text, rf.flavor.name, class: 'flavor-text'
+              = hidden_field_tag :flavor_mn, rf.flavor.manufacturer.name, class: 'flavor-mn'
+              = hidden_field_tag :flavor_msn, rf.flavor.manufacturer.short_name, class: 'flavor-msn'
               = hidden_field_tag :flavor_amount, rf.amount, class: 'number'
 .clearfix
 = render 'comments'

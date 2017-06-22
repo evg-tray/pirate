@@ -18,12 +18,18 @@ get_row_table = (main, percent = null, ml = null, drops = null, tr_class = null)
       <td class=\"text-right\">#{if ml then round2(ml) else ''}</td>
       <td class=\"text-right\">#{if drops then round2(drops) else ''}</td></tr>"
 
-fill_hidden_select2_value = ->
-  new_value = ''
+fill_hidden_select2_values = ->
+  new_name = ''
+  new_man_name = ''
+  new_man_short_name = ''
   selected_obj = $(this).select2('data')[0]
   if selected_obj
-    new_value = selected_obj.text
-  $('input#' + $(this).attr('id')).val(new_value)
+    new_name = selected_obj.fn
+    new_man_name = selected_obj.mn
+    new_man_short_name = selected_obj.msn
+  $(this).parent().find('.flavor-text').val(new_name)
+  $(this).parent().find('.flavor-mn').val(new_man_name)
+  $(this).parent().find('.flavor-msn').val(new_man_short_name)
 
 recipe_result_table = ->
   return false unless $('body').data('make_table')
@@ -40,7 +46,9 @@ recipe_result_table = ->
   flavors_total_drops = 0
   $('.flavors-input').each (index, element) =>
     percent = parseFloat($(element).find('.number').val())
-    flavor = $(element).find('.flavor-text').val()
+    flavor = $(element).find('.flavor-text').val() +
+      ' (<abbr title=' + $(element).find('.flavor-mn').val() +
+      '>' + $(element).find('.flavor-msn').val() + '</abbr>)'
     if flavor != '' & percent > 0
       ml = amount / 100 * percent
       flavor_drops = Math.round(ml * drops)
@@ -93,7 +101,7 @@ $(document).on('input', '#recipe_amount, ' +
     '.flavors-input .number',
   recipe_result_table)
 
-$(document).on('change', '.select2-tag.with-hidden', fill_hidden_select2_value)
+$(document).on('change', '.select2-tag.with-hidden', fill_hidden_select2_values)
 $(document).on('change', '.select2-tag.with-hidden', recipe_result_table)
 
 $(document).on('input', '#recipe_name', recipe_result_header)

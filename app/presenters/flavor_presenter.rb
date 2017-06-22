@@ -12,8 +12,9 @@ class FlavorPresenter
 
   def present_as_select
     {
-        text: @flavor.name,
+        text: "#{@flavor.name} (#{@flavor.manufacturer_short_name})",
         id: @flavor.id,
+        fn: @flavor.name,
         msn: @flavor.manufacturer_short_name,
         mn: @flavor.manufacturer_name,
         count: @flavor.recipes_count,

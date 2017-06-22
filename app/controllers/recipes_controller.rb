@@ -61,6 +61,6 @@ class RecipesController < ApplicationController
   private
 
   def load_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes(flavors_recipes: [:flavor]).find(params[:id])
   end
 end

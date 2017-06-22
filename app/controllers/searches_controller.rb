@@ -19,6 +19,6 @@ class SearchesController < ApplicationController
   end
 
   def fill_my_flavors
-    @flavors = current_user.available_flavors
+    @flavors = current_user.available_flavors.includes(:manufacturer)
   end
 end

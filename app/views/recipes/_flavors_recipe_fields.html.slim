@@ -2,13 +2,16 @@
   .flavors-input
     .form-group
       .col-sm-12
-        - if f.object.flavor_id
-          - flavor_name = Flavor.where(id: f.object.flavor_id).pluck(:name)[0]
-          - options = options_for_select([[flavor_name, f.object.flavor_id]])
+        - flavor_fields = flavor_fields_for_table(f.object.flavor_id)
+        - if flavor_fields.present?
+          - options = options_for_select([[flavor_fields[:name], f.object.flavor_id]])
         - else
           - options = ''
-        = f.select :flavor_id, options, {}, { class: 'select2-tag form-control',
+        = f.select :flavor_id, options, {}, { class: 'select2-tag form-control with-hidden',
                 data: {adapter: 'flavor', placeholder: t('.select_flavor_placeholder')} }
+        = hidden_field_tag :flavor_text, flavor_fields[:fn], class: 'flavor-text'
+        = hidden_field_tag :flavor_mn, flavor_fields[:mn], class: 'flavor-mn'
+        = hidden_field_tag :flavor_msn, flavor_fields[:msn], class: 'flavor-msn'
     .form-group
       .col-sm-12
         .input-group
