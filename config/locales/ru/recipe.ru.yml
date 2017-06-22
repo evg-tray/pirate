@@ -53,6 +53,8 @@ ru:
         name_placeholder: "Укажите наименование рецепта"
       nicotine:
         title: "Никотин"
+      public:
+        for_public_need_confirm_email: "Для возможности создавать публичные рецепты необходимо подтвердить e-mail."
     flavors_recipe_fields:
       select_flavor_placeholder: "Выберите ароматизатор"
     table:
