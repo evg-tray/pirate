@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   post 'add-to-my-flavors', to: 'flavors#add_to_my_flavors'
   post 'delete-from-my-flavors', to: 'flavors#delete_from_my_flavors'
   match 'availability', to: 'flavors#update_availability', via: :patch
-  resources :recipes
+  resources :recipes do
+    get 'my', to: 'recipes#my_recipes', on: :collection
+  end
   get 'favorites', to: 'recipes#favorites'
   post 'add-favorite', to: 'recipes#add_favorites'
   post 'delete-favorite', to: 'recipes#delete_favorites'

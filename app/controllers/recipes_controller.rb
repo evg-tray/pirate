@@ -58,6 +58,11 @@ class RecipesController < ApplicationController
     @favorite.destroy if @favorite
   end
 
+  def my_recipes
+    @recipes = current_user.recipes.page(params[:page])
+    respond_with(@recipes)
+  end
+
   private
 
   def load_recipe
