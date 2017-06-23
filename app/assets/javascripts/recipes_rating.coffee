@@ -6,6 +6,11 @@ user_rating = ->
       $(this).data('readonly')
     score: ->
       $(this).data('score')
+    hints: [null, null, null, null, null]
+    cancelHint : 'Удалить мой голос'
+    cancelOff : 'fa fa-fw fa-times-circle',
+    cancelOn  : 'fa fa-fw fa-times-circle'
+    noRatedMsg: 'Для голосования необходимо войти в учетную запись'
     click: (score) ->
       $.ajax({
         type: "POST",
@@ -22,6 +27,8 @@ total_rating = ->
   $('.total-rating').raty
     path: '/assets/'
     readOnly: true
+    hints: [null, null, null, null, null]
+    noRatedMsg: 'Нет голосов'
     score: ->
       $(this).attr('data-score')
 
