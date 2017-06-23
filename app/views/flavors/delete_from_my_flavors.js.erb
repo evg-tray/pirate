@@ -1,3 +1,3 @@
-<% if @user_flavor.destroyed? %>
+<% if @user_flavor&.destroyed? %>
   $('#my_flavor-' + <%= @user_flavor.id %>).remove()
 <% end %>

@@ -32,12 +32,12 @@ class FlavorsController < ApplicationController
 
   def add_to_my_flavors
     @user_flavor = current_user.flavors.create(flavor_id: params[:flavor_id])
-    respond_with(@flavor)
+    respond_with(@user_flavor)
   end
 
   def delete_from_my_flavors
-    @user_flavor = current_user.flavors.find(params[:id])
-    @user_flavor.destroy
+    @user_flavor = current_user.flavors.find_by(id: params[:id])
+    @user_flavor.destroy if @user_flavor
     respond_with(@user_flavor)
   end
 
