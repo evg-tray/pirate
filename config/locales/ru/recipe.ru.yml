@@ -42,6 +42,9 @@ ru:
       remove_from_favorites: "Удалить из избранного"
     recipe_table:
       ingredient: "Ингредиент"
+      pg_vg_ratio: "Соотношение PG/VG:"
+      nicotine_strength: "Крепость (никотин):"
+      drops_ml: "Капель в 1 мл:"
     form:
       save_recipe: "Сохранить рецепт"
       base:

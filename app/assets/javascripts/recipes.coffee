@@ -78,16 +78,19 @@ recipe_result_table = ->
   total_ml = base_total_ml + flavors_total_ml
   total_percent = base_total_percent + flavors_total_percent
 
-  table_rows = get_row_table('PG', pg_percent, pg_ml)
-  table_rows += get_row_table('VG', vg, vg_ml)
+  table_rows = get_row_table('Пропиленгликоль PG', pg_percent, pg_ml)
+  table_rows += get_row_table('Глицерин VG', vg, vg_ml)
 
   if nicotine_percent > 0
-    table_rows += get_row_table('Никотин', nicotine_percent, nicotine_ml)
+    table_rows += get_row_table('Никотин ' + nicotine_base + ' мг/мл', nicotine_percent, nicotine_ml)
 
   table_rows += get_row_table('Всего основа:', base_total_percent, base_total_ml, null, 'warning')
   table_rows += flavors_rows
   table_rows += get_row_table('Всего:', total_percent, total_ml, null, 'success')
   $('#recipe_result tbody').html(table_rows)
+  $('#pgvg_ratio').html(pg + '/' + vg)
+  $('#nicotine_strength').html(strength)
+  $('#drops_ml').html(drops)
 
 $(document).on('input', '#recipe_vg', change_vg)
 $(document).on('input', '#recipe_pg', change_pg)
