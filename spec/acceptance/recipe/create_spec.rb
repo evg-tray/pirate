@@ -104,11 +104,11 @@ feature 'Create recipes', %q{
     click_on t('recipes.form.flavors.add_flavor')
 
     selects = all('.select2-tag')
-    numbers = all('.flavors-input .number')
+    amounts = all('.flavor-amount')
     select2(flavors[0].name, selects[0][:id])
-    numbers[0].set(5)
+    amounts[0].set(5)
     select2(flavors[1].name, selects[1][:id])
-    numbers[1].set(2)
+    amounts[1].set(2)
 
     click_on t('recipes.form.save_recipe')
 

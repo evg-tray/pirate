@@ -56,6 +56,7 @@
               = hidden_field_tag :flavor_text, rf.flavor.name, class: 'flavor-text'
               = hidden_field_tag :flavor_mn, rf.flavor.manufacturer.name, class: 'flavor-mn'
               = hidden_field_tag :flavor_msn, rf.flavor.manufacturer.short_name, class: 'flavor-msn'
-              = hidden_field_tag :flavor_amount, rf.amount, class: 'number'
+              = hidden_field_tag :flavor_amount, rf.amount, class: 'flavor-amount'
+              = hidden_field_tag :flavor_id, rf.flavor.id, class: 'flavor-id'
 .clearfix
 = render 'comments'

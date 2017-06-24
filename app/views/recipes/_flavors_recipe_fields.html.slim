@@ -12,10 +12,11 @@
         = hidden_field_tag :flavor_text, flavor_fields[:fn], class: 'flavor-text'
         = hidden_field_tag :flavor_mn, flavor_fields[:mn], class: 'flavor-mn'
         = hidden_field_tag :flavor_msn, flavor_fields[:msn], class: 'flavor-msn'
+        = hidden_field_tag :flavor_id_link, flavor_fields[:id], class: 'flavor-id'
     .form-group
       .col-sm-12
         .input-group
-          = f.number_field :amount, min: 1, class: 'form-control number'
+          = f.number_field :amount, min: 1, class: 'form-control flavor-amount'
           .input-group-addon
             = t('common.percent')
           .input-group-btn= link_to_remove_association f, class: 'btn btn-danger' do
