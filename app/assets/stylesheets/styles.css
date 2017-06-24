@@ -13,7 +13,10 @@
     margin-top: 20px;
     padding-bottom: 0px;
 }
-
+.page-header.sm-top-bot-margin {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
 .center-login {
     margin: 0 auto;
     max-width: 450px;
