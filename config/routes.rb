@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   root to: 'recipes#index_pirate_diy'
 
   resource :search, only: [:show] do
-    get 'by-flavors', to: 'searches#by_flavors'
+    get 'what-can-i-make', to: 'searches#by_flavors', as: 'by_flavors'
     post 'fill-my-flavors', to: 'searches#fill_my_flavors'
   end
 
