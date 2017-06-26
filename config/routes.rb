@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   match 'availability', to: 'flavors#update_availability', via: :patch
   resources :recipes do
     get 'my', to: 'recipes#my_recipes', on: :collection
+    get 'favorites', to: 'recipes#favorites', on: :collection
   end
-  get 'favorites', to: 'recipes#favorites'
   post 'add-favorite', to: 'recipes#add_favorites'
   post 'delete-favorite', to: 'recipes#delete_favorites'
   root to: 'recipes#index_pirate_diy'
