@@ -13,6 +13,10 @@ FactoryGirl.define do
       after(:create) { |user| user.add_role(:moderator) }
     end
 
+    factory :user_flavor_creator do
+      after(:create) { |user| user.add_role(:flavor_creator) }
+    end
+
     factory :user_confirmed do
       after(:create) do |user|
         user.confirmed_at = Time.now

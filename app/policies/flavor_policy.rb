@@ -6,6 +6,6 @@ class FlavorPolicy < ApplicationPolicy
   end
 
   def create?
-    user && (user.is_admin? || user.is_moderator?)
+    user && (user.is_admin? || user.is_moderator? || user.is_flavor_creator?)
   end
 end

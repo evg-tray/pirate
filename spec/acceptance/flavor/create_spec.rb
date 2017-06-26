@@ -9,6 +9,7 @@ feature 'Create flavors', %q{
   given(:user) { create(:user) }
   given(:user_admin) { create(:user_admin) }
   given(:user_moderator) { create(:user_moderator) }
+  given(:user_flavor_creator) { create(:user_flavor_creator) }
   given(:flavor) { build(:flavor) }
   given!(:manufacturer) { create(:manufacturer) }
 
@@ -35,7 +36,20 @@ feature 'Create flavors', %q{
   end
 
   scenario 'Moderator creates flavor', js: true do
-    sign_in(user_admin)
+    sign_in(user_moderator)
+
+    visit new_flavor_path
+
+    fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
+    select2(manufacturer.name, 'flavor_manufacturer_id')
+    click_on t('flavors.new.create_flavor')
+
+    visit flavors_path
+    expect(page).to have_content flavor.name
+  end
+
+  scenario 'Flavor creator creates flavor', js: true do
+    sign_in(user_flavor_creator)
 
     visit new_flavor_path
 
