@@ -18,6 +18,9 @@
           |&nbsp
           = link_to t('.fill_my_flavors'), fill_my_flavors_search_path, method: :post, remote: true,
                   class: 'btn btn-default'
+        - else
+          .help-block
+            = t('.fill_my_flavors_helper')
 
 .results
   - if @results
