@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :flavors
-  get 'my-flavors', to: 'flavors#my_flavors'
+  resources :flavors do
+    get 'my', to: 'flavors#my_flavors', on: :collection
+  end
   post 'add-to-my-flavors', to: 'flavors#add_to_my_flavors'
   post 'delete-from-my-flavors', to: 'flavors#delete_from_my_flavors'
   match 'availability', to: 'flavors#update_availability', via: :patch
