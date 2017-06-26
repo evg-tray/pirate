@@ -2,7 +2,9 @@
     float: left;
     margin-left: 15px;
 }
-
+.nav-wrapper {
+    margin-bottom: 20px;
+}
 .wo-mb {
     margin-bottom: 0px;
 }
