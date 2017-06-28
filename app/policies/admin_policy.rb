@@ -4,11 +4,11 @@ class AdminPolicy < Struct.new(:user, :admin)
     user.is_admin?
   end
 
-  def set_moderator?
+  def add_role?
     user.is_admin?
   end
 
-  def unset_moderator?
+  def del_role?
     user.is_admin?
   end
 end

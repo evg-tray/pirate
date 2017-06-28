@@ -47,8 +47,8 @@ Rails.application.routes.draw do
   resources :comments, only: [:create]
 
   resource :admin, only: [:show]
-  post 'set-moderator', to: 'admins#set_moderator'
-  post 'unset-moderator', to: 'admins#unset_moderator'
+  post 'add-role', to: 'admins#add_role'
+  post 'del-role', to: 'admins#del_role'
 
   get 'select', to: 'selects#select'
 

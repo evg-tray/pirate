@@ -1,0 +1,7 @@
+<% if @updated %>
+  selector = '#user-<%= @user.id %>'
+  if ($('tr').is(selector))
+      $(selector).replaceWith('<%= j render 'user', user: @user %>')
+  else
+      $('.table').append('<%= j render 'user', user: @user %>')
+<% end %>

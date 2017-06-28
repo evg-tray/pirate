@@ -12,7 +12,7 @@ feature 'View admin panel', %q{
   scenario 'User-admin views admin panel' do
     sign_in(user_admin)
     visit admin_path
-    expect(page).to have_content t('admins.show.moderators')
+    expect(page).to have_content t('admins.show.title')
   end
 
   scenario 'Non-admin user tries view admin panel' do

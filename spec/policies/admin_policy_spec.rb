@@ -15,7 +15,7 @@ RSpec.describe AdminPolicy do
     end
   end
 
-  permissions :set_moderator? do
+  permissions :add_role? do
     it 'grants access if user admin' do
       expect(subject).to permit(user_admin, :admin)
     end
@@ -25,7 +25,7 @@ RSpec.describe AdminPolicy do
     end
   end
 
-  permissions :unset_moderator? do
+  permissions :del_role? do
     it 'grants access if user admin' do
       expect(subject).to permit(user_admin, :admin)
     end

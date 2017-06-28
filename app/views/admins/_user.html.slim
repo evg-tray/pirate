@@ -1,5 +1,15 @@
-tr
+tr id= "user-#{user.id}"
   td
     = user.username
   td
-    = link_to t('.remove_moderator'), '#', class: 'btn btn-sm btn-danger remove-mod', id: "user-#{user.id}"
+    - if user.has_role?(:moderator)
+      = link_to '#', class: 'btn btn-sm btn-danger del-role', data: {role: 'moderator'} do
+        i.fa.fa-remove
+  td
+    - if user.has_role?(:flavor_creator)
+      = link_to '#', class: 'btn btn-sm btn-danger del-role', data: {role: 'flavor_creator'} do
+        i.fa.fa-remove
+  td
+    - if user.has_role?(:pirate_diy_creator)
+      = link_to '#', class: 'btn btn-sm btn-danger del-role', data: {role: 'pirate_diy_creator'} do
+        i.fa.fa-remove
