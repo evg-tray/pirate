@@ -10,6 +10,7 @@ feature 'Create recipes', %q{
   given!(:user_confirmed) { create(:user_confirmed) }
   given!(:user_admin) { create(:user_admin) }
   given!(:user_moderator) { create(:user_moderator) }
+  given!(:user_pirate_diy_creator) { create(:user_pirate_diy_creator) }
   given!(:recipe) { build(:recipe) }
   given!(:flavors) { create_list(:flavor, 2) }
 
@@ -80,7 +81,20 @@ feature 'Create recipes', %q{
   end
 
   scenario 'Moderator create pirate diy recipe' do
-    sign_in(user_admin)
+    sign_in(user_moderator)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+    check 'recipe_pirate_diy'
+    click_on t('recipes.form.save_recipe')
+
+    visit root_path
+    expect(page).to have_content recipe.name
+  end
+
+  scenario 'Pirate diy creator create pirate diy recipe' do
+    sign_in(user_pirate_diy_creator)
 
     visit new_recipe_path
 

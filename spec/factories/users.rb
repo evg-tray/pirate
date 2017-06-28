@@ -17,6 +17,10 @@ FactoryGirl.define do
       after(:create) { |user| user.add_role(:flavor_creator) }
     end
 
+    factory :user_pirate_diy_creator do
+      after(:create) { |user| user.add_role(:pirate_diy_creator) }
+    end
+
     factory :user_confirmed do
       after(:create) do |user|
         user.confirmed_at = Time.now

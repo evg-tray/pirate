@@ -53,7 +53,7 @@ RSpec.describe RecipePolicy do
     end
 
     it 'grants access if user admin' do
-      expect(subject).to permit(user_author, recipe)
+      expect(subject).to permit(user_admin, recipe)
     end
 
     it 'denies access to private recipe if user not admin and not author' do

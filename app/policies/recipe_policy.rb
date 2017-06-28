@@ -18,7 +18,7 @@ class RecipePolicy < ApplicationPolicy
   PIRATE_DIY_PARAMS = [:pirate_diy]
 
   def permitted_attributes
-    if user.is_admin? || user.is_moderator?
+    if user.is_admin? || user.is_moderator? || user.is_pirate_diy_creator?
       BASE_PARAMS + PIRATE_DIY_PARAMS + PUBLIC_PARAMS
     else
       if user.confirmed?
