@@ -2,11 +2,11 @@ class Recipe < ApplicationRecord
   include RecipeValidations
   include Validable
 
-  has_many :flavors_recipes, inverse_of: :recipe
+  has_many :flavors_recipes, inverse_of: :recipe, dependent: :destroy
   has_many :flavors, through: :flavors_recipes
   belongs_to :author, class_name: 'User'
-  has_many :votes
-  has_many :comments
+  has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }

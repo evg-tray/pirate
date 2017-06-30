@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :index_pirate_diy, :show]
-  before_action :load_recipe, only: [:show, :edit, :update, :add_favorites, :delete_favorites]
+  before_action :load_recipe, only: [:show, :edit, :update, :add_favorites, :delete_favorites, :destroy]
 
   respond_to :js, only: [:add_favorites, :delete_favorites]
   def index
@@ -39,6 +39,12 @@ class RecipesController < ApplicationController
   def update
     authorize @recipe
     @recipe.update_attributes(permitted_attributes(@recipe))
+    respond_with(@recipe)
+  end
+
+  def destroy
+    authorize @recipe
+    @recipe.destroy
     respond_with(@recipe)
   end
 

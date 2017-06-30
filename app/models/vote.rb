@@ -7,9 +7,11 @@ class Vote < ApplicationRecord
   private
 
   def update_rating
-    self.recipe.update_attributes(
-        average_rating: recipe.votes.average(:rating)&.round(2) || 0,
-        count_rating: recipe.votes.count
-    )
+    unless self.recipe.destroyed?
+      self.recipe.update_attributes(
+          average_rating: recipe.votes.average(:rating)&.round(2) || 0,
+          count_rating: recipe.votes.count
+      )
+    end
   end
 end

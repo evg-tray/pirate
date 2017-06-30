@@ -70,3 +70,7 @@ ru:
     my_recipes:
       title: "Мои рецепты"
       public: "Публичный"
+    manage_buttons:
+      edit_recipe: "Изменить"
+      delete_recipe: "Удалить"
+      confrim_delete_text: "Вы действительно хотите удалить рецепт?"

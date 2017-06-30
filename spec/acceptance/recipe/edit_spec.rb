@@ -13,8 +13,9 @@ feature 'Edit recipes', %q{
 
   scenario 'author edit recipe', js: true do
     sign_in(user)
-    visit edit_recipe_path(recipe)
+    visit recipe_path(recipe)
 
+    click_on t('recipes.manage_buttons.edit_recipe')
     updated_name = "new recipe name"
     fill_in 'recipe_name', with: updated_name
     click_on t('recipes.form.save_recipe')
@@ -24,8 +25,9 @@ feature 'Edit recipes', %q{
 
   scenario 'admin edit recipe', js: true do
     sign_in(user_admin)
-    visit edit_recipe_path(recipe)
+    visit recipe_path(recipe)
 
+    click_on t('recipes.manage_buttons.edit_recipe')
     updated_name = "new recipe name"
     fill_in 'recipe_name', with: updated_name
     click_on t('recipes.form.save_recipe')
@@ -35,9 +37,8 @@ feature 'Edit recipes', %q{
 
   scenario 'user tries edit recipe another user', js: true do
     sign_in(another_user)
-    visit edit_recipe_path(recipe)
+    visit recipe_path(recipe)
 
-    expect(page).to have_content t('authorization.errors.forbidden')
-    expect(current_path).to eq root_path
+    expect(page).not_to have_link t('recipes.manage_buttons.edit_recipe')
   end
 end

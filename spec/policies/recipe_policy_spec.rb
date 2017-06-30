@@ -27,6 +27,24 @@ RSpec.describe RecipePolicy do
     it 'grants access if user author' do
       expect(subject).to permit(user_author, recipe)
     end
+
+    it 'denises access if user not author or admin' do
+      expect(subject).not_to permit(user, recipe)
+    end
+  end
+
+  permissions :destroy? do
+    it 'grants access if user admin' do
+      expect(subject).to permit(user_admin, recipe)
+    end
+
+    it 'grants access if user author' do
+      expect(subject).to permit(user_author, recipe)
+    end
+
+    it 'denises access if user not author or admin' do
+      expect(subject).not_to permit(user, recipe)
+    end
   end
 
   permissions :add_favorites? do
