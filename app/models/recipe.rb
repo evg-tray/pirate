@@ -21,6 +21,7 @@ class Recipe < ApplicationRecord
 
   after_commit :notify_subsribers, on: :create, if: :pirate_diy
 
+  scope :sorted, -> { order(created_at: :desc) }
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
 

@@ -5,4 +5,6 @@ class Manufacturer < ApplicationRecord
   update_index('flavors#flavor') { flavors }
 
   validates :name, :short_name, presence: true, uniqueness: {case_sensitive: false}
+
+  scope :sorted, -> { order(:name) }
 end

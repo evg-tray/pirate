@@ -3,4 +3,6 @@ class Comment < ApplicationRecord
   belongs_to :recipe
 
   validates :text, presence: true, length: { minimum: 10 }
+
+  scope :sorted, -> { order(:created_at) }
 end

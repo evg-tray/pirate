@@ -6,7 +6,7 @@
     .panel-body
       .messages
         - if @recipe.comments.present?
-          - @recipe.comments.each do |comment|
+          - @recipe.comments.sorted.each do |comment|
             = render 'comment', comment: comment
         - else
           .no-comments
