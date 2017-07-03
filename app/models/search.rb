@@ -19,7 +19,7 @@ class Search
     results.order(created_at: :desc)
   end
 
-  def self.by_flavors(flavor_ids, without_single_flavor)
+  def self.by_flavors(flavor_ids, without_single_flavor, scope)
     selects = flavor_ids.map{ |i| "SELECT #{i} as Flavor" }.compact.join(' UNION ALL ')
     selects = "SELECT 0 as Flavor" unless selects.present?
 
@@ -33,7 +33,16 @@ class Search
       HAVING count(case when search.Flavor is null then 1 end) = 0"
     join_query << ' AND count(*) > 1' if without_single_flavor
     join_query << ') fr ON recipes.id = fr.recipe_id'
-    Recipe.sorted.joins(join_query).where('recipes.public OR recipes.pirate_diy').includes(:author)
+
+    if scope == 'public'
+      condition = 'recipes.public AND recipes.pirate_diy = false'
+    elsif scope == 'pirate_diy'
+      condition = 'recipes.pirate_diy'
+    else
+      condition = 'recipes.public OR recipes.pirate_diy'
+    end
+
+    Recipe.sorted.joins(join_query).where(condition).includes(:author)
   end
 
   def self.escape_flavor_ids(flavor_ids)

@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
     if params[:flavor_ids]
       flavor_ids = Search.escape_flavor_ids(params[:flavor_ids])
       @flavors = Flavor.where(id: flavor_ids)
-      @results = Search.by_flavors(flavor_ids, params[:without_single_flavor]).page(params[:page])
+      @results = Search.by_flavors(flavor_ids, params[:without_single_flavor], params[:scope]).page(params[:page])
       respond_with(@results)
     end
   end
