@@ -18,13 +18,13 @@ feature 'Search', %q{
     find('#query').set(public_recipes[0].name)
     choose 'scope_all'
 
-    click_on t('searches.show.search')
+    click_on t('searches.search_button_text')
 
     expect(page).to have_link public_recipes[0].name
 
     find('#query').set(pirate_diy_recipes[0].name)
 
-    click_on t('searches.show.search')
+    click_on t('searches.search_button_text')
 
     expect(page).to have_link pirate_diy_recipes[0].name
   end
@@ -33,7 +33,7 @@ feature 'Search', %q{
     find('#query').set(public_recipes[0].name)
     choose 'scope_public'
 
-    click_on t('searches.show.search')
+    click_on t('searches.search_button_text')
 
     expect(page).to have_link public_recipes[0].name
   end
@@ -42,7 +42,7 @@ feature 'Search', %q{
     find('#query').set(pirate_diy_recipes[0].name)
     choose 'scope_pirate_diy'
 
-    click_on t('searches.show.search')
+    click_on t('searches.search_button_text')
 
     expect(page).to have_link pirate_diy_recipes[0].name
   end
@@ -51,7 +51,7 @@ feature 'Search', %q{
     find('#query').set(private_recipes[0].name)
     choose 'scope_all'
 
-    click_on t('searches.show.search')
+    click_on t('searches.search_button_text')
 
     expect(page).not_to have_link private_recipes[0].name
   end

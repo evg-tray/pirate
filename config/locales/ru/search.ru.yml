@@ -10,7 +10,7 @@ ru:
     show:
       title: "Поиск по наименованию"
       query_placeholder: "Введите текст поиска"
-  search_button_text: "Найти"
-  by_all_recipes: "По всем рецептам"
-  only_users_recipes: "Только пользовательские"
-  only_pirate_diy_recipes: "Только пиратский самозамес"
+    search_button_text: "Найти"
+    by_all_recipes: "По всем рецептам"
+    only_users_recipes: "Только пользовательские"
+    only_pirate_diy_recipes: "Только пиратский самозамес"

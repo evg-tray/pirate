@@ -15,7 +15,7 @@
       .form-group
         = render 'searches/scope_radio'
       .form-group.wo-mb
-        = submit_tag t('search_button_text'), class: 'btn btn-primary', name: nil
+        = submit_tag t('searches.search_button_text'), class: 'btn btn-primary', name: nil
         - if current_user
           |&nbsp
           = link_to t('.fill_my_flavors'), fill_my_flavors_search_path, method: :post, remote: true,
