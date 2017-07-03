@@ -38,11 +38,11 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def add_favorites?
-    (user && record.public) || user == record.author
+    user && (record.public || user == record.author)
   end
 
   def show?
-    record.public || user.is_admin? || record.author == user
+    record.public || user&.is_admin? || (user && record.author == user)
   end
 
   def destroy?

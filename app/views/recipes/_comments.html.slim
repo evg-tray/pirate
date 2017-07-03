@@ -13,6 +13,8 @@
             p
               = t('.no_comments')
       - if policy(@comment = @recipe.comments.build).create?
+        hr
+        .comment-errors
         = form_for @comment, remote: true do |f|
           .form-group
             = f.text_area :text, class: 'form-control', placeholder: t('.text_placeholder')
