@@ -11,6 +11,7 @@ feature 'View my recipes', %q{
   given!(:private_recipe) { create(:recipe, author: user) }
   given!(:another_author_public_recipe) { create(:public_recipe) }
   given!(:another_author_private_recipe) { create(:recipe) }
+  given!(:pirate_diy_recipe) { create(:pirate_diy_recipe, author: user) }
 
   scenario 'Non-authenticated user dont see his recipes' do
     visit my_recipes_path
@@ -27,5 +28,12 @@ feature 'View my recipes', %q{
 
     expect(page).not_to have_content another_author_public_recipe.name
     expect(page).not_to have_content another_author_private_recipe.name
+  end
+
+  scenario 'User dont see pirate diy recipes in `my recipes` list' do
+    sign_in(user)
+    visit my_recipes_path
+
+    expect(page).not_to have_content pirate_diy_recipe.name
   end
 end

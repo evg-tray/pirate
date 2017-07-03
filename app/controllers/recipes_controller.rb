@@ -65,7 +65,7 @@ class RecipesController < ApplicationController
   end
 
   def my_recipes
-    @recipes = current_user.recipes.sorted.page(params[:page])
+    @recipes = current_user.recipes.sorted.without_pirate_diy.page(params[:page])
     respond_with(@recipes)
   end
 

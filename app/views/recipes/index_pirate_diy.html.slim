@@ -1,5 +1,5 @@
 .page-header.half-top-margin
   h3
     = t('.title')
-= render 'recipes/table/table', recipes: @recipes
+= render 'recipes/table/table', recipes: @recipes, pirate_diy: true
 = paginate @recipes
