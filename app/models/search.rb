@@ -16,7 +16,7 @@ class Search
     elsif scope == 'pirate_diy'
       results = results.query(term: {pirate_diy: true})
     end
-    results
+    results.order(created_at: :desc)
   end
 
   def self.by_flavors(flavor_ids, without_single_flavor)
@@ -33,7 +33,7 @@ class Search
       HAVING count(case when search.Flavor is null then 1 end) = 0"
     join_query << ' AND count(*) > 1' if without_single_flavor
     join_query << ') fr ON recipes.id = fr.recipe_id'
-    Recipe.joins(join_query).where('recipes.public OR recipes.pirate_diy').includes(:author)
+    Recipe.sorted.joins(join_query).where('recipes.public OR recipes.pirate_diy').includes(:author)
   end
 
   def self.escape_flavor_ids(flavor_ids)
