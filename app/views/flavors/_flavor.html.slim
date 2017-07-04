@@ -1,8 +1,9 @@
 tr id="my_flavor-#{user_flavor.id}"
   td
-    = user_flavor.flavor.name
+    = link_to user_flavor.flavor.name, flavor_path(user_flavor.flavor)
   td
-    = "#{user_flavor.flavor.manufacturer.name} (#{user_flavor.flavor.manufacturer.short_name})"
+    = link_to "#{user_flavor.flavor.manufacturer.name} (#{user_flavor.flavor.manufacturer.short_name})",
+            manufacturer_path(user_flavor.flavor.manufacturer)
   td id="availability-#{user_flavor.id}"
     = render 'availability', user_flavor: user_flavor
   td
