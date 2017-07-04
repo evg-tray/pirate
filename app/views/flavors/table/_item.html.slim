@@ -2,6 +2,6 @@ tr
   td
     = link_to flavor.name, flavor_path(flavor)
   td
-    = "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})"
+    = link_to "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})", manufacturer_path(flavor.manufacturer)
   td.text-right
     |0
