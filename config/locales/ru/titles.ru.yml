@@ -1,0 +1,27 @@
+ru:
+  titles:
+    site_name: "Имя сайта"
+    flavors:
+      index: "Ароматизаторы"
+      show: "Ароматизатор %{param}"
+      new: "Создание ароматизатора"
+      my_flavors: "Мои ароматизаторы"
+    manufacturers:
+      index: "Производители"
+      show: "Производитель %{param}"
+      new: "Создание производителя"
+    recipes:
+      index: "Рецепты пользователей"
+      index_pirate_diy: "Пиратский самозамес"
+      favorites: "Избранные рецепты"
+      my_recipes: "Мои рецепты"
+      show: "Рецепт %{param}"
+      new: "Создание рецепта"
+      edit: "Редактирование рецепта"
+    profiles:
+      settings: "Настройки"
+    searches:
+      by_flavors: "Что я могу замешать?"
+      show: "Поиск по наименованию"
+    admins:
+      show: "Административная панель"
