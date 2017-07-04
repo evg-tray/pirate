@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   protected
 
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = t('authorization.errors.forbidden')
     redirect_to(request.referrer || root_path)
+  end
+
+  def record_not_found
+    flash[:alert] = t('errors.record_not_found')
+    redirect_to action: :index
   end
 end
