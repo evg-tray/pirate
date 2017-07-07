@@ -13,6 +13,8 @@ feature 'Create recipes', %q{
   given!(:user_pirate_diy_creator) { create(:user_pirate_diy_creator) }
   given!(:recipe) { build(:recipe) }
   given!(:flavors) { create_list(:flavor, 2) }
+  given!(:tastes_recipe) { create_list(:taste, 2) }
+  given!(:tastes_non_recipe) { create(:taste) }
 
   scenario 'Auto fills defaults values' do
     sign_in(user)
@@ -129,5 +131,23 @@ feature 'Create recipes', %q{
     expect(page).to have_content recipe.name
     expect(page).to have_content flavors[0].name
     expect(page).to have_content flavors[1].name
+  end
+
+  scenario 'User create recipe with tastes', js: true do
+    sign_in(user_confirmed)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+    check 'recipe_public'
+
+    select2(tastes_recipe[0].name, 'recipe_taste_ids', true)
+    select2(tastes_recipe[1].name, 'recipe_taste_ids', true)
+
+    click_on t('recipes.form.save_recipe')
+
+    expect(page).to have_content recipe.name
+    expect(page).to have_content tastes_recipe[0].name
+    expect(page).to have_content tastes_recipe[1].name
   end
 end

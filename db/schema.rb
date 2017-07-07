@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424114237) do
+ActiveRecord::Schema.define(version: 20170706120705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,12 @@ ActiveRecord::Schema.define(version: 20170424114237) do
     t.index ["short_name"], name: "index_manufacturers_on_short_name", using: :btree
   end
 
+  create_table "recipe_tastes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "taste_id"
+    t.index ["recipe_id", "taste_id"], name: "index_recipe_tastes_on_recipe_id_and_taste_id", unique: true, using: :btree
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string   "name",                           null: false
     t.integer  "amount",                         null: false
@@ -80,6 +86,12 @@ ActiveRecord::Schema.define(version: 20170424114237) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "tastes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_flavors", force: :cascade do |t|

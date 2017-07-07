@@ -45,6 +45,7 @@ ru:
       pg_vg_ratio: "Соотношение PG/VG:"
       nicotine_strength: "Крепость (никотин):"
       drops_ml: "Капель в 1 мл:"
+      tastes: "Вкусы:"
     form:
       save_recipe: "Сохранить рецепт"
       base:
@@ -58,6 +59,9 @@ ru:
         title: "Никотин"
       public:
         for_public_need_confirm_email: "Для возможности создавать публичные рецепты необходимо подтвердить e-mail."
+      tastes:
+        title: "Вкусы рецепта"
+        select_tastes_placeholder: "Выберите вкусы"
     flavors_recipe_fields:
       select_flavor_placeholder: "Выберите ароматизатор"
     table:

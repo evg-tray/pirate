@@ -53,4 +53,5 @@ Rails.application.routes.draw do
   get 'select', to: 'selects#select'
 
   resources :manufacturers
+  resources :tastes
 end

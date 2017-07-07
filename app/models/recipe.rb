@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   belongs_to :author, class_name: 'User'
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :recipe_tastes
+  has_many :tastes, through: :recipe_tastes
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }

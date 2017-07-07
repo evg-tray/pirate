@@ -41,6 +41,10 @@ fill_hidden_select2_values = ->
   $(this).parent().find('.flavor-msn').val(new_man_short_name)
   $(this).parent().find('.flavor-id').val(new_flavor_id)
 
+fill_hidden_tastes_value = ->
+  new_value = $(this).select2('data').map((obj) -> obj.text).join(', ')
+  $('#recipe_tastes').val(new_value)
+
 recipe_result_table = ->
   return false unless $('body').data('make_table')
   amount = parseFloat($('#recipe_amount').val())
@@ -99,6 +103,12 @@ recipe_result_table = ->
   $('#pgvg_ratio').html(pg + '/' + vg)
   $('#nicotine_strength').html(strength)
   $('#drops_ml').html(drops)
+  tastes = $('#recipe_tastes').val()
+  if tastes != ''
+    $('#tastes').parent().removeClass('hidden')
+  else
+    $('#tastes').parent().addClass('hidden')
+  $('#tastes').html(tastes)
 
 $(document).on('input', '#recipe_vg', change_vg)
 $(document).on('input', '#recipe_pg', change_pg)
@@ -114,6 +124,8 @@ $(document).on('input', '#recipe_amount, ' +
 
 $(document).on('change', '.select2-tag.with-hidden', fill_hidden_select2_values)
 $(document).on('change', '.select2-tag.with-hidden', recipe_result_table)
+$(document).on('change', '.select2-taste.with-hidden', fill_hidden_tastes_value)
+$(document).on('change', '.select2-taste.with-hidden', recipe_result_table)
 
 $(document).on('input', '#recipe_name', recipe_result_header)
 

@@ -33,8 +33,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search with flavor1 and flavor2', js: true do
-    select2(flavor1.name, 'flavor_ids_')
-    select2(flavor2.name, 'flavor_ids_')
+    select2(flavor1.name, 'flavor_ids_', true)
+    select2(flavor2.name, 'flavor_ids_', true)
     click_on t('searches.search_button_text')
 
     expect(page).to have_content recipe1.name
@@ -45,9 +45,9 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search with flavor1 and flavor2 and flavor3', js: true do
-    select2(flavor1.name, 'flavor_ids_')
-    select2(flavor2.name, 'flavor_ids_')
-    select2(flavor3.name, 'flavor_ids_')
+    select2(flavor1.name, 'flavor_ids_', true)
+    select2(flavor2.name, 'flavor_ids_', true)
+    select2(flavor3.name, 'flavor_ids_', true)
     click_on t('searches.search_button_text')
 
     expect(page).to have_content recipe1.name
@@ -58,8 +58,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search with flavor2 and flavor4', js: true do
-    select2(flavor2.name, 'flavor_ids_')
-    select2(flavor4.name, 'flavor_ids_')
+    select2(flavor2.name, 'flavor_ids_', true)
+    select2(flavor4.name, 'flavor_ids_', true)
     click_on t('searches.search_button_text')
 
     expect(page).not_to have_content recipe1.name
@@ -70,8 +70,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search with flavor2 and flavor4 and without single flavor recipes', js: true do
-    select2(flavor2.name, 'flavor_ids_')
-    select2(flavor4.name, 'flavor_ids_')
+    select2(flavor2.name, 'flavor_ids_', true)
+    select2(flavor4.name, 'flavor_ids_', true)
     check 'without_single_flavor'
     click_on t('searches.search_button_text')
 
@@ -93,7 +93,7 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search with flavor4', js: true do
-    select2(flavor4.name, 'flavor_ids_')
+    select2(flavor4.name, 'flavor_ids_', true)
     click_on t('searches.search_button_text')
 
     expect(page).not_to have_content recipe1.name
@@ -104,8 +104,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search recipe1 and pirate diy recipe with scope all', js: true do
-    select2(flavor1.name, 'flavor_ids_')
-    select2(flavor2.name, 'flavor_ids_')
+    select2(flavor1.name, 'flavor_ids_', true)
+    select2(flavor2.name, 'flavor_ids_', true)
     choose 'scope_all'
     click_on t('searches.search_button_text')
 
@@ -114,8 +114,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search recipe1 and pirate diy recipe with scope only users', js: true do
-    select2(flavor1.name, 'flavor_ids_')
-    select2(flavor2.name, 'flavor_ids_')
+    select2(flavor1.name, 'flavor_ids_', true)
+    select2(flavor2.name, 'flavor_ids_', true)
     choose 'scope_public'
     click_on t('searches.search_button_text')
 
@@ -124,8 +124,8 @@ feature 'Search recipes by flavors', %q{
   end
 
   scenario 'search recipe1 and pirate diy recipe with scope only pirate diy', js: true do
-    select2(flavor1.name, 'flavor_ids_')
-    select2(flavor2.name, 'flavor_ids_')
+    select2(flavor1.name, 'flavor_ids_', true)
+    select2(flavor2.name, 'flavor_ids_', true)
     choose 'scope_pirate_diy'
     click_on t('searches.search_button_text')
 

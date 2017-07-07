@@ -64,6 +64,12 @@
                 li
                   = link_to t('.my_flavors'), my_flavors_path
                 li.divider
+                - if current_user.is_admin?
+                  li
+                    = link_to t('.admin_panel'), admin_path
+                  li
+                    = link_to t('.tastes'), tastes_path
+                  li.divider
                 li
                   = link_to t('.settings'), settings_path
                 li
