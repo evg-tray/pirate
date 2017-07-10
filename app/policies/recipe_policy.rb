@@ -12,6 +12,7 @@ class RecipePolicy < ApplicationPolicy
       :pg,
       :vg,
       :nicotine_base,
+      :description,
       taste_ids: [],
       flavors_recipes_attributes: [:id, :_destroy, :flavor_id, :amount]
   ]

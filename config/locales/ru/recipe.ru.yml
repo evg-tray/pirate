@@ -23,6 +23,7 @@ ru:
         created_at: "Дата создания"
         public: "Публичный"
         pirate_diy: "Пиратский самозамес"
+        description: "Описание"
   recipes:
     index:
       title: "Рецепты пользователей"
@@ -62,6 +63,9 @@ ru:
       tastes:
         title: "Вкусы рецепта"
         select_tastes_placeholder: "Выберите вкусы"
+      description:
+        title: "Описание"
+        desctiption_placeholder: "Здесь можете описать рецепт, указать сколько настаивать, какие-либо нюансы и т.п."
     flavors_recipe_fields:
       select_flavor_placeholder: "Выберите ароматизатор"
     table:
@@ -78,3 +82,5 @@ ru:
       edit_recipe: "Изменить"
       delete_recipe: "Удалить"
       confrim_delete_text: "Вы действительно хотите удалить рецепт?"
+    description:
+      title: "Описание"
