@@ -1,0 +1,28 @@
+.page-header.half-top-margin
+  h3
+    = @flavor.new_record? ? t('.title_new') : t('.title_edit')
+.panel.panel-default
+  .panel-body
+    = error_messages(@flavor)
+    = form_for(@flavor) do |f|
+      .form-group
+        = f.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.flavor.name')
+      .form-group
+        = f.text_field :translate, class: 'form-control', placeholder: t('activerecord.attributes.flavor.translate')
+      - options = options_for_select([[@flavor.manufacturer&.name, @flavor.manufacturer&.id]])
+      .form-group
+        = f.select :manufacturer_id, options, {}, {class: 'select2-tag form-control',
+                data: {adapter: 'manufacturer', placeholder: t('.select_manufacturer_placeholder'), minimum_input_length: 1}}
+      .form-group
+        = f.text_area :description, class: 'form-control', placeholder: t('activerecord.attributes.flavor.description')
+      .form-group
+        .checkbox.checkbox-inline
+          = f.check_box :warning_health
+          = f.label :warning_health
+        .checkbox.checkbox-inline
+          = f.check_box :warning_device
+          = f.label :warning_device
+      .form-group
+        = f.text_area :warning_description, class: 'form-control',
+                placeholder: t('activerecord.attributes.flavor.warning_description')
+      = f.submit @flavor.new_record? ? t('.create_flavor') : t('.edit_flavor'), class: 'btn btn-primary'

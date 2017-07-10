@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710092108) do
+ActiveRecord::Schema.define(version: 20170710101039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,16 +32,21 @@ ActiveRecord::Schema.define(version: 20170710092108) do
   end
 
   create_table "flavors", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",                null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "manufacturer_id"
+    t.string   "translate"
+    t.string   "description"
+    t.boolean  "warning_health"
+    t.boolean  "warning_device"
+    t.string   "warning_description"
     t.index ["manufacturer_id"], name: "index_flavors_on_manufacturer_id", using: :btree
   end
 
-  create_table "flavors_recipes", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "flavor_id"
+  create_table "flavors_recipes", id: false, force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "flavor_id", null: false
     t.float   "amount"
     t.index ["recipe_id", "flavor_id"], name: "index_flavors_recipes_on_recipe_id_and_flavor_id", using: :btree
   end

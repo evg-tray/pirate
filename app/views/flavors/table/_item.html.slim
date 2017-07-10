@@ -1,6 +1,10 @@
 tr
   td
+    = warnings(flavor)
     = link_to flavor.name, flavor_path(flavor)
+    br
+    small
+      = flavor.translate
   td
     = link_to "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})", manufacturer_path(flavor.manufacturer)
   td.text-right

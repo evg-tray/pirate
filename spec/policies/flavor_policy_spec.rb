@@ -25,4 +25,40 @@ RSpec.describe FlavorPolicy do
       expect(subject).not_to permit(user, flavor)
     end
   end
+
+  permissions :edit? do
+    it 'grants access if user admin' do
+      expect(subject).to permit(user_admin, flavor)
+    end
+
+    it 'grants access if user moderator' do
+      expect(subject).to permit(user_moderator, flavor)
+    end
+
+    it 'grants access if user flavor creator' do
+      expect(subject).to permit(user_flavor_creator, flavor)
+    end
+
+    it 'denies access if user not admin or moderator or flavor creator' do
+      expect(subject).not_to permit(user, flavor)
+    end
+  end
+
+  permissions :update? do
+    it 'grants access if user admin' do
+      expect(subject).to permit(user_admin, flavor)
+    end
+
+    it 'grants access if user moderator' do
+      expect(subject).to permit(user_moderator, flavor)
+    end
+
+    it 'grants access if user flavor creator' do
+      expect(subject).to permit(user_flavor_creator, flavor)
+    end
+
+    it 'denies access if user not admin or moderator or flavor creator' do
+      expect(subject).not_to permit(user, flavor)
+    end
+  end
 end

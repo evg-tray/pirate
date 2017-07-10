@@ -14,4 +14,17 @@ module FlavorsHelper
       Hash.new('')
     end
   end
+
+  def warnings(flavor)
+    result = ''
+    if flavor.warning_health
+      result << "<i class=\"fa fa-heartbeat\" title=\"#{t('activerecord.attributes.flavor.warning_health')}\"></i>"
+      result << "&nbsp"
+    end
+    if flavor.warning_device
+      result << "<i class=\"fa fa-warning\" title=\"#{t('activerecord.attributes.flavor.warning_device')}\"></i>"
+      result << "&nbsp"
+    end
+    result.html_safe
+  end
 end

@@ -36,7 +36,7 @@ feature 'Edit manufacturers', %q{
     expect(page).to have_content 'new manufacturer name'
   end
 
-  scenario 'Moderator creates manufacturer' do
+  scenario 'Moderator edit manufacturer' do
     sign_in(user_moderator)
 
     visit edit_manufacturer_path(manufacturer)
@@ -51,7 +51,7 @@ feature 'Edit manufacturers', %q{
     expect(page).to have_content 'new manufacturer name'
   end
 
-  scenario 'Flavor creator creates manufacturer' do
+  scenario 'Flavor creator edit manufacturer' do
     sign_in(user_flavor_creator)
 
     visit edit_manufacturer_path(manufacturer)
@@ -66,7 +66,7 @@ feature 'Edit manufacturers', %q{
     expect(page).to have_content 'new manufacturer name'
   end
 
-  scenario 'Non-authenticated user tries create manufacturer' do
+  scenario 'Non-authenticated user tries edit manufacturer' do
     visit edit_manufacturer_path(manufacturer)
 
     expect(page).to have_content t('devise.failure.unauthenticated')

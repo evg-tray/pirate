@@ -29,7 +29,7 @@ feature 'Create flavors', %q{
 
     fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
     select2(manufacturer.name, 'flavor_manufacturer_id')
-    click_on t('flavors.new.create_flavor')
+    click_on t('flavors.form.create_flavor')
 
     visit flavors_path
     expect(page).to have_content flavor.name
@@ -42,7 +42,7 @@ feature 'Create flavors', %q{
 
     fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
     select2(manufacturer.name, 'flavor_manufacturer_id')
-    click_on t('flavors.new.create_flavor')
+    click_on t('flavors.form.create_flavor')
 
     visit flavors_path
     expect(page).to have_content flavor.name
@@ -55,7 +55,7 @@ feature 'Create flavors', %q{
 
     fill_in t('activerecord.attributes.flavor.name'), with: flavor.name
     select2(manufacturer.name, 'flavor_manufacturer_id')
-    click_on t('flavors.new.create_flavor')
+    click_on t('flavors.form.create_flavor')
 
     visit flavors_path
     expect(page).to have_content flavor.name

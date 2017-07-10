@@ -1,5 +1,6 @@
 class FlavorsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :load_flavor, only: [:show, :edit, :update]
 
   respond_to :js, only: [:add_to_my_flavors, :update_availability, :delete_from_my_flavors]
 
@@ -21,7 +22,17 @@ class FlavorsController < ApplicationController
   end
 
   def show
-    @flavor = Flavor.find(params[:id])
+    respond_with(@flavor)
+  end
+
+  def edit
+    authorize @flavor
+    respond_with(@flavor)
+  end
+
+  def update
+    authorize @flavor
+    @flavor.update(flavor_params)
     respond_with(@flavor)
   end
 
@@ -50,6 +61,18 @@ class FlavorsController < ApplicationController
   private
 
   def flavor_params
-    params.require(:flavor).permit(:name, :manufacturer_id)
+    params.require(:flavor).permit(
+        :name,
+        :manufacturer_id,
+        :description,
+        :translate,
+        :warning_health,
+        :warning_device,
+        :warning_description
+    )
+  end
+
+  def load_flavor
+    @flavor = Flavor.find(params[:id])
   end
 end

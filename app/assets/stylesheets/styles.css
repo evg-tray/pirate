@@ -42,3 +42,7 @@
 .inline {
     display: inline;
 }
+
+.table.v-center tbody > tr > td {
+    vertical-align: middle;
+}

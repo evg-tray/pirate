@@ -2,6 +2,18 @@
 .page-header.half-top-margin
   h3
     = t('.title')
+- if policy(@flavor).edit?
+  p
+    = link_to edit_flavor_path(@flavor), class: 'btn btn-primary' do
+      i.fa.fa-edit
+      |&nbsp
+      = t('.edit_flavor')
+- if @flavor.warning_device or @flavor.warning_health
+  = render 'warnings'
 h4
   = "#{@flavor.name} - #{@flavor.manufacturer.name} (#{@flavor.manufacturer.short_name})"
+  br
+  small
+    = @flavor.translate
+= simple_format(@flavor.description)
 = link_to t('.all_flavors'), flavors_path, class: 'btn btn-primary'
