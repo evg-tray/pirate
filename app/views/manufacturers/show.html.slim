@@ -2,6 +2,11 @@
 .page-header.half-top-margin
   h3
     = t('.title')
+- if policy(@manufacturer).edit?
+  = link_to edit_manufacturer_path(@manufacturer), class: 'btn btn-primary' do
+    i.fa.fa-edit
+    |&nbsp
+    = t('.edit_manufacturer')
 h4
   = "#{@manufacturer.name} - #{@manufacturer.short_name}"
 = link_to t('.all_manufacturers'), manufacturers_path, class: 'btn btn-primary'

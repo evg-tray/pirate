@@ -15,3 +15,7 @@ ru:
     show:
       all_manufacturers: "Все производители"
       title: "Производитель ароматизаторов"
+      edit_manufacturer: "Изменить"
+    edit:
+      edit_manufacturer: "Изменить"
+      title: "Редактирование производителя ароматизаторов"

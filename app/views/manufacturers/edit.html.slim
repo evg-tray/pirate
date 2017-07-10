@@ -1,0 +1,11 @@
+.page-header.half-top-margin
+  h3
+    = t('.title')
+.panel.panel-default
+  .panel-body
+    = form_for(@manufacturer) do |f|
+      .form-group
+        = f.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.manufacturer.name')
+      .form-group
+        = f.text_field :short_name, class: 'form-control', placeholder: t('activerecord.attributes.manufacturer.short_name')
+      = f.submit t('.edit_manufacturer'), class: 'btn btn-primary'
