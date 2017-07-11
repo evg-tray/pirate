@@ -5,6 +5,6 @@ p
     = link_to comment.author.username, '#'
   |&nbsp
   time.text-gray
-    = comment.created_at
+    = format_date(comment.created_at)
 p
   = comment.text

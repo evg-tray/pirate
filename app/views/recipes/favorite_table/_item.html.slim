@@ -4,7 +4,7 @@ tr id="rec-#{recipe.id}"
   td
     = recipe.author.username
   td
-    = recipe.created_at
+    = format_date(recipe.created_at)
   td.text-right
     = render 'recipes/rating/total_score', recipe: recipe
   td.text-right

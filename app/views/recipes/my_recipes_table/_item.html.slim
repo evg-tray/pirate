@@ -6,8 +6,7 @@ tr
       i.fa.fa-check.text-success
     - else
       i.fa.fa-remove.text-danger
-    /= recipe.public
   td
-    = recipe.created_at
+    = format_date(recipe.created_at)
   td.text-right
     = render 'recipes/rating/total_score', recipe: recipe
