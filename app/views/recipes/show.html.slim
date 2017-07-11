@@ -1,5 +1,7 @@
 = title_param(@recipe.name)
 .form-group
+  .status.inline
+    = recipe_status(current_user, @recipe)
   .rating.inline
     = user_score_rating(current_user, @recipe)
   .favorite.inline

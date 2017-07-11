@@ -84,3 +84,5 @@ ru:
       confrim_delete_text: "Вы действительно хотите удалить рецепт?"
     description:
       title: "Описание"
+    public: "Публичный"
+    private: "Приватный"
