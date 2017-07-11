@@ -1,15 +1,15 @@
 .panel.panel-default
-  table.table.table-striped
+  table.table.table-striped.v-center
     thead
       th
         = t('activerecord.attributes.recipe.name')
-      th
+      th.fit
         = t('activerecord.attributes.recipe.author')
-      th
+      th.fit
         = t('activerecord.attributes.recipe.created_at')
-      th.text-right
+      th.fit
         = t('recipes.table.table.rating')
-      th.text-right
+      th.fit
     tbody
       - recipes.each do |rec|
         = render 'recipes/favorite_table/item', recipe: rec

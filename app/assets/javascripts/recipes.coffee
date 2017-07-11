@@ -14,9 +14,9 @@ recipe_result_header = ->
 get_row_table = (main, percent = null, ml = null, drops = null, tr_class = null) ->
   return "<tr#{if tr_class then ' class="' + tr_class + '"' else ''}>
       <td>#{main}</td>
-      <td class=\"text-right\">#{if percent then round2(percent) else ''}</td>
-      <td class=\"text-right\">#{if ml then round2(ml) else ''}</td>
-      <td class=\"text-right\">#{if drops then round2(drops) else ''}</td></tr>"
+      <td class=\"fit\">#{if percent then round2(percent) else ''}</td>
+      <td class=\"fit\">#{if ml then round2(ml) else ''}</td>
+      <td class=\"fit\">#{if drops then round2(drops) else ''}</td></tr>"
 
 flavor_table_presentation = (element) ->
   return '<a target="_blank" href="/flavors/' +

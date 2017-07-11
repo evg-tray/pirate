@@ -1,12 +1,12 @@
 tr
   td
     = link_to recipe.name, recipe_path(recipe)
-  td.text-center
+  td.text-center.fit
     - if recipe.public
       i.fa.fa-check.text-success
     - else
       i.fa.fa-remove.text-danger
-  td
+  td.fit
     = format_date(recipe.created_at)
-  td.text-right
+  td.text-right.fit
     = render 'recipes/rating/total_score', recipe: recipe

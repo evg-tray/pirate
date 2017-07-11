@@ -46,3 +46,8 @@
 .table.v-center tbody > tr > td {
     vertical-align: middle;
 }
+
+.table td.fit, .table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}

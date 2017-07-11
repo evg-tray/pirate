@@ -1,13 +1,13 @@
 .panel.panel-default
-  table.table.table-striped
+  table.table.table-striped.v-center
     thead
       th
         = t('activerecord.attributes.recipe.name')
-      th.text-center
+      th.fit
         = t('recipes.my_recipes.public')
-      th
+      th.fit
         = t('activerecord.attributes.recipe.created_at')
-      th.text-right
+      th.fit
         = t('recipes.table.table.rating')
     tbody
       - recipes.each do |rec|

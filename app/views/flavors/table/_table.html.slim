@@ -3,9 +3,9 @@
     thead
       th
         = t('activerecord.attributes.flavor.name')
-      th
+      th.fit
         = t('activerecord.attributes.flavor.manufacturer')
-      th.text-right
+      th.fit
         = t('flavors.index.recipes_count')
     tbody
       - flavors.each do |flavor|

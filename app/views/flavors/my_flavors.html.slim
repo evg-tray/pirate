@@ -13,15 +13,15 @@
 
 #my_flavor_list
   .panel.panel-default
-    table.table.table-striped
+    table.table.table-striped.v-center
       thead
         th
           = t('activerecord.attributes.flavor.name')
-        th
+        th.fit
           = t('activerecord.attributes.flavor.manufacturer')
-        th
+        th.fit
           = t('.availability')
-        th
+        th.fit
       - @flavors.each do |flavor|
         = render 'flavor', user_flavor: flavor
   = paginate @flavors

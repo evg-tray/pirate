@@ -21,15 +21,15 @@
       h3
         = t('.users_with_roles')
     .panel.panel-default
-      table.table.table-striped
+      table.table.table-striped.v-center
         thead
           th
             = t('.user_header')
-          th
+          th.fit
             = t('.moderator_header')
-          th
+          th.fit
             = t('.flavor_creator_header')
-          th
+          th.fit
             = t('.pirate_diy_header')
         - @users_with_role.each do |moderator|
           = render 'user', user: moderator

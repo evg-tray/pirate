@@ -1,16 +1,16 @@
 - unless defined?(pirate_diy)
   - pirate_diy = false
 .panel.panel-default
-  table.table.table-striped
+  table.table.table-striped.v-center
     thead
       th
         = t('activerecord.attributes.recipe.name')
       - unless pirate_diy
-        th
+        th.fit
           = t('activerecord.attributes.recipe.author')
-      th
+      th.fit
         = t('activerecord.attributes.recipe.created_at')
-      th.text-right
+      th.fit
         = t('.rating')
     tbody
       - recipes.each do |rec|
