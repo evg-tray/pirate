@@ -19,6 +19,8 @@ class FlavorPresenter
         msn: @flavor.manufacturer_short_name,
         mn: @flavor.manufacturer_name,
         count: @flavor.recipes_count,
+        wh: @flavor.warning_health,
+        wd: @flavor.warning_device,
         type: 'f'
     }
   end
