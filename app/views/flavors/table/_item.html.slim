@@ -8,4 +8,4 @@ tr
   td.fit
     = link_to "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})", manufacturer_path(flavor.manufacturer)
   td.text-right.fit
-    |0
+    = flavor.recipes_count
