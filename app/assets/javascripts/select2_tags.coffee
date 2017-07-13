@@ -4,6 +4,7 @@ formatResult = (data) ->
     res = data.fn
     res += " (<abbr title='" + data.mn + "'>" + data.msn + "</abbr>)"
     res += " - <abbr title='Количество рецептов'>" + data.count + "</abbr>"
+    res += "<div class=\"cleafix\"></div><small>" + if data.tr then data.tr else '' + "</small>"
   else if data.type == 'm'
     res += " (" + data.msn + ")"
     res += " - <abbr title='Количество ароматизаторов'>" + data.count + "</abbr>"
