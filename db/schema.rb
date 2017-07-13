@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710101039) do
+ActiveRecord::Schema.define(version: 20170713112525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,10 +52,11 @@ ActiveRecord::Schema.define(version: 20170710101039) do
   end
 
   create_table "manufacturers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "short_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                      null: false
+    t.string   "short_name",                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "flavors_count", default: 0
     t.index ["name"], name: "index_manufacturers_on_name", using: :btree
     t.index ["short_name"], name: "index_manufacturers_on_short_name", using: :btree
   end
