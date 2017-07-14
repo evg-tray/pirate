@@ -2,15 +2,18 @@
 .page-header.half-top-margin
   h3
     = t('.title')
-= link_to t('.all_manufacturers'), manufacturers_path, class: 'btn btn-primary'
-- if policy(@manufacturer).edit?
-  |&nbsp
-  = link_to edit_manufacturer_path(@manufacturer), class: 'btn btn-primary' do
-    i.fa.fa-edit
+p
+  = link_to t('.all_manufacturers'), manufacturers_path, class: 'btn btn-primary'
+  - if policy(@manufacturer).edit?
     |&nbsp
-    = t('.edit_manufacturer')
-h4
-  = "#{@manufacturer.name} - #{@manufacturer.short_name}"
+    = link_to edit_manufacturer_path(@manufacturer), class: 'btn btn-primary' do
+      i.fa.fa-edit
+      |&nbsp
+      = t('.edit_manufacturer')
+.panel.panel-default
+  .panel-body
+    h4
+      = "#{@manufacturer.name} - #{@manufacturer.short_name}"
 - if @flavors.any?
   .page-header.half-top-margin
     h4
