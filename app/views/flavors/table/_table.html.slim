@@ -1,12 +1,15 @@
+- unless defined?(without_manufacturer)
+  - without_manufacturer = false
 .panel.panel-default
   table.table.table-striped.v-center
     thead
       th
         = t('activerecord.attributes.flavor.name')
-      th.fit
-        = t('activerecord.attributes.flavor.manufacturer')
+      - unless without_manufacturer
+        th.fit
+          = t('activerecord.attributes.flavor.manufacturer')
       th.fit
         = t('flavors.index.recipes_count')
     tbody
       - flavors.each do |flavor|
-        = render 'flavors/table/item', flavor: flavor
+        = render 'flavors/table/item', flavor: flavor, without_manufacturer: without_manufacturer

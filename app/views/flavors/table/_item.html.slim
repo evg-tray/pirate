@@ -5,7 +5,8 @@ tr
     br
     small
       = flavor.translate
-  td.fit
-    = link_to "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})", manufacturer_path(flavor.manufacturer)
+  - unless without_manufacturer
+    td.fit
+      = link_to "#{flavor.manufacturer.name} (#{flavor.manufacturer.short_name})", manufacturer_path(flavor.manufacturer)
   td.text-right.fit
     = flavor.recipes_count

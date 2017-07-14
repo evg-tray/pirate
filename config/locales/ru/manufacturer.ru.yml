@@ -16,6 +16,7 @@ ru:
       all_manufacturers: "Все производители"
       title: "Производитель ароматизаторов"
       edit_manufacturer: "Изменить"
+      title_flavors: "Ароматизаторы"
     edit:
       edit_manufacturer: "Изменить"
       title: "Редактирование производителя ароматизаторов"
