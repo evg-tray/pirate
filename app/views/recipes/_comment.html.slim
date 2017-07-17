@@ -1,5 +1,10 @@
 p
-  = comment.author.username
-  = comment.created_at
+  i.fa.fa-user
+  |&nbsp
+  b
+    = link_to comment.author.username, '#'
+  |&nbsp
+  time.text-gray
+    = format_date(comment.created_at)
 p
   = comment.text

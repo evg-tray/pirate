@@ -7,7 +7,16 @@ ru:
   manufacturers:
     index:
       create_manufacturer: "Создать"
+      title: "Производители ароматизаторов"
+      flavors_count: "Количество ароматизаторов"
     new:
       create_manufacturer: "Создать"
+      title: "Создание производителя ароматизаторов"
     show:
       all_manufacturers: "Все производители"
+      title: "Производитель ароматизаторов"
+      edit_manufacturer: "Изменить"
+      title_flavors: "Ароматизаторы"
+    edit:
+      edit_manufacturer: "Изменить"
+      title: "Редактирование производителя ароматизаторов"

@@ -1,0 +1,10 @@
+.form-group
+  .col-sm-12
+    .page-header.half-top-margin.sm-top-bot-margin
+      h4
+        = t('.title')
+.form-group
+  .col-sm-12
+    = f.select :taste_ids, Taste.all.collect {|x| [x.name, x.id]}, {}, { multiple: true,
+            class: 'select2-taste with-hidden form-control', data: {placeholder: t('.select_tastes_placeholder')} }
+    = hidden_field_tag :recipe_tastes, @recipe.tastes.map{|t| t.name}.join(', ')

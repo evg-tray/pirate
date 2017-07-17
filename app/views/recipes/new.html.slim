@@ -1,6 +1,12 @@
+.page-header.half-top-margin
+  h3
+    = t('.title')
 = render 'errors'
-.row
-  .col-xs-12.col-sm-6
-    = render 'form'
-  .col-xs-12.col-sm-6
-    = render 'recipe_table'
+.col-md-6.right-pad.wo-pad
+  .panel.panel-default
+    .panel-body
+      = render 'form'
+.col-md-6.left-pad.wo-pad
+  .panel.panel-default
+    .panel-body.wo-pb
+      = render 'recipe_table'

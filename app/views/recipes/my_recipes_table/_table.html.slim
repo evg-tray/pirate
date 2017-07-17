@@ -1,0 +1,14 @@
+.panel.panel-default
+  table.table.table-striped.v-center
+    thead
+      th
+        = t('activerecord.attributes.recipe.name')
+      th.fit
+        = t('recipes.my_recipes.public')
+      th.fit
+        = t('activerecord.attributes.recipe.created_at')
+      th.fit
+        = t('recipes.table.table.rating')
+    tbody
+      - recipes.each do |rec|
+        = render 'recipes/my_recipes_table/item', recipe: rec

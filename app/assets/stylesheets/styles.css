@@ -1,0 +1,53 @@
+.navbar-toggle.navbar-left {
+    float: left;
+    margin-left: 15px;
+}
+.nav-wrapper {
+    margin-bottom: 20px;
+}
+.wo-mb {
+    margin-bottom: 0px;
+}
+.wo-pb {
+    padding-bottom: 0px;
+}
+.page-header.half-top-margin {
+    margin-top: 20px;
+    padding-bottom: 0px;
+}
+.page-header.sm-top-bot-margin {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.center-login {
+    margin: 0 auto;
+    max-width: 450px;
+}
+.text-gray {
+    color: gray;
+}
+.col-md-6.wo-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+@media (min-width: 992px) {
+    .col-md-6.left-pad {
+        padding-left: 10px;
+    }
+    .col-md-6.right-pad {
+        padding-right: 10px;
+    }
+}
+
+.inline {
+    display: inline;
+}
+
+.table.v-center tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table td.fit, .table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}

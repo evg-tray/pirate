@@ -1,0 +1,12 @@
+tr id="rec-#{recipe.id}"
+  td
+    = link_to recipe.name, recipe_path(recipe)
+  td.fit
+    = recipe.author.username
+  td.fit
+    = format_date(recipe.created_at)
+  td.text-right.fit
+    = render 'recipes/rating/total_score', recipe: recipe
+  td.text-right.fit
+    = link_to t('recipes.favorites.remove_from_favorites'), '#', class: 'btn btn-sm btn-danger del-fav',
+            data: {from_list: true}, id: recipe.id

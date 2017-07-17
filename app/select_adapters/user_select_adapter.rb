@@ -10,12 +10,7 @@ class UserSelectAdapter
     end
     total_count = @results.total_count
     {
-        items: @results.map do |res|
-          {
-              text: res.username,
-              id: res.id,
-          }
-        end,
+        items: @results.map { |res| UserPresenter.new(res).as(:select) },
         total_count: total_count
     }
   end

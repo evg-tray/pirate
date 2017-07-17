@@ -1,0 +1,12 @@
+.panel.panel-default
+  table.table.table-striped.v-center
+    thead
+      th
+        = t('activerecord.attributes.manufacturer.name')
+      th.fit
+        = t('activerecord.attributes.manufacturer.short_name')
+      th.fit
+        = t('manufacturers.index.flavors_count')
+    tbody
+      - manufacturers.each do |manufacturer|
+        = render 'manufacturers/table/item', manufacturer: manufacturer

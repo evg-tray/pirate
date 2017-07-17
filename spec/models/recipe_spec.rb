@@ -6,12 +6,12 @@ RSpec.describe Recipe, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:flavors_recipes).inverse_of(:recipe) }
+    it { should have_many(:flavors_recipes).inverse_of(:recipe).dependent(:destroy) }
     it { should have_many(:flavors).through(:flavors_recipes) }
     it { should accept_nested_attributes_for(:flavors_recipes).allow_destroy(true) }
     it { should belong_to(:author).class_name('User') }
-    it { should have_many(:votes) }
-    it { should have_many(:comments) }
+    it { should have_many(:votes).dependent(:destroy) }
+    it { should have_many(:comments).dependent(:destroy) }
   end
 
   describe 'indexes' do

@@ -12,23 +12,22 @@ class RecipePolicy < ApplicationPolicy
       :pg,
       :vg,
       :nicotine_base,
-      :public,
+      :description,
+      taste_ids: [],
       flavors_recipes_attributes: [:id, :_destroy, :flavor_id, :amount]
   ]
   PUBLIC_PARAMS = [:public]
   PIRATE_DIY_PARAMS = [:pirate_diy]
 
   def permitted_attributes
-    attrs = if user.is_admin? || user.is_moderator?
-              BASE_PARAMS + PIRATE_DIY_PARAMS
-            else
-              BASE_PARAMS
-            end
-
-    if record.public
-      attrs
+    if user.is_admin? || user.is_moderator? || user.is_pirate_diy_creator?
+      BASE_PARAMS + PIRATE_DIY_PARAMS + PUBLIC_PARAMS
     else
-      attrs + PUBLIC_PARAMS
+      if user.confirmed?
+        BASE_PARAMS + PUBLIC_PARAMS
+      else
+        BASE_PARAMS
+      end
     end
   end
 
@@ -37,10 +36,18 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def update?
-    user.is_admin? || user == record.author
+    user && (user.is_admin? || user == record.author)
   end
 
   def add_favorites?
-    (user && record.public) || user == record.author
+    user && (record.public || user == record.author)
+  end
+
+  def show?
+    record.public || user&.is_admin? || (user && record.author == user)
+  end
+
+  def destroy?
+    update?
   end
 end

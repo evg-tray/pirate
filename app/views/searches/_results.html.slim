@@ -1,0 +1,4 @@
+.results
+  - if @results
+    = render 'recipes/table/table', recipes: @results
+    = paginate @results

@@ -1,5 +1,3 @@
 <% unless @user_flavor.errors.present? %>
-  $('#my_flavor_list .table').append(
-      '<%= j render 'flavor', user_flavor: @user_flavor %>'
-  )
+  $('#my_flavor_list .table').append('<%= j render 'flavor', user_flavor: @user_flavor %>')
 <% end %>

@@ -1,0 +1,16 @@
+ru:
+  tastes:
+    index:
+      title: "Вкусы рецептов"
+      create_taste: "Создать"
+    form:
+      title_new: "Создание вкуса"
+      title_edit: "Редактирование вкуса"
+      create_taste: "Создать"
+      edit_taste: "Изменить"
+    show:
+      all_tastes: "Все вкусы"
+  activerecord:
+    attributes:
+      taste:
+        name: "Наименование"

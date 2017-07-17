@@ -4,8 +4,10 @@
   = render 'recipes/form/base', f: f
   = render 'recipes/form/nicotine', f: f
   = render 'recipes/form/flavors', f: f
+  = render 'recipes/form/tastes', f: f
   = render 'recipes/form/drops'
+  = render 'recipes/form/description', f: f
   = render 'recipes/form/public', f: f
   = render 'recipes/form/pirate_diy', f: f
-  = f.submit t('.save_recipe'), class: 'btn btn-success'
+  = f.submit t('.save_recipe'), class: 'btn btn-primary'
 

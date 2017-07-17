@@ -1,0 +1,3 @@
+<% if @updated %>
+  $('#user-<%= @user.id %>').replaceWith('<%= j render 'user', user: @user %>')
+<% end %>

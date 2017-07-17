@@ -2,11 +2,13 @@ class Recipe < ApplicationRecord
   include RecipeValidations
   include Validable
 
-  has_many :flavors_recipes, inverse_of: :recipe
+  has_many :flavors_recipes, inverse_of: :recipe, dependent: :destroy
   has_many :flavors, through: :flavors_recipes
   belongs_to :author, class_name: 'User'
-  has_many :votes
-  has_many :comments
+  has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :recipe_tastes
+  has_many :tastes, through: :recipe_tastes
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
                                 reject_if: proc { |a| a['flavor_id'].blank? || a['amount'].blank? }
@@ -21,6 +23,8 @@ class Recipe < ApplicationRecord
 
   after_commit :notify_subsribers, on: :create, if: :pirate_diy
 
+  scope :sorted, -> { order(created_at: :desc) }
+  scope :without_pirate_diy, -> { where(pirate_diy: false) }
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
 

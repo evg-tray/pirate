@@ -1,0 +1,8 @@
+.page-header.half-top-margin
+  h3
+    = t('.title')
+p
+  = link_to t('.create_taste'), new_taste_path, class: 'btn btn-primary'
+- @tastes.each do |taste|
+  p
+    = link_to taste.name, taste_path(taste)

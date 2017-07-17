@@ -1,15 +1,15 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :index_pirate_diy, :show]
-  before_action :load_recipe, only: [:show, :edit, :update, :add_favorites, :delete_favorites]
+  before_action :load_recipe, only: [:show, :edit, :update, :add_favorites, :delete_favorites, :destroy]
 
   respond_to :js, only: [:add_favorites, :delete_favorites]
   def index
-    @recipes = Recipe.public_recipes.includes(:author).page(params[:page])
+    @recipes = Recipe.sorted.public_recipes.includes(:author).page(params[:page])
     respond_with(@recipes)
   end
 
   def index_pirate_diy
-    @recipes = Recipe.pirate_diy.includes(:author).page(params[:page])
+    @recipes = Recipe.sorted.pirate_diy.includes(:author).page(params[:page])
     respond_with(@recipes)
   end
 
@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    authorize @recipe
     @calc_values = Recipe.initial_values(current_user)
     respond_with(@recipe)
   end
@@ -41,8 +42,14 @@ class RecipesController < ApplicationController
     respond_with(@recipe)
   end
 
+  def destroy
+    authorize @recipe
+    @recipe.destroy
+    respond_with(@recipe)
+  end
+
   def favorites
-    @recipes = current_user.favorites
+    @recipes = current_user.favorites.page(params[:page])
     respond_with(@recipes)
   end
 
@@ -57,9 +64,14 @@ class RecipesController < ApplicationController
     @favorite.destroy if @favorite
   end
 
+  def my_recipes
+    @recipes = current_user.recipes.sorted.without_pirate_diy.page(params[:page])
+    respond_with(@recipes)
+  end
+
   private
 
   def load_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes(flavors_recipes: [:flavor]).find(params[:id])
   end
 end

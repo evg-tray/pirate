@@ -7,10 +7,14 @@ feature 'Create recipes', %q{
 } do
 
   given!(:user) { create(:user) }
+  given!(:user_confirmed) { create(:user_confirmed) }
   given!(:user_admin) { create(:user_admin) }
   given!(:user_moderator) { create(:user_moderator) }
-  given!(:recipe) { create(:recipe) }
+  given!(:user_pirate_diy_creator) { create(:user_pirate_diy_creator) }
+  given!(:recipe) { build(:recipe) }
   given!(:flavors) { create_list(:flavor, 2) }
+  given!(:tastes_recipe) { create_list(:taste, 2) }
+  given!(:tastes_non_recipe) { create(:taste) }
 
   scenario 'Auto fills defaults values' do
     sign_in(user)
@@ -24,8 +28,21 @@ feature 'Create recipes', %q{
     expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values(user)[:nicotine_base].to_s
   end
 
-  scenario 'User create recipe' do
+  scenario 'Non-confirmed user create private recipe' do
     sign_in(user)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+
+    click_on t('recipes.form.save_recipe')
+
+    visit recipes_path
+    expect(page).not_to have_content recipe.name
+  end
+
+  scenario 'Confirmed user create public recipe' do
+    sign_in(user_confirmed)
 
     visit new_recipe_path
 
@@ -35,6 +52,15 @@ feature 'Create recipes', %q{
 
     visit recipes_path
     expect(page).to have_content recipe.name
+  end
+
+  scenario 'Non-confirmed user does not see public checkbox' do
+    sign_in(user)
+
+    visit new_recipe_path
+
+    expect(page).not_to have_selector('#recipe_public')
+    expect(page).to have_content(t('recipes.form.public.for_public_need_confirm_email'))
   end
 
   scenario 'User does not see pirate diy checkbox' do
@@ -57,7 +83,20 @@ feature 'Create recipes', %q{
   end
 
   scenario 'Moderator create pirate diy recipe' do
-    sign_in(user_admin)
+    sign_in(user_moderator)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+    check 'recipe_pirate_diy'
+    click_on t('recipes.form.save_recipe')
+
+    visit root_path
+    expect(page).to have_content recipe.name
+  end
+
+  scenario 'Pirate diy creator create pirate diy recipe' do
+    sign_in(user_pirate_diy_creator)
 
     visit new_recipe_path
 
@@ -70,7 +109,7 @@ feature 'Create recipes', %q{
   end
 
   scenario 'User create recipe with flavors', js: true do
-    sign_in(user)
+    sign_in(user_confirmed)
 
     visit new_recipe_path
 
@@ -81,16 +120,34 @@ feature 'Create recipes', %q{
     click_on t('recipes.form.flavors.add_flavor')
 
     selects = all('.select2-tag')
-    numbers = all('.flavors-input .number')
+    amounts = all('.flavor-amount')
     select2(flavors[0].name, selects[0][:id])
-    numbers[0].set(5)
+    amounts[0].set(5)
     select2(flavors[1].name, selects[1][:id])
-    numbers[1].set(2)
+    amounts[1].set(2)
 
     click_on t('recipes.form.save_recipe')
 
     expect(page).to have_content recipe.name
     expect(page).to have_content flavors[0].name
     expect(page).to have_content flavors[1].name
+  end
+
+  scenario 'User create recipe with tastes', js: true do
+    sign_in(user_confirmed)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+    check 'recipe_public'
+
+    select2(tastes_recipe[0].name, 'recipe_taste_ids', true)
+    select2(tastes_recipe[1].name, 'recipe_taste_ids', true)
+
+    click_on t('recipes.form.save_recipe')
+
+    expect(page).to have_content recipe.name
+    expect(page).to have_content tastes_recipe[0].name
+    expect(page).to have_content tastes_recipe[1].name
   end
 end

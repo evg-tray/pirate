@@ -1,23 +1,31 @@
-h2
-  = t('.sign_up')
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :username
-    br
-    = f.text_field :username, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit t('.sign_up')
-= render "devise/shared/links"
+.center-login
+  .page-header.half-top-margin
+    h3
+      = t('.title')
+  .panel.panel-default
+    .panel-body
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .form-group.has-feedback.has-feedback-left
+          = f.text_field :username, autofocus: true, placeholder: t('devise.username_placeholder'),
+                  class: 'form-control'
+          i.fa.fa-user.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.email_field :email, placeholder: t('devise.email_placeholder'), class: 'form-control'
+          i.fa.fa-envelope.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password, autocomplete: "off", placeholder: t('devise.password_placeholder'),
+                  class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password_confirmation, autocomplete: "off",
+                  placeholder: t('devise.password_confirmation_placeholder'), class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+        .actions
+          button.btn.btn-primary.btn-block
+            i.fa.fa-user-plus
+            |&nbsp
+            = t('.sign_up')
+  .panel.panel-default
+    .panel-body
+      = render "devise/shared/links"

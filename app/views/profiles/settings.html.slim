@@ -1,48 +1,76 @@
+.page-header.half-top-margin
+  h3
+    = t('.subscriptions')
 - disabled = ! policy(:profile).update_subscription?
-= form_for current_user, url: subscription_path, html: { class: 'form-inline' }, remote: true do |f|
-  fieldset disabled=('disabled' if disabled)
-    .checkbox
-      label
-        = f.check_box :subscribed
-        = t('.subscribed')
-    = f.submit t('.save_subsribe'), class: 'btn btn-success'
-  - if disabled
-    .help-block
-      = t('.for_subscribe_need_confirm_email')
-br
-= form_for current_user, url: update_settings_path, html: { class: 'form-horizontal' }, remote: true do |f|
-  .form-group
-    = f.label :amount, class: 'control-label col-xs-3'
-    .col-xs-9
-      .input-group
-        = f.number_field :amount, min: 1, class: 'form-control'
-        .input-group-addon мл
-  .form-group
-    = f.label :pg, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :pg, min: 0, max: 100, class: 'form-control'
-        .input-group-addon %
-    = f.label :vg, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :vg, min: 0, max: 100, class: 'form-control'
-        .input-group-addon %
-  .form-group
-    = f.label :drops, class: 'control-label col-xs-3'
-    .col-xs-9
-      .input-group
-        = number_field_tag :drops, 30, min: 1, class: 'form-control'
-        .input-group-addon кап/мл
-  .form-group
-    = f.label :strength, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
-        .input-group-addon мг/мл
-    = f.label :nicotine_base, class: 'control-label col-xs-2'
-    .col-xs-4
-      .input-group
-        = f.number_field :nicotine_base, min: 0, class: 'form-control'
-        .input-group-addon мг/мл
-  = f.submit t('.save'), class: 'btn btn-success'
+.panel.panel-default
+  .panel-body
+    = form_for current_user, url: subscription_path, html: { class: 'form-inline' }, remote: true do |f|
+      fieldset disabled=('disabled' if disabled)
+        .checkbox
+          = f.check_box :subscribed
+          = f.label :subscribed, t('.subscribed')
+        |&nbsp
+        = f.submit t('.save_subsribe'), class: 'btn btn-primary'
+      - if disabled
+        .help-block
+          = t('.for_subscribe_need_confirm_email')
+
+.page-header.half-top-margin
+  h3
+    = t('.default_recipe_values')
+.panel.panel-default
+  .panel-body
+    = form_for current_user, url: update_settings_path, remote: true, html: { class: 'form-horizontal' } do |f|
+      .form-group
+        = f.label :amount, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = f.number_field :amount, min: 1, class: 'form-control'
+            .input-group-addon
+              = t('common.ml')
+      .form-group
+        = f.label :drops, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = number_field_tag :drops, 30, min: 1, class: 'form-control'
+            .input-group-addon
+              = t('common.drop_ml')
+      .form-group
+        .col-sm-6
+          .page-header.half-top-margin.sm-top-bot-margin
+            h4
+              = t('.base_header')
+      .form-group
+        = f.label :pg, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = f.number_field :pg, min: 0, max: 100, class: 'form-control'
+            .input-group-addon
+              = t('common.percent')
+      .form-group
+        = f.label :vg, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = f.number_field :vg, min: 0, max: 100, class: 'form-control'
+            .input-group-addon
+              = t('common.percent')
+      .form-group
+        .col-sm-6
+          .page-header.half-top-margin.sm-top-bot-margin
+            h4
+              = t('.nicotine_header')
+      .form-group
+        = f.label :strength, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = f.number_field :strength, min: 0, step: 0.5, class: 'form-control'
+            .input-group-addon
+              = t('common.mg_ml')
+      .form-group
+        = f.label :nicotine_base, class: 'control-label col-sm-2'
+        .col-sm-4
+          .input-group
+            = f.number_field :nicotine_base, min: 0, class: 'form-control'
+            .input-group-addon
+              = t('common.mg_ml')
+      = f.submit t('.save'), class: 'btn btn-primary'

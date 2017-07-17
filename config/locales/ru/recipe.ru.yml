@@ -23,19 +23,30 @@ ru:
         created_at: "Дата создания"
         public: "Публичный"
         pirate_diy: "Пиратский самозамес"
+        description: "Описание"
   recipes:
+    index:
+      title: "Рецепты пользователей"
+    index_pirate_diy:
+      title: "Пиратский самозамес"
     create_recipe: "Создать"
     comments:
       title: "Комментарии"
       no_comments: "Нет комментариев"
       create_comment: "Оставить комментарий"
+      text_placeholder: "Введите текст комментария"
     favorites:
       remove_from_favorites: "Удалить"
+      title: "Избранные рецепты"
     favorite:
       add_to_favorites: "Добавить в избранное"
       remove_from_favorites: "Удалить из избранного"
     recipe_table:
       ingredient: "Ингредиент"
+      pg_vg_ratio: "Соотношение PG/VG:"
+      nicotine_strength: "Крепость (никотин):"
+      drops_ml: "Капель в 1 мл:"
+      tastes: "Вкусы:"
     form:
       save_recipe: "Сохранить рецепт"
       base:
@@ -47,9 +58,31 @@ ru:
         name_placeholder: "Укажите наименование рецепта"
       nicotine:
         title: "Никотин"
+      public:
+        for_public_need_confirm_email: "Для возможности создавать публичные рецепты необходимо подтвердить e-mail."
+      tastes:
+        title: "Вкусы рецепта"
+        select_tastes_placeholder: "Выберите вкусы"
+      description:
+        title: "Описание"
+        desctiption_placeholder: "Здесь можете описать рецепт, указать сколько настаивать, какие-либо нюансы и т.п."
     flavors_recipe_fields:
       select_flavor_placeholder: "Выберите ароматизатор"
     table:
       table:
         rating: "Рейтинг"
-
+    new:
+      title: "Создание рецепта"
+    edit:
+      title: "Редактирование рецепта"
+    my_recipes:
+      title: "Мои рецепты"
+      public: "Публичный"
+    manage_buttons:
+      edit_recipe: "Изменить"
+      delete_recipe: "Удалить"
+      confrim_delete_text: "Вы действительно хотите удалить рецепт?"
+    description:
+      title: "Описание"
+    public: "Публичный"
+    private: "Приватный"

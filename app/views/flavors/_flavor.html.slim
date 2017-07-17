@@ -1,7 +1,10 @@
 tr id="my_flavor-#{user_flavor.id}"
   td
-    = user_flavor.flavor.name
-  td id="availability-#{user_flavor.id}"
+    = link_to user_flavor.flavor.name, flavor_path(user_flavor.flavor)
+  td.fit
+    = link_to "#{user_flavor.flavor.manufacturer.name} (#{user_flavor.flavor.manufacturer.short_name})",
+            manufacturer_path(user_flavor.flavor.manufacturer)
+  td.fit id="availability-#{user_flavor.id}"
     = render 'availability', user_flavor: user_flavor
-  td
-    = link_to t('.delete_my_flavor'), '#', class: 'btn btn-danger delete-myflavor', id: "delete-#{user_flavor.id}"
+  td.fit
+    = link_to t('.delete_my_flavor'), '#', class: 'btn btn-sm btn-danger delete-myflavor', id: "delete-#{user_flavor.id}"

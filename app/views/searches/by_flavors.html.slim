@@ -1,17 +1,26 @@
-= form_tag by_flavors_search_path, enforce_utf8: false, method: :get
-  .form-group
-    label.checkbox
-      = check_box_tag :without_single_flavor, '1', params[:without_single_flavor]
-      = t('.hide_recipes_with_single_flavor')
-    - options = @flavors.present? ? options_from_collection_for_select(@flavors, 'id', 'name', @flavors.ids) : ''
-    = select_tag 'flavor_ids[]', options, { class: 'select2-tag form-control', multiple: 'multiple',
-            data: {adapter: 'flavor', placeholder: t('.select_flavors_placeholder')} }
-    = submit_tag t('.search'), class: 'btn btn-info', name: nil
-    - if current_user
-      = link_to t('.fill_my_flavors'), fill_my_flavors_search_path, method: :post, remote: true,
-              class: 'btn btn-default'
-
-.results
-  - if @results
-    = render 'recipes/table/table', recipes: @results
-    = paginate @results
+.page-header.half-top-margin
+  h3
+    = t('.title')
+.panel.panel-default
+  .panel-body
+    = form_tag by_flavors_search_path, enforce_utf8: false, method: :get
+      .form-group
+        .checkbox
+          = check_box_tag :without_single_flavor, '1', params[:without_single_flavor]
+          = label_tag :without_single_flavor, t('.hide_recipes_with_single_flavor')
+      .form-group
+        - options = @flavors.present? ? options_from_collection_for_select(@flavors, 'id', 'name', @flavors.ids) : ''
+        = select_tag 'flavor_ids[]', options, { class: 'select2-tag form-control', multiple: 'multiple',
+                data: {adapter: 'flavor', placeholder: t('.select_flavors_placeholder')} }
+      .form-group
+        = render 'searches/scope_radio'
+      .form-group.wo-mb
+        = submit_tag t('searches.search_button_text'), class: 'btn btn-primary', name: nil
+        - if current_user
+          |&nbsp
+          = link_to t('.fill_my_flavors'), fill_my_flavors_search_path, method: :post, remote: true,
+                  class: 'btn btn-default'
+        - else
+          .help-block
+            = t('.fill_my_flavors_helper')
+= render 'results'

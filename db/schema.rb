@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424114237) do
+ActiveRecord::Schema.define(version: 20170713114047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,16 @@ ActiveRecord::Schema.define(version: 20170424114237) do
   end
 
   create_table "flavors", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "manufacturer_id"
+    t.string   "translate"
+    t.string   "description"
+    t.boolean  "warning_health"
+    t.boolean  "warning_device"
+    t.string   "warning_description"
+    t.integer  "recipes_count",       default: 0
     t.index ["manufacturer_id"], name: "index_flavors_on_manufacturer_id", using: :btree
   end
 
@@ -47,12 +53,19 @@ ActiveRecord::Schema.define(version: 20170424114237) do
   end
 
   create_table "manufacturers", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "short_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                      null: false
+    t.string   "short_name",                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "flavors_count", default: 0
     t.index ["name"], name: "index_manufacturers_on_name", using: :btree
     t.index ["short_name"], name: "index_manufacturers_on_short_name", using: :btree
+  end
+
+  create_table "recipe_tastes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "taste_id"
+    t.index ["recipe_id", "taste_id"], name: "index_recipe_tastes_on_recipe_id_and_taste_id", unique: true, using: :btree
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -69,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170424114237) do
     t.integer  "author_id"
     t.float    "average_rating", default: 0.0
     t.integer  "count_rating",   default: 0
+    t.string   "description"
     t.index ["author_id"], name: "index_recipes_on_author_id", using: :btree
   end
 
@@ -80,6 +94,12 @@ ActiveRecord::Schema.define(version: 20170424114237) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "tastes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_flavors", force: :cascade do |t|

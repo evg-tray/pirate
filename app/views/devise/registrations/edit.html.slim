@@ -1,44 +1,39 @@
-h2
-  = t('.title', resource: resource_class.model_name.human)
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :username
-    br
-    = f.email_field :username, autofocus: true
-  .field
-    = f.label :email
-    br
-    = f.email_field :email
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    p
-      = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
-  .field
-    = f.label :password
-    i
-      | (
-      = t('.leave_blank_if_you_don_t_want_to_change_it')
-      | )
-    br
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    i
-      | (
-      = t('.we_need_your_current_password_to_confirm_your_changes')
-      | )
-    br
-    = f.password_field :current_password, autocomplete: "off"
-  div
-    = f.submit t('.update')
-h3
-  = t('.cancel_my_account')
-p
-  = t('.unhappy')
-  = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete
-  | .
-= link_to t('devise.shared.links.back'), :back
+.center-login
+  .page-header.half-top-margin
+    h3
+      = t('.title')
+  .panel.panel-default
+    .panel-body
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = devise_error_messages!
+        .form-group.has-feedback.has-feedback-left
+          = f.text_field :username, autofocus: true, placeholder: t('devise.username_placeholder'),
+                  class: 'form-control'
+          i.fa.fa-user.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.email_field :email, placeholder: t('devise.email_placeholder'), class: 'form-control'
+          i.fa.fa-envelope.form-control-feedback
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          p
+            = t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password, autocomplete: "off", placeholder: t('devise.password_placeholder'),
+                  class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+          p.help-block
+            = t('.leave_blank_if_you_don_t_want_to_change_it')
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :password_confirmation, autocomplete: "off",
+                  placeholder: t('devise.password_confirmation_placeholder'), class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+        .form-group.has-feedback.has-feedback-left
+          = f.password_field :current_password, autocomplete: "off",
+                  placeholder: t('devise.current_password_placeholder'), class: 'form-control'
+          i.fa.fa-lock.form-control-feedback
+          p.help-block
+            = t('.we_need_your_current_password_to_confirm_your_changes')
+        div
+          button.btn.btn-primary.btn-block
+            i.fa.fa-edit
+            |&nbsp
+            = t('.update')

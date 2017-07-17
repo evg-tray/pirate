@@ -19,7 +19,7 @@ feature 'Add recipe to favorites', %q{
     click_on t('recipes.favorite.add_to_favorites')
 
     expect(page).to have_content t('recipes.favorite.remove_from_favorites')
-    visit favorites_path
+    visit favorites_recipes_path
     expect(page).to have_content recipe.name
   end
 
@@ -37,7 +37,7 @@ feature 'Add recipe to favorites', %q{
     click_on t('recipes.favorite.remove_from_favorites')
     expect(page).to have_content t('recipes.favorite.add_to_favorites')
 
-    visit favorites_path
+    visit favorites_recipes_path
     expect(page).not_to have_content recipe_favorite.name
   end
 end

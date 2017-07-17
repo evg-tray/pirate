@@ -1,26 +1,39 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, skip: :registrations
+  devise_scope :user do
+    resource :registration,
+      only: [:new, :create, :edit, :update],
+      path: 'users',
+      path_names: { new: 'sign_up' },
+      controller: 'devise/registrations',
+      as: :user_registration do
+        get :cancel
+      end
+  end
 
   authenticate :user, ->(user) { user.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :flavors
-  get 'my-flavors', to: 'flavors#my_flavors'
+  resources :flavors do
+    get 'my', to: 'flavors#my_flavors', on: :collection
+  end
   post 'add-to-my-flavors', to: 'flavors#add_to_my_flavors'
   post 'delete-from-my-flavors', to: 'flavors#delete_from_my_flavors'
   match 'availability', to: 'flavors#update_availability', via: :patch
-  resources :recipes
-  get 'favorites', to: 'recipes#favorites'
+  resources :recipes do
+    get 'my', to: 'recipes#my_recipes', on: :collection
+    get 'favorites', to: 'recipes#favorites', on: :collection
+  end
   post 'add-favorite', to: 'recipes#add_favorites'
   post 'delete-favorite', to: 'recipes#delete_favorites'
   root to: 'recipes#index_pirate_diy'
 
   resource :search, only: [:show] do
-    get 'by-flavors', to: 'searches#by_flavors'
+    get 'what-can-i-make', to: 'searches#by_flavors', as: 'by_flavors'
     post 'fill-my-flavors', to: 'searches#fill_my_flavors'
   end
 
@@ -34,10 +47,11 @@ Rails.application.routes.draw do
   resources :comments, only: [:create]
 
   resource :admin, only: [:show]
-  post 'set-moderator', to: 'admins#set_moderator'
-  post 'unset-moderator', to: 'admins#unset_moderator'
+  post 'add-role', to: 'admins#add_role'
+  post 'del-role', to: 'admins#del_role'
 
   get 'select', to: 'selects#select'
 
   resources :manufacturers
+  resources :tastes
 end

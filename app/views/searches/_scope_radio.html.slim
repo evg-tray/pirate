@@ -1,0 +1,9 @@
+.radio.radio-inline
+  = radio_button_tag :scope, 'all', params[:scope].eql?('all') || !params[:scope].present?
+  = label_tag :scope_all, t('searches.by_all_recipes')
+.radio.radio-inline
+  = radio_button_tag :scope, 'public', params[:scope].eql?('public')
+  = label_tag :scope_public, t('searches.only_users_recipes')
+.radio.radio-inline
+  = radio_button_tag :scope, 'pirate_diy', params[:scope].eql?('pirate_diy')
+  = label_tag :scope_pirate_diy, t('searches.only_pirate_diy_recipes')

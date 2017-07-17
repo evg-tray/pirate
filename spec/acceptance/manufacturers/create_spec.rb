@@ -9,6 +9,7 @@ feature 'Create manufacturers', %q{
   given(:user) { create(:user) }
   given(:user_admin) { create(:user_admin) }
   given(:user_moderator) { create(:user_moderator) }
+  given(:user_flavor_creator) { create(:user_flavor_creator) }
   given(:manufacturer) { build(:manufacturer) }
 
   scenario 'User tries create manufacturer' do
@@ -27,20 +28,39 @@ feature 'Create manufacturers', %q{
 
     fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
     fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
-    click_on t('manufacturers.new.create_manufacturer')
+    within '.panel-body' do
+      click_on t('manufacturers.new.create_manufacturer')
+    end
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name
   end
 
   scenario 'Moderator creates manufacturer' do
-    sign_in(user_admin)
+    sign_in(user_moderator)
 
     visit new_manufacturer_path
 
     fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
     fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
-    click_on t('manufacturers.new.create_manufacturer')
+    within '.panel-body' do
+      click_on t('manufacturers.new.create_manufacturer')
+    end
+
+    visit manufacturers_path
+    expect(page).to have_content manufacturer.name
+  end
+
+  scenario 'Flavor creator creates manufacturer' do
+    sign_in(user_flavor_creator)
+
+    visit new_manufacturer_path
+
+    fill_in t('activerecord.attributes.manufacturer.name'), with: manufacturer.name
+    fill_in t('activerecord.attributes.manufacturer.short_name'), with: manufacturer.short_name
+    within '.panel-body' do
+      click_on t('manufacturers.new.create_manufacturer')
+    end
 
     visit manufacturers_path
     expect(page).to have_content manufacturer.name

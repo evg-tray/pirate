@@ -10,6 +10,6 @@ class ManufacturersIndex < Chewy::Index
   define_type Manufacturer do
     field :name, analyzer: 'ng'
     field :short_name, analyzer: 'ng'
-    field :flavors_count, value: ->(manufacturer) { manufacturer.flavors.count }, analyzer: 'ng'
+    field :flavors_count, type: 'integer'
   end
 end

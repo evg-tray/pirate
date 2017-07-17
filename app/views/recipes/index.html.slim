@@ -1,4 +1,5 @@
-- if policy(Recipe).new?
-  = link_to t('recipes.create_recipe'), new_recipe_path, class: 'btn btn-primary'
+.page-header.half-top-margin
+  h3
+    = t('.title')
 = render 'recipes/table/table', recipes: @recipes
 = paginate @recipes

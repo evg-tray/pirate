@@ -1,6 +1,9 @@
-- if policy(@recipe).permits_attribute?(:public)
-  .form-group
-    label.checkbox
-      = f.check_box :public
-      = t('activerecord.attributes.recipe.public')
-
+.form-group
+  .col-sm-12
+    - if policy(@recipe).permits_attribute?(:public)
+      .checkbox
+        = f.check_box :public
+        = f.label :public, t('activerecord.attributes.recipe.public')
+    - else
+      .help-block
+        = t('.for_public_need_confirm_email')

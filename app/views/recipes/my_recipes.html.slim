@@ -1,0 +1,5 @@
+.page-header.half-top-margin
+  h3
+    = t('.title')
+= render 'recipes/my_recipes_table/table', recipes: @recipes
+= paginate @recipes

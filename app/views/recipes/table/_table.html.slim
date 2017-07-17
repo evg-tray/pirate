@@ -1,13 +1,17 @@
-table.table.table-striped
-  thead
-    th
-      = t('activerecord.attributes.recipe.name')
-    th
-      = t('activerecord.attributes.recipe.author')
-    th
-      = t('activerecord.attributes.recipe.created_at')
-    th.text-right
-      = t('.rating')
-  tbody
-    - recipes.each do |rec|
-      = render 'recipes/table/item', recipe: rec
+- unless defined?(pirate_diy)
+  - pirate_diy = false
+.panel.panel-default
+  table.table.table-striped.v-center
+    thead
+      th
+        = t('activerecord.attributes.recipe.name')
+      - unless pirate_diy
+        th.fit
+          = t('activerecord.attributes.recipe.author')
+      th.fit
+        = t('activerecord.attributes.recipe.created_at')
+      th.fit
+        = t('.rating')
+    tbody
+      - recipes.each do |rec|
+        = render 'recipes/table/item', recipe: rec, pirate_diy: pirate_diy

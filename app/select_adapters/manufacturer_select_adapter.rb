@@ -10,15 +10,7 @@ class ManufacturerSelectAdapter
     end
     total_count = @results.total_count
     {
-        items: @results.map do |res|
-          {
-              text: res.name,
-              id: res.id,
-              msn: res.short_name,
-              count: res.flavors_count,
-              type: 'm'
-          }
-        end,
+        items: @results.map { |res| ManufacturerPresenter.new(res).as(:select) },
         total_count: total_count
     }
   end

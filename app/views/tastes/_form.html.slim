@@ -1,0 +1,10 @@
+.page-header.half-top-margin
+  h3
+    = @taste.new_record? ? t('.title_new') : t('.title_edit')
+.panel.panel-default
+  .panel-body
+    = error_messages(@taste)
+    = form_for(@taste) do |f|
+      .form-group
+        = f.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.taste.name')
+      = f.submit @taste.new_record? ? t('.create_taste') : t('.edit_taste'), class: 'btn btn-primary'

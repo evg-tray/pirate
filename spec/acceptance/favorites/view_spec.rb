@@ -14,7 +14,7 @@ feature 'View favorites recipes', %q{
   scenario 'User view his favorites recipes and delete one', js: true do
     sign_in(user)
 
-    visit favorites_path
+    visit favorites_recipes_path
 
     expect(page).to have_content recipes_favorites[0].name
     expect(page).to have_content recipes_favorites[1].name

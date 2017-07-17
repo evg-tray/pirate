@@ -2,7 +2,7 @@ RSpec.describe RecipePolicy do
 
   let(:user) { create(:user) }
   let(:user_admin) { create(:user_admin) }
-  let(:user_author) { create(:user_moderator) }
+  let(:user_author) { create(:user) }
   let(:recipe) { create(:recipe, author: user_author) }
   let(:recipe_public) { create(:recipe, public: true) }
   let(:recipe_private) { create(:recipe, public: false) }
@@ -27,6 +27,24 @@ RSpec.describe RecipePolicy do
     it 'grants access if user author' do
       expect(subject).to permit(user_author, recipe)
     end
+
+    it 'denises access if user not author or admin' do
+      expect(subject).not_to permit(user, recipe)
+    end
+  end
+
+  permissions :destroy? do
+    it 'grants access if user admin' do
+      expect(subject).to permit(user_admin, recipe)
+    end
+
+    it 'grants access if user author' do
+      expect(subject).to permit(user_author, recipe)
+    end
+
+    it 'denises access if user not author or admin' do
+      expect(subject).not_to permit(user, recipe)
+    end
   end
 
   permissions :add_favorites? do
@@ -40,6 +58,24 @@ RSpec.describe RecipePolicy do
 
     it 'denies access if recipe not public and user not author' do
       expect(subject).not_to permit(user, recipe_private)
+    end
+  end
+
+  permissions :show? do
+    it 'grants access all users to public recipe' do
+      expect(subject).to permit(nil, recipe_public)
+    end
+
+    it 'grants access if user author' do
+      expect(subject).to permit(user_author, recipe)
+    end
+
+    it 'grants access if user admin' do
+      expect(subject).to permit(user_admin, recipe)
+    end
+
+    it 'denies access to private recipe if user not admin and not author' do
+      expect(subject).not_to permit(user, recipe)
     end
   end
 end

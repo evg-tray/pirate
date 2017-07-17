@@ -1,45 +1,69 @@
-.row
-  .rating
+= title_param(@recipe.name)
+.form-group
+  .status.inline
+    = recipe_status(current_user, @recipe)
+  .rating.inline
     = user_score_rating(current_user, @recipe)
-  .favorite
+  .favorite.inline
     = render 'favorite'
+  .inline
+    = render 'manage_buttons'
+.col-md-6.right-pad.wo-pad
+  .panel.panel-default
+    .panel-body.wo-pb
+      = render 'recipe_table'
+  = render 'description' if @recipe.description
+.col-md-6.left-pad.wo-pad
+  .panel.panel-default
+    .panel-body
+      form.form-horizontal
+        .form-group
+          = label_tag :amount, t('activerecord.attributes.recipe.amount'), class: 'control-label col-sm-3'
+          .col-sm-9
+            .input-group
+              = number_field_tag :amount, @calc_values[:amount], min: 1, class: 'form-control', id: 'recipe_amount'
+              .input-group-addon
+                = t('common.ml')
+        .form-group
+          = label_tag :drops, t('common.drops'), class: 'control-label col-sm-3'
+          .col-sm-9
+            .input-group
+              = number_field_tag :drops, @calc_values[:drops], min: 0, class: 'form-control'
+              .input-group-addon
+                = t('common.drop_ml')
+        .form-group
+          .col-sm-12
+            .page-header.half-top-margin.sm-top-bot-margin
+              h4
+                = t('recipes.form.nicotine.title')
+        .form-group
+          = label_tag :strength, t('activerecord.attributes.recipe.strength'), class: 'control-label col-sm-3'
+          .col-sm-9
+            .input-group
+              = number_field_tag :strength, @calc_values[:strength], min: 0, step: 0.5,
+                      class: 'form-control', id: 'recipe_strength'
+              .input-group-addon
+                = t('common.mg_ml')
+        .form-group.wo-mb
+          = label_tag :nicotine_base, t('activerecord.attributes.recipe.nicotine_base'), class: 'control-label col-sm-3'
+          .col-sm-9
+            .input-group
+              = number_field_tag :nicotine_base, @calc_values[:nicotine_base], min: 0,
+                      class: 'form-control', id: 'recipe_nicotine_base'
+              .input-group-addon
+                = t('common.mg_ml')
 
-  = render 'recipe_table'
-  form.form-horizontal
-    .form-group
-      = label_tag :amount, t('activerecord.attributes.recipe.amount'), class: 'control-label col-xs-3'
-      .input-group
-        = number_field_tag :amount, @calc_values[:amount], min: 1, class: 'form-control', id: 'recipe_amount'
-        .input-group-addon
-          = t('common.ml')
-    .form-group
-      = label_tag :strength, t('activerecord.attributes.recipe.strength'), class: 'control-label col-xs-3'
-      .input-group
-        = number_field_tag :strength, @calc_values[:strength], min: 0, step: 0.5,
-                class: 'form-control', id: 'recipe_strength'
-        .input-group-addon
-          = t('common.mg_ml')
-    .form-group
-      = label_tag :nicotine_base, t('activerecord.attributes.recipe.nicotine_base'), class: 'control-label col-xs-3'
-      .input-group
-        = number_field_tag :nicotine_base, @calc_values[:nicotine_base], min: 0,
-                class: 'form-control', id: 'recipe_nicotine_base'
-        .input-group-addon
-          = t('common.mg_ml')
-    .form-group
-      = label_tag :drops, t('activerecord.attributes.recipe.drops'), class: 'control-label col-xs-3'
-      .input-group
-        = number_field_tag :drops, @calc_values[:drops], min: 0, class: 'form-control'
-        .input-group-addon
-          = t('common.drop_ml')
-    = hidden_field_tag :recipe_pg, @recipe.pg
-    = hidden_field_tag :recipe_vg, @recipe.vg
-    = hidden_field_tag :recipe_name, @recipe.name
-    .hidden
-      - @recipe.flavors_recipes.each do |rf|
-        .flavors-input
-          = select_tag :flavor, "<option selected='selected'>#{rf.flavor.name}</option>".html_safe, class: 'select'
-          = hidden_field_tag :flavor_amount, rf.amount, class: 'number'
-
-.row
-  = render 'comments'
+        = hidden_field_tag :recipe_pg, @recipe.pg
+        = hidden_field_tag :recipe_vg, @recipe.vg
+        = hidden_field_tag :recipe_name, @recipe.name
+        = hidden_field_tag :recipe_tastes, @recipe.tastes.map{|t| t.name}.join(', ')
+        .hidden
+          - @recipe.flavors_recipes.each do |rf|
+            .flavors-input
+              = hidden_field_tag :flavor_text, rf.flavor.name, class: 'flavor-text'
+              = hidden_field_tag :flavor_mn, rf.flavor.manufacturer.name, class: 'flavor-mn'
+              = hidden_field_tag :flavor_msn, rf.flavor.manufacturer.short_name, class: 'flavor-msn'
+              = hidden_field_tag :flavor_amount, rf.amount, class: 'flavor-amount'
+              = hidden_field_tag :flavor_id, rf.flavor.id, class: 'flavor-id'
+.clearfix
+= render 'comments'

@@ -1,13 +1,32 @@
-.page-header
+.page-header.half-top-margin.sm-top-bot-margin
   h4#recipe_result_header
-table.table.table-striped#recipe_result
-  thead
-    th
-      = t('.ingredient')
-    th.text-right
-      = t('common.percent')
-    th.text-right
-      = t('common.ml')
-    th.text-right
-      = t('common.drop')
-  tbody
+p
+  = t('.pg_vg_ratio')
+  |&nbsp
+  span#pgvg_ratio
+p
+  = t('.nicotine_strength')
+  |&nbsp
+  span#nicotine_strength
+  |&nbsp
+  = t('common.mg_ml')
+p
+  = t('.drops_ml')
+  |&nbsp
+  span#drops_ml
+p
+  = t('.tastes')
+  |&nbsp
+  span#tastes
+.panel.panel-default
+  table.table.table-striped.wo-mb.v-center#recipe_result
+    thead
+      th
+        = t('.ingredient')
+      th.fit
+        = t('common.percent')
+      th.fit
+        = t('common.ml')
+      th.fit
+        = t('common.drop')
+    tbody

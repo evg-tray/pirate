@@ -12,14 +12,34 @@ ru:
       add: "Добавить"
       flavor: "Ароматизатор"
       availability: "Наличие"
+      title: "Мои ароматизаторы"
     index:
       create_flavor: "Создать"
-    new:
+      title: "Ароматизаторы"
+      recipes_count: "Количество рецептов"
+    form:
       select_manufacturer_placeholder: "Выберите производителя"
       create_flavor: "Создать"
+      edit_flavor: "Изменить"
+      title_new: "Создание ароматизатора"
+      title_edit: "Редактирование"
     show:
       all_flavors: "Все ароматизаторы"
+      title: "Ароматизатор"
+      edit_flavor: "Изменить"
   activerecord:
     attributes:
       flavor:
         name: "Наименование"
+        manufacturer: "Производитель"
+        translate: "Перевод"
+        description: "Описание"
+        warning_health: "Вреден для здоровья"
+        warning_device: "Вреден для устройства"
+        warning_description: "Описание вредности"
+    errors:
+      models:
+        flavor:
+          attributes:
+            manufacturer:
+              required: "должен быть указан"

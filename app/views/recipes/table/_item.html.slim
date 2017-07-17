@@ -1,9 +1,13 @@
 tr
   td
     = link_to recipe.name, recipe_path(recipe)
-  td
-    = recipe.author.username
-  td
-    = recipe.created_at
-  td.text-right
+  - unless pirate_diy
+    td.fit
+      - if recipe.pirate_diy
+        = link_to t('activerecord.attributes.recipe.pirate_diy'), root_path
+      - else
+        = link_to recipe.author.username, '#'
+  td.fit
+    = format_date(recipe.created_at)
+  td.text-right.fit
     = render 'recipes/rating/total_score', recipe: recipe

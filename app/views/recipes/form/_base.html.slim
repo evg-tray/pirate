@@ -1,14 +1,18 @@
-p
-  = t('.title')
 .form-group
-  = f.label :pg, class: 'control-label col-xs-2'
-  .col-xs-4
+  .col-sm-12
+    .page-header.half-top-margin.sm-top-bot-margin
+      h4
+        = t('.title')
+.form-group
+  = f.label :pg, class: 'control-label col-sm-3'
+  .col-sm-9
     .input-group
       = f.number_field :pg, min: 0, max: 100, class: 'form-control'
       .input-group-addon
         = t('common.percent')
-  = f.label :vg, class: 'control-label col-xs-2'
-  .col-xs-4
+.form-group
+  = f.label :vg, class: 'control-label col-sm-3'
+  .col-sm-9
     .input-group
       = f.number_field :vg, min: 0, max: 100, class: 'form-control'
       .input-group-addon

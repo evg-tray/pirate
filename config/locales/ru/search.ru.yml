@@ -3,11 +3,14 @@ ru:
     by_flavors:
       hide_recipes_with_single_flavor: "Скрыть рецепты с одним ароматизатором"
       select_flavors_placeholder: "Выберите ароматизаторы"
-      search: "Найти"
       fill_my_flavors: "Заполнить моими ароматизаторами"
+      title: "Что я могу замешать? (Поиск по ароматизаторам)"
+      fill_my_flavors_helper: "В личном кабинете можно сохранить список имеющихся у вас ароматизаторов.
+      Это позволит заполнять строку поиска автоматически."
     show:
-      by_all_recipes: "По всем рецептам"
-      only_users_recipes: "Только пользовательские"
-      only_pirate_diy_recipes: ""
-      search: "Найти"
-      search_title: "Поиск"
+      title: "Поиск по наименованию"
+      query_placeholder: "Введите текст поиска"
+    search_button_text: "Найти"
+    by_all_recipes: "По всем рецептам"
+    only_users_recipes: "Только пользовательские"
+    only_pirate_diy_recipes: "Только пиратский самозамес"

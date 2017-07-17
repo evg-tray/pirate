@@ -1,8 +1,13 @@
 ru:
   admins:
-    user:
-      remove_moderator: "Убрать"
     show:
-      set_moderator: "Сделать модератором"
+      title: "Административная панель"
+      add_moderator: "Модератор"
+      add_flavor_creator: "Добавление ароматизаторов"
+      add_pirate_diy_creator: "Создание пиратского самозамеса"
       select_user_placeholder: "Выберите пользователя"
-      moderators: "Модераторы:"
+      users_with_roles: "Пользователи с ролями:"
+      user_header: "Пользователь"
+      moderator_header: "Модератор"
+      flavor_creator_header: "Добавление ароматизаторов"
+      pirate_diy_header: "Создание пиратского самозамеса"

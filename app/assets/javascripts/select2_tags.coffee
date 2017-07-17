@@ -1,11 +1,15 @@
 formatResult = (data) ->
   res = data.text
   if data.type == 'f'
-    res += " (<attr title='" + data.mn + "'>" + data.msn + "</attr>)"
-    res += " - <attr title='Количество рецептов'>" + data.count + "</attr>"
+    res = if data.wh then "<i class=\"fa fa-heartbeat\" title=\"Вреден для здоровья\"></i>&nbsp" else ''
+    res += if data.wd then "<i class=\"fa fa-warning\" title=\"Вреден для устройства\"></i>&nbsp" else ''
+    res += data.fn
+    res += " (<abbr title='" + data.mn + "'>" + data.msn + "</abbr>)"
+    res += " - <abbr title='Количество рецептов'>" + data.count + "</abbr>"
+    res += "<div class=\"cleafix\"></div><small>" + if data.tr then data.tr else '' + "</small>"
   else if data.type == 'm'
     res += " (" + data.msn + ")"
-    res += " - <attr title='Количество ароматизаторов'>" + data.count + "</attr>"
+    res += " - <abbr title='Количество ароматизаторов'>" + data.count + "</abbr>"
   res
 
 select2 = ->
@@ -35,6 +39,7 @@ select2 = ->
     allowClear: true
     theme: 'bootstrap'
     language: 'ru'
+    width: null
 
 $(document).on("turbolinks:before-cache", ->
   $('.select2-tag').select2('destroy'))
