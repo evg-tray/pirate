@@ -8,6 +8,7 @@ require 'capistrano/rails'
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/puma'
+install_plugin Capistrano::Puma
 require 'capistrano/sidekiq'
 
 # Load the SCM plugin appropriate to your project:
