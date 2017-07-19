@@ -6,7 +6,7 @@ class Flavor < ApplicationRecord
   update_index 'flavors#flavor', :self
   update_index('manufacturers#manufacturer') { manufacturer }
 
-  validates :name, presence: true, uniqueness: true, length: { minimum: 10 }
+  validates :name, presence: true, uniqueness: { scope: :manufacturer_id }
 
   scope :sorted, -> { order(:name) }
 end
