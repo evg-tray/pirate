@@ -15,6 +15,12 @@ module RecipeValidations
     end
   end
 
+  def must_have_flavor
+    if flavors_recipes.empty? or flavors_recipes.all? { |fr| fr.marked_for_destruction? }
+      errors.add(:base, :must_have_flavor)
+    end
+  end
+
   private
 
   def validate_liquid_integrity?

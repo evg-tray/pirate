@@ -18,15 +18,21 @@ feature 'Search recipes by flavors', %q{
   given!(:flavor4) { create(:flavor) }
 
   before do
+    recipe1.flavors = []
     recipe1.flavors << flavor1
     recipe1.flavors << flavor2
+    recipe2.flavors = []
     recipe2.flavors << flavor2
     recipe2.flavors << flavor3
+    recipe3.flavors = []
     recipe3.flavors << flavor2
     recipe3.flavors << flavor4
+    recipe_single_flavor.flavors = []
     recipe_single_flavor.flavors << flavor4
+    private_recipe.flavors = []
     private_recipe.flavors << flavor1
     private_recipe.flavors << flavor2
+    pirate_diy_recipe.flavors = []
     pirate_diy_recipe.flavors << flavor1
     pirate_diy_recipe.flavors << flavor2
     visit by_flavors_search_path

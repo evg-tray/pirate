@@ -12,11 +12,14 @@ RSpec.describe Recipe, type: :model do
     it { should belong_to(:author).class_name('User') }
     it { should have_many(:votes).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
+    it { should have_many(:recipe_tastes).dependent(:destroy) }
+    it { should have_many(:tastes).through(:recipe_tastes) }
   end
 
   describe 'indexes' do
     let!(:flavor) { create(:flavor) }
-    let(:recipe) { create(:recipe, flavors: [flavor]) }
+    #let(:recipe) { create(:recipe, flavors: [flavor]) }
+    let(:recipe) { create(:recipe) }
     let(:public_recipe) { create(:public_recipe) }
     let(:update_recipe) do
       Proc.new do |rec = recipe|

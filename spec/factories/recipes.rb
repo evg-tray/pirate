@@ -11,6 +11,9 @@ FactoryGirl.define do
     association :author, factory: :user
     average_rating 0.0
     count_rating 0
+    after(:build) do |rec|
+      rec.flavors_recipes << build(:flavors_recipe)
+    end
 
     trait :public do
       public true

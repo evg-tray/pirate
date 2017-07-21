@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
   belongs_to :author, class_name: 'User'
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :recipe_tastes
+  has_many :recipe_tastes, dependent: :destroy
   has_many :tastes, through: :recipe_tastes
 
   accepts_nested_attributes_for :flavors_recipes, allow_destroy: true,
@@ -19,6 +19,7 @@ class Recipe < ApplicationRecord
   DEFAULTS = {amount: 30, pg: 30, vg: 70, strength: 0, nicotine_base: 100, drops: 30}
 
   validates :name, presence: true, length: { minimum: 10, maximum: 200 }
+  validate :must_have_flavor
   validate :liquid_integrity
 
   after_commit :notify_subsribers, on: :create, if: :pirate_diy

@@ -28,26 +28,30 @@ feature 'Create recipes', %q{
     expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values(user)[:nicotine_base].to_s
   end
 
-  scenario 'Non-confirmed user create private recipe' do
+  scenario 'Non-confirmed user create private recipe', js: true do
     sign_in(user)
 
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
+    add_flavor
 
     click_on t('recipes.form.save_recipe')
 
     visit recipes_path
     expect(page).not_to have_content recipe.name
+    visit my_recipes_path
+    expect(page).to have_content recipe.name
   end
 
-  scenario 'Confirmed user create public recipe' do
+  scenario 'Confirmed user create public recipe', js: true do
     sign_in(user_confirmed)
 
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_public'
+    add_flavor
     click_on t('recipes.form.save_recipe')
 
     visit recipes_path
@@ -70,38 +74,41 @@ feature 'Create recipes', %q{
     expect(page).not_to have_selector('#recipe_pirate_diy')
   end
 
-  scenario 'Admin create pirate diy recipe' do
+  scenario 'Admin create pirate diy recipe', js: true do
     sign_in(user_admin)
 
     visit new_recipe_path
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_pirate_diy'
+    add_flavor
     click_on t('recipes.form.save_recipe')
 
     visit root_path
     expect(page).to have_content recipe.name
   end
 
-  scenario 'Moderator create pirate diy recipe' do
+  scenario 'Moderator create pirate diy recipe', js: true do
     sign_in(user_moderator)
 
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_pirate_diy'
+    add_flavor
     click_on t('recipes.form.save_recipe')
 
     visit root_path
     expect(page).to have_content recipe.name
   end
 
-  scenario 'Pirate diy creator create pirate diy recipe' do
+  scenario 'Pirate diy creator create pirate diy recipe', js: true do
     sign_in(user_pirate_diy_creator)
 
     visit new_recipe_path
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_pirate_diy'
+    add_flavor
     click_on t('recipes.form.save_recipe')
 
     visit root_path
@@ -140,6 +147,7 @@ feature 'Create recipes', %q{
 
     fill_in 'recipe_name', with: recipe.name
     check 'recipe_public'
+    add_flavor
 
     select2(tastes_recipe[0].name, 'recipe_taste_ids', true)
     select2(tastes_recipe[1].name, 'recipe_taste_ids', true)
@@ -149,5 +157,26 @@ feature 'Create recipes', %q{
     expect(page).to have_content recipe.name
     expect(page).to have_content tastes_recipe[0].name
     expect(page).to have_content tastes_recipe[1].name
+  end
+
+  scenario 'User tries create recipe without flavors', js: true do
+    sign_in(user)
+
+    visit new_recipe_path
+
+    fill_in 'recipe_name', with: recipe.name
+
+    click_on t('recipes.form.save_recipe')
+
+    expect(page).to have_content t('activerecord.errors.models.recipe.attributes.base.must_have_flavor')
+  end
+
+  def add_flavor
+    click_on t('recipes.form.flavors.add_flavor')
+
+    selects = all('.select2-tag')
+    amounts = all('.flavor-amount')
+    select2(flavors[0].name, selects[0][:id])
+    amounts[0].set(5)
   end
 end
