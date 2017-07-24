@@ -1,0 +1,29 @@
+$breakpoint-responsive-table: 640px;
+
+.rwd-table {
+  tr:first-child > td:first-child, td:not(:first-child) {
+    @media (max-width: $breakpoint-responsive-table) {
+      border-top: 0px;
+    }
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+    &:not(:first-child):before {
+      content: attr(data-th)": ";
+      @media (min-width: $breakpoint-responsive-table) {
+        display: none;
+      }
+    }
+  }
+
+  th, td {
+    @media (min-width: $breakpoint-responsive-table) {
+      display: table-cell;
+    }
+  }
+}
