@@ -17,16 +17,16 @@ feature 'View ratings', %q{
   scenario 'Any user view ratings in list public recipes', js: true do
     visit recipes_path
 
-    expect(page).to have_content "4.2/5 (2)"
-    expect(page).to have_content "3.5/5 (3)"
-    expect(page).to have_content "0.0/5 (0)"
+    expect(page).to have_content "4.2/5 2"
+    expect(page).to have_content "3.5/5 3"
+    expect(page).to have_content "0.0/5 0"
   end
 
   scenario 'Any user view ratings in list pirate diy recipes', js: true do
     visit root_path
 
-    expect(page).to have_content "5.0/5 (3)"
-    expect(page).to have_content "2.3/5 (5)"
-    expect(page).to have_content "0.0/5 (0)"
+    expect(page).to have_content "5.0/5 3"
+    expect(page).to have_content "2.3/5 5"
+    expect(page).to have_content "0.0/5 0"
   end
 end

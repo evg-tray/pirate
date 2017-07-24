@@ -87,3 +87,5 @@ ru:
       title: "Описание"
     public: "Публичный"
     private: "Приватный"
+    rating:
+      votes_count: "Количество голосов"

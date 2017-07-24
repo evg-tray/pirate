@@ -19,14 +19,14 @@ feature 'Create votes', %q{
     sleep 1
 
     visit recipe_path(recipe)
-    expect(page).to have_content "4.0/5 (1)"
+    expect(page).to have_content "4.0/5 1"
 
     stars = all('.rating .user-rating i')
     stars[0].click
     sleep 1
 
     visit recipe_path(recipe)
-    expect(page).to have_content "0.0/5 (0)"
+    expect(page).to have_content "0.0/5 0"
   end
 
   scenario 'Non-authenticated user tries vote for recipe', js: true do
@@ -37,6 +37,6 @@ feature 'Create votes', %q{
     sleep 1
 
     visit recipe_path(recipe)
-    expect(page).to have_content "0.0/5 (0)"
+    expect(page).to have_content "0.0/5 0"
   end
 end
