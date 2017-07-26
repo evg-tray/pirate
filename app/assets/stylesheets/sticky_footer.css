@@ -1,14 +1,27 @@
 html,body {
-  height:100%;
-  width: 100%;
+    height:100%;
+    width: 100%;
 }
 body {
-  display: table;
+    display: table;
 }
 .container {
-  height: auto;
+    height: auto;
 }
 .footer {
-  display: table-row;
-  height: 1px;
+    display: table-row;
+    height: 1px;
+    background-color: #292c2f;
+    color: #8f9296;
+    font-weight: bold;
+}
+.footer .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.footer .links {
+    margin-bottom: 20px;
+}
+.footer .links, .footer .links a {
+    color: white;
 }

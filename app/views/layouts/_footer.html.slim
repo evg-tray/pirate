@@ -1,4 +1,14 @@
 footer.footer
   .container
-    .row
-      .col-xs-12
+    .links.text-center
+      = link_to 'Temp link', '#'
+      |&nbsp
+      |·
+      |&nbsp
+      = link_to 'Temp link', '#'
+    .text-center
+      = t('titles.site_name')
+      |&nbsp
+      i.fa.fa-copyright
+      |&nbsp
+      = copyright_year_range
