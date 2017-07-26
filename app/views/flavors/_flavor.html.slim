@@ -1,6 +1,9 @@
 tr id="my_flavor-#{user_flavor.id}"
   td
     = link_to user_flavor.flavor.name, flavor_path(user_flavor.flavor)
+    br
+    small
+      = user_flavor.flavor.translate
   td.fit
     = link_to "#{user_flavor.flavor.manufacturer.name} (#{user_flavor.flavor.manufacturer.short_name})",
             manufacturer_path(user_flavor.flavor.manufacturer)
