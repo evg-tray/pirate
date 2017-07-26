@@ -14,7 +14,9 @@ feature 'View recipes', %q{
     visit recipes_path
 
     expect(page).to have_content public_recipes[0].name
+    expect(page).to have_content public_recipes[0].flavors_list
     expect(page).to have_content public_recipes[1].name
+    expect(page).to have_content public_recipes[1].flavors_list
 
     expect(page).not_to have_content private_recipes[0].name
     expect(page).not_to have_content private_recipes[1].name
@@ -33,6 +35,8 @@ feature 'View recipes', %q{
     expect(page).not_to have_content private_recipes[1].name
 
     expect(page).to have_content pirate_diy_recipes[0].name
+    expect(page).to have_content pirate_diy_recipes[0].flavors_list
     expect(page).to have_content pirate_diy_recipes[1].name
+    expect(page).to have_content pirate_diy_recipes[1].flavors_list
   end
 end

@@ -12,7 +12,7 @@
   .panel.panel-default
     .panel-body.wo-pb
       = render 'recipe_table'
-  = render 'description' if @recipe.description
+  = render 'description' unless @recipe.description&.empty?
 .col-md-6.left-pad.wo-pad
   .panel.panel-default
     .panel-body

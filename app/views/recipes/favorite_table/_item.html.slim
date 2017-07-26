@@ -1,8 +1,14 @@
 tr id="rec-#{recipe.id}"
   td
     = link_to recipe.name, recipe_path(recipe)
+    br
+    small
+      = recipe.flavors_list
   td.fit
-    = recipe.author.username
+    - if recipe.pirate_diy
+      = link_to t('activerecord.attributes.recipe.pirate_diy'), root_path
+    - else
+      = link_to recipe.author.username, '#'
   td.fit
     = format_date(recipe.created_at)
   td.text-right.fit

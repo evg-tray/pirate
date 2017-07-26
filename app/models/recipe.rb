@@ -23,6 +23,7 @@ class Recipe < ApplicationRecord
   validate :liquid_integrity
 
   after_commit :notify_subsribers, on: :create, if: :pirate_diy
+  before_save :update_flavors_list
 
   scope :sorted, -> { order(created_at: :desc) }
   scope :without_pirate_diy, -> { where(pirate_diy: false) }
@@ -47,5 +48,9 @@ class Recipe < ApplicationRecord
 
   def notify_subsribers
     PirateDiyJob.perform_later(self)
+  end
+
+  def update_flavors_list
+    self.flavors_list = flavors_recipes.map { |f| "#{f.flavor.name} (#{f.flavor.manufacturer.short_name})" }.join(', ')
   end
 end
