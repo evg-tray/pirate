@@ -8,4 +8,7 @@
 .form-group
   .col-sm-12
     .links
-      = link_to_add_association t('.add_flavor'), f, :flavors_recipes, class: 'btn btn-danger'
+      = link_to_add_association f, :flavors_recipes, class: 'btn btn-danger' do
+        i.fa.fa-plus
+        |&nbsp
+        = t('.add_flavor')
