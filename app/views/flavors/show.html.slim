@@ -3,10 +3,10 @@
   h3
     = t('.title')
 p
-  = link_to t('.all_flavors'), flavors_path, class: 'btn btn-primary'
+  = link_to t('.all_flavors'), flavors_path, class: 'btn btn-primary btn-margin'
   - if policy(@flavor).edit?
     |&nbsp
-    = link_to edit_flavor_path(@flavor), class: 'btn btn-primary' do
+    = link_to edit_flavor_path(@flavor), class: 'btn btn-primary btn-margin' do
       i.fa.fa-edit
       |&nbsp
       = t('.edit_flavor')

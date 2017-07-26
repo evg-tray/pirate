@@ -12,14 +12,14 @@
         - options = @flavors.present? ? options_from_collection_for_select(@flavors, 'id', 'name', @flavors.ids) : ''
         = select_tag 'flavor_ids[]', options, { class: 'select2-tag form-control', multiple: 'multiple',
                 data: {adapter: 'flavor', placeholder: t('.select_flavors_placeholder')} }
-      .form-group
+      .form-group.wo-mb
         = render 'searches/scope_radio'
       .form-group.wo-mb
-        = submit_tag t('searches.search_button_text'), class: 'btn btn-primary', name: nil
+        = submit_tag t('searches.search_button_text'), class: 'btn btn-primary btn-margin', name: nil
         - if current_user
           |&nbsp
           = link_to t('.fill_my_flavors'), fill_my_flavors_search_path, method: :post, remote: true,
-                  class: 'btn btn-default'
+                  class: 'btn btn-default btn-margin'
         - else
           .help-block
             = t('.fill_my_flavors_helper')

@@ -1,12 +1,12 @@
 - if policy(@recipe).add_favorites?
   - favorite = current_user.favorites.find_by_id(@recipe.id)
   - if favorite
-    button.btn.btn-sm.btn-default.del-fav id = @recipe.id
+    button.btn.btn-sm.btn-default.btn-margin.del-fav id = @recipe.id
       i.fa.fa-bookmark-o
       |&nbsp
       = t('.remove_from_favorites')
   - else
-    button.btn.btn-sm.btn-default.add-fav id = @recipe.id
+    button.btn.btn-sm.btn-default.btn-margin.add-fav id = @recipe.id
       i.fa.fa-bookmark-o
       |&nbsp
       = t('.add_to_favorites')

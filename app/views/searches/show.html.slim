@@ -8,6 +8,6 @@
         = text_field_tag :query, params[:query], class: 'form-control', placeholder: t('.query_placeholder')
       .form-group.wo-mb
         = render 'searches/scope_radio'
-        |&nbsp
+      .form-group.wo-mb
         = submit_tag t('searches.search_button_text'), class: 'btn btn-primary', name: nil
 = render 'results'

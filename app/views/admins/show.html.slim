@@ -9,11 +9,11 @@
           = select_tag :user_id, '', class: 'select2-tag form-control',
                   data: { adapter: 'user', placeholder: t('.select_user_placeholder') }
         .form-group.wo-mb
-          = link_to t('.add_moderator'), '#', class: 'btn btn-primary add-role', data: {role: 'moderator'}
+          = link_to t('.add_moderator'), '#', class: 'btn btn-primary btn-margin add-role', data: {role: 'moderator'}
           |&nbsp
-          = link_to t('.add_flavor_creator'), '#', class: 'btn btn-primary add-role', data: {role: 'flavor_creator'}
+          = link_to t('.add_flavor_creator'), '#', class: 'btn btn-primary btn-margin add-role', data: {role: 'flavor_creator'}
           |&nbsp
-          = link_to t('.add_pirate_diy_creator'), '#', class: 'btn btn-primary add-role',
+          = link_to t('.add_pirate_diy_creator'), '#', class: 'btn btn-primary btn-margin add-role',
                   data: {role: 'pirate_diy_creator'}
 .row
   .col-xs-12

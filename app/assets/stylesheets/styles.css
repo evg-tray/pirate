@@ -43,6 +43,10 @@
     display: inline;
 }
 
+.inline-b {
+    display: inline-block;
+}
+
 .table.v-center tbody > tr > td {
     vertical-align: middle;
 }
@@ -50,4 +54,10 @@
 .table td.fit, .table th.fit {
     white-space: nowrap;
     width: 1%;
+}
+
+.btn-margin
+{
+    margin-bottom: 4px;
+    margin-top: 4px;
 }
