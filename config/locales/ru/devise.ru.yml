@@ -17,3 +17,4 @@ ru:
     current_password_placeholder: "Текущий пароль"
     failure:
       not_found_in_database: "Неверное имя пользователя/e-mail или пароль."
+      invalid: "Неверное имя пользователя/e-mail или пароль."
