@@ -9,7 +9,10 @@ require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
+install_plugin Capistrano::Puma::Monit
 require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
+require 'capistrano/chewy'
 
 # Load the SCM plugin appropriate to your project:
 #
