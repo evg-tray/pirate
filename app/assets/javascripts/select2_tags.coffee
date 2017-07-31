@@ -4,7 +4,7 @@ formatResult = (data) ->
     res = if data.wh then "<i class=\"fa fa-heartbeat\" title=\"Вреден для здоровья\"></i>&nbsp" else ''
     res += if data.wd then "<i class=\"fa fa-warning\" title=\"Вреден для устройства\"></i>&nbsp" else ''
     res += data.fn
-    res += " (<abbr title='" + data.mn + "'>" + data.msn + "</abbr>)"
+    res += " (<abbr title=\"" + data.mn + "\">" + data.msn + "</abbr>)"
     res += " - <abbr title='Количество рецептов'>" + data.count + "</abbr>"
     res += "<div class=\"cleafix\"></div><small>" + if data.tr then data.tr else '' + "</small>"
   else if data.type == 'm'
