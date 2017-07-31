@@ -22,8 +22,8 @@ flavor_table_presentation = (element) ->
   return '<a target="_blank" href="/flavors/' +
       $(element).find('.flavor-id').val() + '">' +
       $(element).find('.flavor-text').val() + '</a>' +
-      ' (<abbr title=' + $(element).find('.flavor-mn').val() +
-      '>' + $(element).find('.flavor-msn').val() + '</abbr>)'
+      ' (<abbr title="' + $(element).find('.flavor-mn').val() +
+      '">' + $(element).find('.flavor-msn').val() + '</abbr>)'
 
 fill_hidden_select2_values = ->
   new_name = ''
