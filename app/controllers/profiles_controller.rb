@@ -19,9 +19,9 @@ class ProfilesController < ApplicationController
     @user = User.find_by_unsubscribe_key(params[:key])
     if @user
       @user.update(subscribed: false)
-      flash[:notice] = "E-mail: #{@user.email} успешно удален из рассылки."
+      flash[:notice] = t('profiles.success', email: @user.email)
     else
-      flash[:alert] = "Произошла ошибка. Попробуйте еще раз."
+      flash[:alert] = t('profiles.error')
     end
   end
 
