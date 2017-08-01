@@ -69,6 +69,7 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'capybara-webkit'
+  gem 'capybara-email'
 end
 
 group :development do

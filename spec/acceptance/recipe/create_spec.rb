@@ -7,7 +7,6 @@ feature 'Create recipes', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:user_confirmed) { create(:user_confirmed) }
   given!(:user_admin) { create(:user_admin) }
   given!(:user_moderator) { create(:user_moderator) }
   given!(:user_pirate_diy_creator) { create(:user_pirate_diy_creator) }
@@ -28,7 +27,7 @@ feature 'Create recipes', %q{
     expect(find_field('recipe_nicotine_base').value).to eq Recipe.initial_values(user)[:nicotine_base].to_s
   end
 
-  scenario 'Non-confirmed user create private recipe', js: true do
+  scenario 'User create private recipe', js: true do
     sign_in(user)
 
     visit new_recipe_path
@@ -45,7 +44,7 @@ feature 'Create recipes', %q{
   end
 
   scenario 'Confirmed user create public recipe', js: true do
-    sign_in(user_confirmed)
+    sign_in(user)
 
     visit new_recipe_path
 
@@ -56,15 +55,6 @@ feature 'Create recipes', %q{
 
     visit recipes_path
     expect(page).to have_content recipe.name
-  end
-
-  scenario 'Non-confirmed user does not see public checkbox' do
-    sign_in(user)
-
-    visit new_recipe_path
-
-    expect(page).not_to have_selector('#recipe_public')
-    expect(page).to have_content(t('recipes.form.public.for_public_need_confirm_email'))
   end
 
   scenario 'User does not see pirate diy checkbox' do
@@ -116,7 +106,7 @@ feature 'Create recipes', %q{
   end
 
   scenario 'User create recipe with flavors', js: true do
-    sign_in(user_confirmed)
+    sign_in(user)
 
     visit new_recipe_path
 
@@ -141,7 +131,7 @@ feature 'Create recipes', %q{
   end
 
   scenario 'User create recipe with tastes', js: true do
-    sign_in(user_confirmed)
+    sign_in(user)
 
     visit new_recipe_path
 

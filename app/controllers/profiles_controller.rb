@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
   end
 
   def update_subscription
-    authorize :profile
     current_user.update(subscription_params)
   end
 

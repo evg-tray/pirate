@@ -7,24 +7,13 @@ feature 'Subscriptions to pirate diy recipes', %q{
 } do
 
   given!(:user) { create(:user) }
-  given!(:user_confirmed) { create(:user_confirmed) }
 
-  scenario 'Non-confirmed user tries subscribe to pirate diy' do
+  scenario 'User tries subscribe to pirate diy', js: true do
     sign_in(user)
 
     visit settings_path
 
-    within 'fieldset' do
-      expect(page).to have_button(t('profiles.settings.save_subsribe'), disabled: true)
-    end
-  end
-
-  scenario 'Сonfirmed user tries subscribe to pirate diy', js: true do
-    sign_in(user_confirmed)
-
-    visit settings_path
-
-    within 'fieldset' do
+    within '.form-inline' do
       check 'user_subscribed'
       click_on t('profiles.settings.save_subsribe')
     end

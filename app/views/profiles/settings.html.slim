@@ -1,19 +1,14 @@
 .page-header.half-top-margin
   h3
     = t('.subscriptions')
-- disabled = ! policy(:profile).update_subscription?
 .panel.panel-default
   .panel-body
     = form_for current_user, url: subscription_path, html: { class: 'form-inline' }, remote: true do |f|
-      fieldset disabled=('disabled' if disabled)
-        .checkbox
-          = f.check_box :subscribed
-          = f.label :subscribed, t('.subscribed')
-        |&nbsp
-        = f.submit t('.save_subsribe'), class: 'btn btn-primary'
-      - if disabled
-        .help-block
-          = t('.for_subscribe_need_confirm_email')
+      .checkbox
+        = f.check_box :subscribed
+        = f.label :subscribed, t('.subscribed')
+      |&nbsp
+      = f.submit t('.save_subsribe'), class: 'btn btn-primary'
 
 .page-header.half-top-margin
   h3
