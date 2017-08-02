@@ -4,12 +4,14 @@ class RecipesController < ApplicationController
 
   respond_to :js, only: [:add_favorites, :delete_favorites]
   def index
-    @recipes = Recipe.sorted.public_recipes.includes(:author).page(params[:page])
+    @recipes = Recipe.sorted.public_recipes.includes(:author)
+                   .includes(flavors_recipes: [flavor: :manufacturer]).page(params[:page])
     respond_with(@recipes)
   end
 
   def index_pirate_diy
-    @recipes = Recipe.sorted.pirate_diy.includes(:author).page(params[:page])
+    @recipes = Recipe.sorted.pirate_diy.includes(:author)
+                   .includes(flavors_recipes: [flavor: :manufacturer]).page(params[:page])
     respond_with(@recipes)
   end
 
@@ -49,7 +51,7 @@ class RecipesController < ApplicationController
   end
 
   def favorites
-    @recipes = current_user.favorites.page(params[:page])
+    @recipes = current_user.favorites.includes(flavors_recipes: [flavor: :manufacturer]).page(params[:page])
     respond_with(@recipes)
   end
 
@@ -65,7 +67,8 @@ class RecipesController < ApplicationController
   end
 
   def my_recipes
-    @recipes = current_user.recipes.sorted.without_pirate_diy.page(params[:page])
+    @recipes = current_user.recipes.sorted.without_pirate_diy
+                   .includes(flavors_recipes: [flavor: :manufacturer]).page(params[:page])
     respond_with(@recipes)
   end
 

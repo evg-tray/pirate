@@ -3,7 +3,7 @@ tr
     = link_to recipe.name, recipe_path(recipe)
     br
     small
-      = recipe.flavors_list
+      = RecipePresenter.new(recipe).as(:flavors_list)
   - unless pirate_diy
     td.fit
       - if recipe.pirate_diy

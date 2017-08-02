@@ -3,7 +3,7 @@ tr
     = link_to recipe.name, recipe_path(recipe)
     br
     small
-      = recipe.flavors_list
+      = RecipePresenter.new(recipe).as(:flavors_list)
   td.text-center.fit
     - if recipe.public
       i.fa.fa-check.text-success

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802103824) do
+ActiveRecord::Schema.define(version: 20170802144740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20170802103824) do
     t.float    "average_rating", default: 0.0
     t.integer  "count_rating",   default: 0
     t.string   "description"
-    t.string   "flavors_list",   default: ""
     t.index ["author_id"], name: "index_recipes_on_author_id", using: :btree
   end
 

@@ -3,7 +3,7 @@ tr id="rec-#{recipe.id}"
     = link_to recipe.name, recipe_path(recipe)
     br
     small
-      = recipe.flavors_list
+      = RecipePresenter.new(recipe).as(:flavors_list)
   td.fit
     - if recipe.pirate_diy
       = link_to t('activerecord.attributes.recipe.pirate_diy'), root_path
