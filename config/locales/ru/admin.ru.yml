@@ -11,3 +11,5 @@ ru:
       moderator_header: "Модератор"
       flavor_creator_header: "Добавление ароматизаторов"
       pirate_diy_header: "Создание пиратского самозамеса"
+    enable_registration: "Включить регистрацию"
+    disable_registration: "Выключить регистрацию"

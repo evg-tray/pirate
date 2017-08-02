@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
   before_action :load_user, only: [:add_role, :del_role]
   before_action :load_role, only: [:add_role, :del_role]
 
-  respond_to :js, only: [:set_moderator, :unset_moderator]
+  respond_to :js, only: [:set_moderator, :unset_moderator, :enable_disable_registration]
 
   ROLES = [:moderator, :flavor_creator, :pirate_diy_creator]
 
@@ -28,6 +28,10 @@ class AdminsController < ApplicationController
       @user.save
       @updated = true
     end
+  end
+
+  def enable_disable_registration
+    Setting.disable_registration = params[:disable_registraion] == "0" ? false : true
   end
 
   private

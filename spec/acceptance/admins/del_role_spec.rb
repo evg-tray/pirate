@@ -1,9 +1,9 @@
 require_relative '../acceptance_helper'
 
-feature 'Remove moderators', %q{
-  In order to be able to remove role moderator from user
+feature 'Remove role', %q{
+  In order to be able to remove role from user
   As an admin user
-  I want to be able to remove moderator
+  I want to be able to remove role
 } do
 
   given!(:user_moderator) { create(:user_moderator) }

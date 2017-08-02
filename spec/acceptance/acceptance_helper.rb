@@ -26,4 +26,9 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.after(:each, clear_cache: true) do
+    DatabaseCleaner.clean
+    Rails.cache.clear
+  end
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       only: [:new, :create, :edit, :update],
       path: 'users',
       path_names: { new: 'sign_up' },
-      controller: 'devise/registrations',
+      controller: 'registrations',
       as: :user_registration do
         get :cancel
       end
@@ -46,7 +46,9 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create]
 
-  resource :admin, only: [:show]
+  resource :admin, only: [:show] do
+    post 'enable-disable-registration', to: 'admins#enable_disable_registration'
+  end
   post 'add-role', to: 'admins#add_role'
   post 'del-role', to: 'admins#del_role'
 

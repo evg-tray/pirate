@@ -1,0 +1,6 @@
+- if Setting.disable_registration
+  = link_to t('admins.enable_registration'), '#', class: 'btn btn-success ed-reg',
+          data: {disable: 0}
+- else
+  = link_to t('admins.disable_registration'), '#', class: 'btn btn-danger ed-reg',
+          data: {disable: 1}

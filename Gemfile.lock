@@ -235,6 +235,8 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     railties (5.0.2)
       actionpack (= 5.0.2)
       activesupport (= 5.0.2)
@@ -385,6 +387,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.0.2)
   rails-assets-select2 (~> 4.0.0)!
+  rails-settings-cached
   redis-namespace
   responders
   rolify

@@ -56,6 +56,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'dotenv-rails'
 gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'rails-settings-cached'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-select2', '~> 4.0.0'

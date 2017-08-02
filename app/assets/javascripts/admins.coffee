@@ -24,3 +24,14 @@ add_role = (event) ->
     })
 
 $(document).on('click', '.add-role', add_role)
+
+enable_disable_registration = (event) ->
+  event.preventDefault()
+  $.ajax({
+    type: "POST",
+    url: "/admin/enable-disable-registration",
+    data: { disable_registraion: $(this).data('disable') },
+    dataType: 'script'
+  })
+
+$(document).on('click', '.ed-reg', enable_disable_registration)

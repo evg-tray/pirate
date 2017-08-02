@@ -1,9 +1,9 @@
 require_relative '../acceptance_helper'
 
-feature 'Add moderators', %q{
-  In order to be able to add role moderator to user
+feature 'Add roles', %q{
+  In order to be able to add role to user
   As an admin user
-  I want to be able to add moderator
+  I want to be able to add role
 } do
 
   given!(:user) { create(:user) }
