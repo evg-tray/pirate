@@ -44,7 +44,7 @@ class RecipePolicy < ApplicationPolicy
   end
 
   def show?
-    record.public || user&.is_admin? || (user && record.author == user)
+    record.public || record.pirate_diy || user&.is_admin? || (user && record.author == user)
   end
 
   def destroy?
