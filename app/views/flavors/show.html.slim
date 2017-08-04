@@ -23,3 +23,8 @@ p
         = simple_format(@flavor.warning_description)
     = simple_format(@flavor.description)
 
+.page-header.half-top-margin
+  h3
+    = t('.title_recipes')
+= render 'recipes/table/table', recipes: @recipes
+= paginate @recipes

@@ -27,6 +27,7 @@ ru:
       all_flavors: "Все ароматизаторы"
       title: "Ароматизатор"
       edit_flavor: "Изменить"
+      title_recipes: "Рецепты с этим ароматизатором"
   activerecord:
     attributes:
       flavor:

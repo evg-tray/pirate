@@ -22,6 +22,8 @@ class FlavorsController < ApplicationController
   end
 
   def show
+    @recipes = @flavor.recipes.sorted.public_pirate.includes(:author)
+                   .includes(flavors_recipes: [flavor: :manufacturer]).page(params[:page])
     respond_with(@flavor)
   end
 

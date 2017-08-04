@@ -28,7 +28,7 @@ class Recipe < ApplicationRecord
   scope :without_pirate_diy, -> { where(pirate_diy: false) }
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
-
+  scope :public_pirate, -> { where(public: true).or(where(pirate_diy: true)) }
   def self.initial_values(user)
     if user
       return {
