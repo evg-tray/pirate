@@ -23,12 +23,14 @@ class Recipe < ApplicationRecord
   validate :liquid_integrity
 
   after_commit :notify_subsribers, on: :create, if: :pirate_diy
+  before_save :dedupe_flavors
 
   scope :sorted, -> { order(created_at: :desc) }
   scope :without_pirate_diy, -> { where(pirate_diy: false) }
   scope :public_recipes, -> { where(public: true, pirate_diy: false) }
   scope :pirate_diy, -> { where(pirate_diy: true) }
   scope :public_pirate, -> { where(public: true).or(where(pirate_diy: true)) }
+
   def self.initial_values(user)
     if user
       return {
@@ -47,5 +49,13 @@ class Recipe < ApplicationRecord
 
   def notify_subsribers
     PirateDiyJob.perform_later(self)
+  end
+
+  def dedupe_flavors
+    grouped = flavors_recipes.group_by{|f| [f.recipe_id, f.flavor_id]}
+    grouped.values.each do |duplicates|
+      duplicates.shift
+      duplicates.each{|double| double.destroy}
+    end
   end
 end
