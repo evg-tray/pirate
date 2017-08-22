@@ -1,24 +1,27 @@
-# README
+# Pirate liquid
+База рецептов для эл.сигарет с поиском и обсуждением.
+Два типа поиска:
+- по наименованию
+- по ингредиентам, имеющимся в наличии
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Рецепты могут быть приватными, публичными или относиться к рубрике "Пиратский самозамес" (авторская рубрика одного человека).
 
-Things you may want to cover:
+Написан на `Ruby on Rails 5`.
 
-* Ruby version
+Аналогичный сайт [e-liquid-recipes.com](e-liquid-recipes.com).
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Используемые технологии
+- `Pundit` - авторизация
+- `Rolify` - роли пользователей
+- `Devise` - аутентификация
+- `Sidekiq` - фоновые задачи
+- `Chewy` - поиск с помощью `ElasticSearch`
+- `Responders` - облегчение контроллеров
+- `Slim` - шаблонизатор
+- `Cocoon` - динамические вложенные формы
+- `Kaminari` - пагинация
+- `Storext` - хранение нескольких атрибутов в одной колонке `Postgresql`
+- `Capistrano` - деплой приложения
+- Тестирование
+  - `RSpec`
+  - `Capybara`
